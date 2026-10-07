@@ -573,6 +573,20 @@ footer{border-top-color:rgba(255,255,255,.08);background:rgba(5,12,32,.5)}
 .tgrid.three{grid-template-columns:repeat(3,minmax(0,1fr))}
 @media (max-width:980px){.tgrid.three{grid-template-columns:minmax(0,1fr);grid-auto-rows:auto}}
 .ben article,.otc article,.inside article,.wif,.story-card{background:var(--glass);border:1px solid var(--glass-b);-webkit-backdrop-filter:blur(18px) saturate(150%);backdrop-filter:blur(18px) saturate(150%);box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 30px 60px -30px rgba(2,6,20,.7)}
+
+/* fixes: separation under hero + wider calendar */
+.bc-hero{position:relative}
+.bc-hero{background:transparent!important}
+.bc-hero::before{inset:0!important;width:auto!important;height:auto!important;z-index:0;
+  background:linear-gradient(90deg,rgba(8,19,48,.95),rgba(8,19,48,.85) 50%,rgba(8,19,48,.6)),url("images/hero-home.webp") 80% bottom/cover no-repeat,var(--navy-900)!important;
+  -webkit-mask-image:linear-gradient(180deg,#000 72%,transparent);mask-image:linear-gradient(180deg,#000 72%,transparent)}
+.bc-hero::after{display:none}
+.wid-sec{padding-top:clamp(72px,9vw,120px);position:relative}
+.wid-sec::before{content:"";position:absolute;top:0;left:50%;translate:-50% 0;width:min(1180px,calc(100% - 32px));height:1px;background:linear-gradient(90deg,transparent,rgba(232,182,90,.45),transparent)}
+@media (min-width:981px){
+  .bc-hero .wrap,.nav .wrap{max-width:1600px}
+  .bc-grid{grid-template-columns:minmax(0,1fr) min(50vw,980px)}
+}
 </style>
 
 <header class="nav">
@@ -638,7 +652,7 @@ footer{border-top-color:rgba(255,255,255,.08);background:rgba(5,12,32,.5)}
 </section>
 
 <!-- WHAT I DO -->
-<section class="block" style="padding-top:0">
+<section class="block wid-sec">
   <div class="wrap wid">
     <div>
       <div class="eyebrow">What I do</div>
