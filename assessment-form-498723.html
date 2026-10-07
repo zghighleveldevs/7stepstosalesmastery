@@ -1,0 +1,497 @@
+<!doctype html>
+<html lang="en-GB">
+<meta charset="utf-8">
+<link rel="icon" type="image/png" href="images/favicon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pre-Call Sales Assessment</title>
+<meta name="description" content="Complete your pre-call sales assessment so Paul Broome can prepare for your free strategy call.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Figtree:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: one question per screen, centred column, slim top bar + progress line. Sleek navy & gold. */
+:root{
+  --bg:#081330; --bg2:#0d1c44; --line:rgba(255,255,255,.12); --line2:rgba(255,255,255,.22);
+  --ink:#f4f6fc; --mute:#b7c2dc; --dim:#8693b3;
+  --gold:#e8b65a; --gold-hi:#ffd98c; --gold-lo:#b38636; --good:#5fbf8c; --bad:#ff8f7a; --sapphire:#2f63ff;
+  --f-display:"Playfair Display",Georgia,"Times New Roman",serif;
+  --f-body:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow:hidden}
+:focus-visible{outline:2px solid var(--gold-hi);outline-offset:3px;border-radius:6px}
+
+/* ambient background */
+.amb{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.amb i{position:absolute;border-radius:50%;filter:blur(80px);opacity:.55;animation:drift 22s ease-in-out infinite alternate}
+.amb i:nth-child(1){width:46vw;height:46vw;left:-12vw;top:-14vw;background:radial-gradient(circle,rgba(47,99,255,.55),transparent 65%)}
+.amb i:nth-child(2){width:38vw;height:38vw;right:-10vw;bottom:-12vw;background:radial-gradient(circle,rgba(232,182,90,.32),transparent 65%);animation-duration:28s}
+.amb i:nth-child(3){width:30vw;height:30vw;left:40vw;top:50vh;background:radial-gradient(circle,rgba(47,99,255,.28),transparent 65%);animation-duration:34s}
+@keyframes drift{to{transform:translate(6vw,4vh) scale(1.12)}}
+.amb::after{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(ellipse at center,#000 30%,transparent 75%)}
+
+.app{position:relative;z-index:1;height:100%;display:grid;grid-template-rows:auto 1fr auto}
+
+/* top bar */
+.bar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:calc(env(safe-area-inset-top,0px) + 16px) clamp(16px,4vw,40px) 14px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink)}
+.brand svg{width:30px;height:34px}
+.bar .brand .logo-h{height:52px}
+.intro-logo{display:block;height:120px;width:auto;margin:0 0 26px}
+@media (max-width:600px){.intro-logo{height:92px}}
+.brand b{font-family:var(--f-display);font-size:16px;line-height:1.1;display:block}
+.brand small{font-family:var(--f-mono);font-size:9.5px;letter-spacing:.18em;color:var(--gold);text-transform:uppercase}
+.bar-r{display:flex;align-items:center;gap:14px}
+.sec-chip{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);padding:7px 12px;border:1px solid var(--line);border-radius:99px;background:rgba(255,255,255,.03);white-space:nowrap}
+.sec-chip b{color:var(--gold-hi);font-weight:600}
+.prog{position:fixed;left:0;right:0;top:0;height:3px;z-index:5;background:rgba(255,255,255,.06)}
+.prog i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--gold-lo),var(--gold-hi));box-shadow:0 0 14px rgba(232,182,90,.8);transition:width .6s cubic-bezier(.2,.8,.2,1)}
+
+/* stage */
+.stage{position:relative;overflow:hidden}
+.q{position:absolute;inset:0;overflow-y:auto;display:flex;align-items:center;padding:24px clamp(16px,5vw,40px) 40px}
+.q-in{width:100%;max-width:720px;margin:auto}
+.q.enter{animation:qin .65s cubic-bezier(.2,.8,.2,1) both}
+.q.enter.rev{animation-name:qinR}
+.q.leave{animation:qout .38s cubic-bezier(.6,0,.8,.4) both;pointer-events:none}
+.q.leave.rev{animation-name:qoutR}
+@keyframes qin{from{opacity:0;transform:translateY(60px)}}
+@keyframes qinR{from{opacity:0;transform:translateY(-60px)}}
+@keyframes qout{to{opacity:0;transform:translateY(-60px)}}
+@keyframes qoutR{to{opacity:0;transform:translateY(60px)}}
+.q-in>*{animation:fade .6s cubic-bezier(.2,.8,.2,1) both}
+.q-in>*:nth-child(2){animation-delay:.06s}.q-in>*:nth-child(3){animation-delay:.12s}.q-in>*:nth-child(4){animation-delay:.18s}.q-in>*:nth-child(5){animation-delay:.24s}
+@keyframes fade{from{opacity:0;transform:translateY(14px)}}
+
+.qnum{display:flex;align-items:center;gap:10px;font-family:var(--f-mono);font-size:13px;color:var(--gold);letter-spacing:.06em}
+.qnum svg{width:14px;height:14px}
+.qh{font-family:var(--f-display);font-weight:600;font-size:clamp(28px,4.2vw,44px);line-height:1.15;margin:10px 0 0;text-wrap:balance}
+.qh em{font-style:italic;color:var(--gold-hi)}
+.qh .req{color:var(--gold)}
+.qd{color:var(--mute);font-size:clamp(16px,1.6vw,18.5px);margin-top:12px;max-width:58ch}
+
+/* text input — big underline */
+.inp{margin-top:34px;display:grid;gap:22px}
+.inp.two{grid-template-columns:1fr 1fr}
+@media (max-width:600px){.inp.two{grid-template-columns:1fr}}
+.line-in{position:relative}
+.line-in label{display:block;font-size:13px;color:var(--dim);font-weight:600;letter-spacing:.02em;margin-bottom:4px}
+.line-in input,.line-in textarea{width:100%;background:transparent;border:0;border-bottom:1.5px solid var(--line2);color:var(--ink);font:500 clamp(22px,3vw,30px)/1.3 var(--f-body);padding:8px 0 12px;outline:none;border-radius:0}
+.line-in textarea{font-size:clamp(19px,2.2vw,24px);min-height:120px;resize:none;line-height:1.45}
+.line-in input::placeholder,.line-in textarea::placeholder{color:rgba(183,194,220,.35)}
+.line-in::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--gold-hi));transform:scaleX(0);transform-origin:left;transition:transform .45s cubic-bezier(.2,.8,.2,1)}
+.line-in:focus-within::after{transform:scaleX(1)}
+.line-in .pfx{position:absolute;left:0;bottom:13px;font:600 clamp(22px,3vw,30px)/1.3 var(--f-body);color:var(--gold)}
+.line-in.money input{padding-left:26px}
+
+/* options */
+.opts{margin-top:30px;display:grid;gap:10px;max-width:560px}
+.opts.grid2{grid-template-columns:1fr 1fr;max-width:720px}
+@media (max-width:600px){.opts.grid2{grid-template-columns:1fr}}
+.opt{display:flex;align-items:center;gap:14px;width:100%;text-align:left;padding:14px 16px;border-radius:12px;border:1px solid var(--line);background:rgba(255,255,255,.035);color:var(--ink);font:600 17px/1.35 var(--f-body);cursor:pointer;transition:border-color .2s,background .2s,transform .15s;position:relative;overflow:hidden}
+.opt:hover{border-color:rgba(232,182,90,.55);background:rgba(232,182,90,.06)}
+.opt:active{transform:scale(.99)}
+.opt .k{flex:none;width:28px;height:28px;border-radius:7px;border:1px solid var(--line2);display:grid;place-items:center;font:600 12.5px var(--f-mono);color:var(--mute);transition:all .2s}
+.opt .tx{flex:1;min-width:0}
+.opt .ck{flex:none;width:20px;height:20px;opacity:0;transform:scale(.4);transition:all .3s cubic-bezier(.3,1.6,.5,1);color:var(--gold-hi)}
+.opt.sel{border-color:var(--gold);background:rgba(232,182,90,.12)}
+.opt.sel .k{background:var(--gold);border-color:var(--gold);color:#1a1405}
+.opt.sel .ck{opacity:1;transform:none}
+.opt.flash{animation:flash .32s ease 2}
+@keyframes flash{50%{background:rgba(232,182,90,.28)}}
+.multi-note{margin-top:14px;font-size:14px;color:var(--dim)}
+
+/* slider */
+.sld{margin-top:40px;max-width:620px}
+.sld-val{font-family:var(--f-display);font-size:clamp(64px,10vw,104px);line-height:1;color:var(--gold-hi);font-variant-numeric:tabular-nums;display:inline-block;transition:transform .15s}
+.sld-val.bump{transform:scale(1.06)}
+.sld-val small{font-size:.42em;color:var(--mute);margin-left:4px}
+.sld input{width:100%;margin-top:22px;-webkit-appearance:none;appearance:none;height:6px;border-radius:99px;background:linear-gradient(90deg,var(--gold) var(--p,30%),rgba(255,255,255,.12) var(--p,30%));outline:none}
+.sld input::-webkit-slider-thumb{-webkit-appearance:none;width:28px;height:28px;border-radius:50%;background:var(--gold-hi);border:4px solid var(--bg);box-shadow:0 0 0 2px var(--gold),0 6px 18px rgba(232,182,90,.6);cursor:grab}
+.sld input::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:var(--gold-hi);border:4px solid var(--bg);box-shadow:0 0 0 2px var(--gold);cursor:grab}
+.sld-scale{display:flex;justify-content:space-between;font-family:var(--f-mono);font-size:12px;color:var(--dim);margin-top:10px}
+
+/* consent */
+.consent{margin-top:30px;display:flex;gap:14px;align-items:flex-start;max-width:600px;padding:18px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.03);cursor:pointer;color:var(--mute)}
+.consent input{width:22px;height:22px;accent-color:var(--gold);flex:none;margin-top:1px}
+
+/* actions */
+.act{display:flex;align-items:center;gap:16px;margin-top:34px;flex-wrap:wrap}
+.btn{appearance:none;border:0;cursor:pointer;font:700 16px/1 var(--f-body);display:inline-flex;align-items:center;gap:10px;padding:15px 24px;border-radius:12px;text-decoration:none;transition:transform .15s,box-shadow .2s,opacity .2s}
+.btn-gold{background:linear-gradient(180deg,#ffe3a3,var(--gold) 60%,#d29d3e);color:#1a1405;box-shadow:0 10px 28px -10px rgba(232,182,90,.75),inset 0 1px 0 rgba(255,255,255,.6)}
+.btn-gold:hover{transform:translateY(-2px)}
+.btn-ghost{background:transparent;color:var(--ink);border:1px solid var(--line2)}
+.btn-ghost:hover{border-color:var(--gold)}
+.btn svg{width:16px;height:16px}
+.hint{font-size:13.5px;color:var(--dim)}
+.hint kbd{font:600 12px var(--f-mono);padding:3px 7px;border-radius:6px;border:1px solid var(--line2);color:var(--mute);background:rgba(255,255,255,.04)}
+.skip{background:none;border:0;color:var(--mute);font:600 15px var(--f-body);cursor:pointer;padding:8px 0;text-decoration:underline;text-underline-offset:4px;text-decoration-color:rgba(183,194,220,.35)}
+.skip:hover{color:var(--ink)}
+.err{display:flex;align-items:center;gap:8px;margin-top:16px;color:var(--bad);font-size:15px;font-weight:600;animation:fade .3s ease both}
+.shake{animation:shake .45s cubic-bezier(.36,.07,.19,.97)}
+@keyframes shake{20%,60%{transform:translateX(-7px)}40%,80%{transform:translateX(7px)}}
+
+/* bottom nav */
+.foot{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px clamp(16px,4vw,40px) calc(env(safe-area-inset-bottom,0px) + 16px)}
+.foot .priv{font-size:12.5px;color:var(--dim);display:flex;align-items:center;gap:8px}
+.foot .priv svg{width:14px;height:14px;color:var(--gold)}
+.arrows{display:flex;gap:1px;border-radius:10px;overflow:hidden;box-shadow:0 0 0 1px var(--line)}
+.arrows button{width:42px;height:38px;border:0;background:rgba(255,255,255,.05);color:var(--ink);cursor:pointer;display:grid;place-items:center}
+.arrows button:hover:not([disabled]){background:rgba(232,182,90,.16)}
+.arrows button[disabled]{opacity:.3;cursor:default}
+.arrows svg{width:16px;height:16px}
+
+/* intro + interstitials */
+.intro .paul{display:flex;align-items:center;gap:14px;margin-bottom:26px}
+.intro .paul img{width:58px;height:58px;border-radius:50%;object-fit:cover;object-position:50% 15%;border:2px solid var(--gold);background:#1d1f24}
+.intro .paul b{display:block;font-size:15px}
+.intro .paul span{font-size:13.5px;color:var(--dim)}
+.facts{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:22px;color:var(--mute);font-size:14.5px}
+.facts span{display:inline-flex;align-items:center;gap:8px}
+.facts svg{width:16px;height:16px;color:var(--gold)}
+.leak-big{font-family:var(--f-display);font-weight:700;font-size:clamp(56px,10vw,108px);line-height:1;color:var(--bad);margin-top:18px;font-variant-numeric:tabular-nums}
+.leak-big small{font-size:.32em;color:var(--mute);font-family:var(--f-body);font-weight:600}
+.leak-bar{height:10px;border-radius:99px;background:rgba(255,255,255,.08);overflow:hidden;margin-top:22px;max-width:560px}
+.leak-bar i{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,#e0664f,#ffb38a);transition:width 1.4s cubic-bezier(.2,.8,.2,1)}
+.leak-stats{display:flex;flex-wrap:wrap;gap:12px 34px;margin-top:22px}
+.leak-stats div b{display:block;font-family:var(--f-mono);font-size:22px;font-variant-numeric:tabular-nums}
+.leak-stats div span{font-size:12.5px;color:var(--dim);text-transform:uppercase;letter-spacing:.1em}
+.done-tick{width:86px;height:86px;border-radius:50%;background:var(--good);display:grid;place-items:center;box-shadow:0 0 0 14px rgba(95,191,140,.14);animation:pop .7s cubic-bezier(.3,1.6,.5,1) both}
+.done-tick svg{width:40px;height:40px}
+.done-tick path{stroke-dasharray:24;stroke-dashoffset:24;animation:draw .6s .35s ease forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes pop{0%{transform:scale(.3)}100%{transform:scale(1)}}
+.sum{margin-top:26px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;max-width:620px}
+.sum div{padding:14px 16px;border-radius:12px;border:1px solid var(--line);background:rgba(255,255,255,.03)}
+.sum b{display:block;font-size:17px;overflow-wrap:anywhere}
+.sum span{font-size:12px;color:var(--dim);text-transform:uppercase;letter-spacing:.08em}
+@media (max-width:600px){.sum{grid-template-columns:1fr}}
+#confetti{position:fixed;inset:0;pointer-events:none;z-index:6}
+
+@media (max-width:640px){.sec-chip{display:none}.foot .priv span{display:none}.brand small{display:none}}
+@media (hover:none){.act .hint{display:none}.opt .k{display:none}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+
+/* image cards for options */
+.opts.cards{grid-template-columns:repeat(var(--cols,4),minmax(0,1fr));max-width:calc(var(--cols,4) * 172px);gap:12px}
+.opts.cards .opt{flex-direction:column;align-items:center;text-align:center;padding:18px 14px 16px;gap:12px;min-height:150px;justify-content:flex-start}
+.opts.cards .opt .tx{font-size:15.5px;line-height:1.3}
+.opts.cards .opt .k{position:absolute;left:10px;top:10px;width:24px;height:24px;font-size:11px}
+.opts.cards .opt .ck{position:absolute;right:10px;top:10px}
+.ic{width:64px;height:64px;border-radius:18px;display:grid;place-items:center;flex:none;color:var(--gold-hi);
+  background:radial-gradient(circle at 30% 25%,rgba(255,217,140,.22),rgba(232,182,90,.06) 60%,transparent 75%),rgba(255,255,255,.03);border:1px solid rgba(232,182,90,.25);
+  transition:transform .35s cubic-bezier(.3,1.6,.5,1),background .3s,color .3s}
+.ic svg{width:34px;height:34px;overflow:visible}
+.ic svg *{vector-effect:non-scaling-stroke}
+.ic .fill{fill:currentColor;stroke:none}
+.ic .dim{opacity:.28}
+.opt:hover .ic{transform:translateY(-3px) rotate(-3deg)}
+.opt.sel .ic{background:radial-gradient(circle at 30% 25%,rgba(255,236,190,.5),rgba(232,182,90,.25) 60%,rgba(232,182,90,.12));color:#fff3d6;transform:scale(1.08);border-color:var(--gold)}
+.opt.sel .ic svg{animation:icpop .5s cubic-bezier(.3,1.6,.5,1)}
+@keyframes icpop{0%{transform:scale(.7) rotate(-8deg)}100%{transform:none}}
+.opts.cards .opt{animation:cardin .5s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(.15s + var(--n,0)*.045s)}
+@keyframes cardin{from{opacity:0;transform:translateY(16px) scale(.97)}}
+.opts:not(.cards) .opt .ic{width:40px;height:40px;border-radius:12px}
+.opts:not(.cards) .opt .ic svg{width:22px;height:22px}
+@media (max-width:600px){.opts.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.opts.cards .opt{min-height:130px;padding:16px 10px 14px}.ic{width:54px;height:54px}.ic svg{width:28px;height:28px}}
+@media (hover:none){.opts.cards .opt .k{display:none}}
+
+/* Brand logo (image) */
+.brand{display:flex;align-items:center}
+.brand .logo-h{height:56px;width:auto;display:block}
+@media (max-width:520px){.brand .logo-h{height:44px}}
+.foot-logo{display:block;height:96px;width:auto;margin:0 0 26px}
+</style>
+
+<div class="amb" aria-hidden="true"><i></i><i></i><i></i></div>
+<div class="prog" aria-hidden="true"><i id="prog"></i></div>
+
+<div class="app">
+  <header class="bar">
+    <a class="brand" href="/" aria-label="Paul Broome Sales Mastery home"><img class="logo-h" src="images/logo-horizontal.png" alt="Paul Broome Sales Mastery" width="655" height="217"></a>
+    <div class="bar-r"><span class="sec-chip" id="chip" hidden></span></div>
+  </header>
+
+  <main class="stage" id="stage" aria-live="polite"></main>
+
+  <footer class="foot">
+    <div class="priv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><span>Private &amp; confidential. Only Paul sees your answers.</span></div>
+    <div class="arrows">
+      <button type="button" id="up" aria-label="Previous question"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 15l6-6 6 6"/></svg></button>
+      <button type="button" id="down" aria-label="Next question"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button>
+    </div>
+  </footer>
+</div>
+<canvas id="confetti" aria-hidden="true"></canvas>
+
+<script>
+/* ---------- CONFIG ---------- */
+const WEBHOOK_URL = "";            // GoHighLevel inbound webhook URL
+const THANKYOU_URL = "/thankyou.html";
+
+const ARROW = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+const TICK = '<svg class="ck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+
+/* ---------- option icons (24x24 line drawings) ---------- */
+const I = {
+ owner:'<path d="M3 8l4 3 5-6 5 6 4-3-2 10H5z"/><path d="M5 21h14"/>',
+ manager:'<path d="M3 20h18"/><path d="M6 16v-4M11 16V8M16 16v-6"/><path d="M5 9l5-4 4 3 6-5"/><path d="M17 3h3v3"/>',
+ seller:'<path d="M3 12l4-4 4 2 3-2 7 5"/><path d="M7 8l-4 4 6 6 2-1 2 2 2-1 2 1 3-4"/><path d="M11 10l4 4"/>',
+ dots:'<circle cx="5" cy="12" r="1.6" class="fill"/><circle cx="12" cy="12" r="1.6" class="fill"/><circle cx="19" cy="12" r="1.6" class="fill"/>',
+ conservatory:'<path d="M3 11l9-7 9 7"/><path d="M5 9.5V21h14V9.5"/><path d="M5 13h14M9.5 13v8M14.5 13v8"/><path d="M8.5 7.5L12 13l3.5-5.5"/>',
+ window:'<rect x="4" y="3" width="16" height="18" rx="1"/><path d="M12 3v18M4 12h16"/><path d="M7 6.5l2-1.5M15 6.5l2-1.5"/>',
+ kitchen:'<path d="M5 21V11h14v10"/><path d="M3 11h18"/><path d="M9 11V6a3 3 0 0 1 6 0"/><path d="M15 6v1.5"/><path d="M9 15h6"/>',
+ extension:'<path d="M2 11l7-6 7 6"/><path d="M4 9.5V20h10V9.5"/><path d="M14 13h7v7h-7"/><path d="M17.5 3v5M15 5.5h5"/>',
+ roof:'<path d="M2 13L12 4l10 9"/><path d="M5 10.5l7-6 7 6"/><path d="M6 11v9h12v-9"/><path d="M8 14h2M14 14h2M8 17h8"/>',
+ solar:'<circle cx="17" cy="5" r="2.2"/><path d="M17 1v.8M21 5h-.8M19.8 2.2l-.6.6"/><path d="M3 20l3-9h12l3 9z"/><path d="M4.5 15.5h15M9 11l-1.5 9M15 11l1.5 9"/>',
+ flame:'<path d="M12 21c-4 0-6.5-2.6-6.5-6.2 0-3.4 2.6-5.2 3.7-8.3.4 1.8 1.3 2.7 2.4 3.3.2-2.8 1.4-5.3 3.4-6.8-.3 3.8 3.5 6 3.5 10.6C18.5 18.4 16 21 12 21z"/><path d="M12 21c-1.7 0-3-1.2-3-3 0-1.9 1.6-2.7 2.2-4.2.9 1.4 3.8 2.3 3.8 4.4 0 1.6-1.3 2.8-3 2.8z"/>',
+ tree:'<path d="M12 22v-6"/><path d="M12 3c-3.5 0-6 2.6-6 5.6 0 1 .3 1.9.8 2.6A4 4 0 0 0 9 18h6a4 4 0 0 0 2.2-6.8c.5-.7.8-1.6.8-2.6C18 5.6 15.5 3 12 3z"/><path d="M3 22h18"/>',
+ garage:'<path d="M2 10l10-6 10 6"/><path d="M4 9v12h16V9"/><path d="M7 21v-8h10v8"/><path d="M7 15.5h10M7 18h10"/>',
+ pin:'<path d="M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.6"/>',
+ home:'<path d="M3 11l9-7 9 7"/><path d="M5 9.5V21h14V9.5"/><path d="M10 21v-6h4v6"/>',
+ shop:'<path d="M3 9l1.5-5h15L21 9"/><path d="M3 9a3 3 0 0 0 6 0 3 3 0 0 0 6 0 3 3 0 0 0 6 0"/><path d="M5 12v9h14v-9"/><path d="M10 21v-5h4v5"/>',
+ phone:'<rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M10.5 18.5h3"/><path d="M9.5 9l2 1.5-2 1.5zM12.5 8.5h2.5v4h-2.5"/>',
+ layers:'<path d="M12 3l9 5-9 5-9-5z"/><path d="M3 13l9 5 9-5"/><path d="M3 17.5l9 5 9-5" class="dim"/>',
+ p1:'<circle cx="12" cy="7.5" r="3.5"/><path d="M5 21a7 7 0 0 1 14 0"/>',
+ p2:'<circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 12 0"/><circle cx="16.5" cy="7" r="2.5"/><path d="M15.5 13.2A5 5 0 0 1 21 18"/>',
+ p3:'<circle cx="12" cy="7" r="3"/><path d="M6.5 19a5.5 5.5 0 0 1 11 0"/><circle cx="5" cy="9" r="2.2"/><path d="M1.5 18a4 4 0 0 1 5-3.5"/><circle cx="19" cy="9" r="2.2"/><path d="M22.5 18a4 4 0 0 0-5-3.5"/>',
+ crowd:'<circle cx="6" cy="6" r="2"/><circle cx="12" cy="5" r="2"/><circle cx="18" cy="6" r="2"/><path d="M2.5 13a3.5 3.5 0 0 1 7 0M8.5 12a3.5 3.5 0 0 1 7 0M14.5 13a3.5 3.5 0 0 1 7 0"/><circle cx="9" cy="16" r="2"/><circle cx="15" cy="16" r="2"/><path d="M5.5 22a3.5 3.5 0 0 1 7 0M11.5 22a3.5 3.5 0 0 1 7 0"/>',
+ office:'<rect x="4" y="3" width="11" height="18"/><path d="M15 9h5v12h-5"/><path d="M7 7h2M11 7h1M7 11h2M11 11h1M7 15h2M11 15h1M17.5 13h0M17.5 16.5h0"/><path d="M2 21h20"/>',
+ shuffle:'<path d="M3 7h3.5c4 0 7 10 11 10H21"/><path d="M3 17h3.5c1.6 0 3-1.5 4.2-3.5M13.3 10.5C14.5 8.5 15.9 7 17.5 7H21"/><path d="M18.5 4.5L21 7l-2.5 2.5M18.5 14.5L21 17l-2.5 2.5"/>',
+ send:'<path d="M21 3L10 14"/><path d="M21 3l-6.5 18-4.5-7-7-4.5z"/>',
+ scales:'<path d="M12 3v18M7 21h10"/><path d="M4 7h16"/><path d="M4 7l-2.5 6a3 3 0 0 0 5 0z"/><path d="M20 7l-2.5 6a3 3 0 0 0 5 0z"/>',
+ tag:'<path d="M3 12.5V4a1 1 0 0 1 1-1h8.5L21 11.5 12.5 20z"/><circle cx="7.5" cy="7.5" r="1.4"/><path d="M14.5 10.2c-.5-.8-1.3-1.2-2.2-1-1 .3-1.4 1.3-1.1 2.2l.9 2.6M10.5 13.5h3.5"/>',
+ think:'<path d="M5 15a7 7 0 1 1 5.5 3l-4 3.5v-4.2A7 7 0 0 1 5 15z"/><path d="M10 9.5a2 2 0 1 1 3 1.8c-.7.4-1 1-1 1.7"/><circle cx="12" cy="15.3" r=".9" class="fill"/>',
+ question:'<circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.6 2.2c-.7.4-1.1 1-1.1 1.8"/><circle cx="12" cy="17" r="1" class="fill"/>',
+ docs:'<rect x="8" y="3" width="12" height="15" rx="1.5"/><path d="M5 6.5V20a1 1 0 0 0 1 1h10"/><path d="M11 8h6M11 11.5h6M11 15h3"/>',
+ clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/>',
+ pound:'<circle cx="12" cy="12" r="9"/><path d="M14.8 8.6A2.6 2.6 0 0 0 10 10v6.5H8.5h7M8.5 12.6h5"/>',
+ couple:'<circle cx="8.5" cy="7.5" r="3"/><circle cx="16" cy="8.5" r="2.6"/><path d="M2.5 20a6 6 0 0 1 12 0M13 14.2a5 5 0 0 1 8.5 4"/><path d="M19 2.5c.9-.9 2.6-.3 2.5 1.2-.1 1.2-2.5 2.6-2.5 2.6s-2.4-1.4-2.5-2.6c-.1-1.5 1.6-2.1 2.5-1.2z"/>',
+ calendar:'<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/><path d="M8 14h2M12 14h2M16 14h0M8 17.5h2M12 17.5h2"/>',
+ callback:'<path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/><path d="M15 3h6v6M21 3l-6 6"/>',
+ shield:'<path d="M12 3l8 3v6c0 4.6-3.4 8.4-8 9-4.6-.6-8-4.4-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/>',
+ halftag:'<path d="M3 12.5V4a1 1 0 0 1 1-1h8.5L21 11.5 12.5 20z"/><circle cx="7.5" cy="7.5" r="1.4"/><path d="M11 15l5-5"/>',
+ down:'<path d="M3 12.5V4a1 1 0 0 1 1-1h8.5L21 11.5 12.5 20z"/><circle cx="7.5" cy="7.5" r="1.4"/><path d="M14 9v6M11.5 12.5L14 15l2.5-2.5"/>',
+ door1:'<path d="M5 21V4a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1v17"/><path d="M3 21h16"/><circle cx="13" cy="12.5" r=".9" class="fill"/><path d="M19 6.5l1.5-1v7"/>',
+ door2:'<path d="M5 21V4a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1v17"/><path d="M3 21h16"/><circle cx="13" cy="12.5" r=".9" class="fill"/><path d="M18.6 6.4a1.6 1.6 0 1 1 2.6 1.4L18.5 11h3"/>',
+ mail:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5l8.5 7 8.5-7"/>',
+ none:'<circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/>',
+ repeat:'<path d="M17 2l3 3-3 3"/><path d="M4 11V9a4 4 0 0 1 4-4h12"/><path d="M7 22l-3-3 3-3"/><path d="M20 13v2a4 4 0 0 1-4 4H4"/>',
+ bolt:'<path d="M13 2L4 14h7l-1 8 9-12h-7z"/>',
+ clipboard:'<rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1"/><path d="M8.5 10l1.5 1.5 3-3M8.5 15.5h7"/>',
+ sheet:'<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M3 14h18M9 4v16M15 4v16"/>',
+ rocket:'<path d="M12 15l-3-3c1-5 4.5-8.5 11-9-.5 6.5-4 10-9 11z"/><path d="M9 12l-4 .5L3 15l4.5.5M12 15l-.5 4L9 21l-.5-4.5"/><circle cx="15" cy="8.5" r="1.6"/><path d="M5.5 18.5L4 20"/>',
+ db:'<ellipse cx="12" cy="5.5" rx="7.5" ry="2.8"/><path d="M4.5 5.5v13c0 1.5 3.4 2.8 7.5 2.8s7.5-1.3 7.5-2.8v-13"/><path d="M4.5 12c0 1.5 3.4 2.8 7.5 2.8s7.5-1.3 7.5-2.8"/>',
+ cap:'<path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2.5 9 2.5 12 0v-5"/><path d="M22 9v6"/>',
+ play:'<rect x="3" y="5" width="18" height="14" rx="3"/><path d="M10 9l5 3-5 3z"/>',
+ coach:'<circle cx="8" cy="8" r="3"/><path d="M2.5 20a5.5 5.5 0 0 1 11 0"/><path d="M14 4h7v6h-3l-2.5 2v-2H14z"/>',
+ hire:'<circle cx="9" cy="8" r="3.5"/><path d="M2.5 21a6.5 6.5 0 0 1 13 0"/><path d="M19 8v6M16 11h6"/>',
+ check:'<circle cx="12" cy="12" r="9"/><path d="M7.5 12.5l3 3 6-6.5"/>',
+ info:'<circle cx="12" cy="12" r="9"/><path d="M12 11v6"/><circle cx="12" cy="7.8" r="1" class="fill"/>',
+ pause:'<circle cx="12" cy="12" r="9"/><path d="M10 9v6M14 9v6"/>',
+ mega:'<path d="M3 10v4a1 1 0 0 0 1 1h3l8 5V4L7 9H4a1 1 0 0 0-1 1z"/><path d="M7 15l1.5 5h2.5L10 15"/><path d="M18.5 8.5a5 5 0 0 1 0 7"/>',
+ search:'<circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/><path d="M8 10.5h5M10.5 8v5"/>',
+ star:'<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M12 6.5l1.6 3.3 3.6.5-2.6 2.5.6 3.6-3.2-1.7-3.2 1.7.6-3.6-2.6-2.5 3.6-.5z"/>',
+ heart:'<path d="M12 20s-7.5-4.5-7.5-10A4.3 4.3 0 0 1 12 7.4 4.3 4.3 0 0 1 19.5 10c0 5.5-7.5 10-7.5 10z"/><path d="M8.5 11.5l2 2 2.5-1 2.5 2"/>',
+ globe:'<circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/>',
+ knock:'<path d="M4 21V4a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v17"/><path d="M2 21h14"/><circle cx="11.5" cy="12.5" r=".9" class="fill"/><path d="M18 8c1 .9 1 2.6 0 3.5M20.5 6c2 1.9 2 5.6 0 7.5"/>',
+ stand:'<path d="M3 21V9l9-5 9 5v12"/><path d="M3 9h18"/><rect x="7" y="12" width="10" height="6"/><path d="M12 12v6"/>',
+};
+function levels(n, total){ let h=""; for(let k=0;k<total;k++){ const x = 3 + k*(18/total), w = 18/total - 2, hh = 4 + (k+1)*(14/total); h += `<rect x="${x.toFixed(1)}" y="${(21-hh).toFixed(1)}" width="${w.toFixed(1)}" height="${hh.toFixed(1)}" rx="1" class="${k<=n?"fill":"fill dim"}"/>`; } return h; }
+function gauge(p){ const a = Math.PI*(1-p), x = 12+8*Math.cos(a), y = 17-8*Math.sin(a); return `<path d="M3.5 17a8.5 8.5 0 0 1 17 0"/><path d="M3.5 17a8.5 8.5 0 0 1 ${(12+8.5*Math.cos(a)-3.5).toFixed(1)} ${(-8.5*Math.sin(a)).toFixed(1)}" style="stroke-width:3.2"/><path d="M12 17L${x.toFixed(1)} ${y.toFixed(1)}"/><circle cx="12" cy="17" r="1.6" class="fill"/>`; }
+function iconFor(q, k){
+  if (q.lv) return levels(k, q.o.length);
+  if (q.gauge) return gauge(q.gauge[k]);
+  const key = q.ic && q.ic[k]; return key && I[key] ? I[key] : I.dots;
+}
+const svg = inner => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${inner}</svg>`;
+
+const SECS = ["About you","Your business","Your numbers","How you sell","Your goals"];
+
+/* type: intro | text | two | email | tel | money | textarea | choice | multi | slider | consent | leak | done */
+const Q = [
+ {type:"intro"},
+ {id:"name", sec:0, type:"two", q:"First, what's your name?", f:[{n:"first_name",l:"First name",ac:"given-name",ph:"Paul"},{n:"last_name",l:"Last name",ac:"family-name",ph:"Broome"}], req:1},
+ {id:"email", sec:0, type:"email", n:"email", q:"Nice to meet you{, first}. What's your best email?", d:"Paul will send your call notes here.", ph:"name@company.co.uk", ac:"email", req:1},
+ {id:"phone", sec:0, type:"tel", n:"phone", q:"And your mobile number?", d:"In case Paul needs to reach you before the call.", ph:"07700 900000", ac:"tel", req:1},
+ {id:"biz", sec:0, type:"two", q:"What's your business called?", f:[{n:"business",l:"Business name",ac:"organization",ph:"Hart Windows Ltd"},{n:"website",l:"Website (optional)",ph:"www.yourbusiness.co.uk",opt:1}], req:1},
+ {id:"role", sec:0, type:"choice", n:"role", img:1, ic:["owner","manager","seller","dots"], q:"What's your role in the business?", o:["Owner / Director","Sales manager","Salesperson","Other"], req:1},
+ {id:"trade", sec:1, type:"choice", n:"trade", grid:1, img:1, ic:["conservatory","window","kitchen","extension","roof","solar","flame","tree","garage","dots"], q:"What do you install or sell?", o:["Conservatory roofs","Windows & doors","Kitchens & bathrooms","Extensions & building","Roofing","Solar & renewables","Boilers & heating","Landscaping","Garage conversions","Other"], req:1},
+ {id:"region", sec:1, type:"choice", n:"region", grid:1, ic:Array(12).fill("pin"), q:"Where are you based?", o:["London","South East","South West","East of England","East Midlands","West Midlands","Yorkshire & the Humber","North West","North East","Wales","Scotland","Northern Ireland"], req:1},
+ {id:"years", sec:1, type:"choice", n:"years", img:1, lv:1, q:"How long have you been trading?", o:["Under 2 years","2 – 5 years","5 – 10 years","10 – 20 years","20+ years"], req:1},
+ {id:"team", sec:1, type:"choice", n:"team", img:1, ic:["p1","p2","p3","crowd","office"], q:"How big is the team, including you?", o:["Just me","2 – 5","6 – 15","16 – 50","50+"], req:1},
+ {id:"sellers", sec:1, type:"choice", n:"sellers", img:1, ic:["p1","p2","p3","shuffle"], q:"Who does the selling?", o:["Just me","Me plus 1–2 others","A dedicated sales team","Mixed / it varies"], req:1},
+ {id:"sell_where", sec:1, type:"choice", n:"sell_where", img:1, ic:["home","shop","phone","layers"], q:"Where do most of your sales happen?", o:["In the customer's home","Showroom","Phone or video","A mix"]},
+ {id:"revenue", sec:2, type:"choice", n:"revenue", img:1, lv:1, q:"Roughly how much revenue do you do per month?", d:"Best guesses are fine.", o:["Under £25k","£25k – £50k","£50k – £100k","£100k – £250k","£250k+"], req:1},
+ {id:"job_value", sec:2, type:"choice", n:"job_value", img:1, lv:1, q:"What's your average job value?", o:["Under £5k","£5k – £10k","£10k – £20k","£20k – £40k","£40k+"], req:1},
+ {id:"quotes", sec:2, type:"choice", n:"quotes", img:1, lv:1, q:"How many quotes do you send in a typical month?", o:["Fewer than 10","10 – 20","20 – 40","40 – 80","80+"], req:1},
+ {id:"close_rate", sec:2, type:"slider", n:"close_rate", q:"Out of every 10 quotes, how many do you win?", d:"Drag to your current close rate. Be honest, nobody sees this but Paul.", min:5, max:90, step:5, def:30, req:1},
+ {id:"leads", sec:2, type:"choice", n:"leads", img:1, lv:1, q:"How many new enquiries do you get each month?", o:["Fewer than 20","20 – 50","50 – 100","100 – 200","200+"]},
+ {id:"ad_spend", sec:2, type:"choice", n:"ad_spend", img:1, lv:1, q:"What do you spend on marketing each month?", o:["None","Under £1k","£1k – £3k","£3k – £10k","£10k+"]},
+ {id:"lead_sources", sec:2, type:"multi", n:"lead_sources", grid:1, img:1, ic:["mega","search","star","heart","globe","knock","stand","dots"], q:"Where do your leads come from?", o:["Facebook / Instagram ads","Google ads","Trade directories","Referrals & word of mouth","Website / SEO","Canvassing","Shows & exhibitions","Other"]},
+ {id:"leak", sec:2, type:"leak"},
+ {id:"stall", sec:3, type:"choice", n:"stall", ic:["send","scales","tag","think","question"], q:"Where do most of your lost deals go quiet?", o:["Straight after I send the quote","When they say they're getting more prices","They ask 'how much?' too early and I answer","'We need to think about it'","Honestly, I don't know"], req:1},
+ {id:"objections", sec:3, type:"multi", n:"objections", img:1, ic:["docs","think","pound","couple","calendar","callback"], q:"Which objections do you hear most?", o:["\"We're getting more quotes\"","\"We need to think about it\"","\"It's too expensive\"","\"I need to speak to my partner\"","\"It's not the right time\"","\"We'll call you back\""], req:1},
+ {id:"discount", sec:3, type:"choice", n:"discount", img:1, ic:["shield","halftag","down"], q:"How often do you drop your price to win a job?", o:["Rarely or never","Sometimes","Most of the time"], req:1},
+ {id:"price_when", sec:3, type:"choice", n:"price_when", img:1, ic:["door1","door2","mail","shuffle"], q:"When do customers first hear the price?", o:["On the first visit","On a second visit","In a quote sent afterwards","It varies"]},
+ {id:"follow_up", sec:3, type:"choice", n:"follow_up", img:1, ic:["none","phone","repeat","bolt"], q:"What happens after you send a quote?", o:["No set process","One call or text","Several follow-ups","Automated CRM follow-up"], req:1},
+ {id:"crm", sec:3, type:"choice", n:"crm", img:1, ic:["clipboard","sheet","rocket","db"], q:"What system do you use to track leads?", o:["None / paper","Spreadsheet","GoHighLevel","Another CRM"]},
+ {id:"target_close", sec:4, type:"choice", n:"target_close", img:1, gauge:[.5,.6,.7,.8], q:"What close rate would you like to hit?", o:["50%","60%","70%","75%+"], req:1},
+ {id:"revenue_goal", sec:4, type:"money", n:"revenue_goal", q:"What monthly revenue do you want in 12 months' time?", ph:"100,000"},
+ {id:"timeline", sec:4, type:"choice", n:"timeline", img:1, ic:["bolt","calendar","clock","search"], q:"How soon do you want this fixed?", o:["Right now","Within 30 days","1 – 3 months","Just exploring"], req:1},
+ {id:"tried", sec:4, type:"multi", n:"tried", img:1, ic:["cap","play","coach","hire","none"], q:"What have you tried before?", o:["Sales courses","Books / YouTube","Business coaching","Hiring sales staff","Nothing yet"]},
+ {id:"challenge", sec:4, type:"textarea", n:"challenge", q:"In a sentence or two, what's your biggest sales challenge right now?", ph:"e.g. I'm losing 4–5 jobs a month after the quote to cheaper competitors…", req:1},
+ {id:"invest", sec:4, type:"choice", n:"invest", ic:["check","info","pause"], q:"If Paul's coaching is the right fit, are you in a position to invest in it?", o:["Yes, if it's the right fit","I'd need to know more first","Not right now"], req:1},
+ {id:"notes", sec:4, type:"textarea", n:"notes", q:"Anything else Paul should know before your call?", ph:"Optional"},
+ {id:"consent", sec:4, type:"consent", n:"consent", q:"Last thing. Can Paul use your answers to prepare?", l:"I agree to Paul Broome Sales Mastery using these answers to prepare for my strategy call and to contact me about it.", req:1},
+ {type:"done"},
+];
+const QUESTIONS = Q.filter(x => x.n || x.f);
+const KEY = "pb-assessment-v2";
+const REDUCE = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const $ = s => document.querySelector(s);
+const esc = v => String(v ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+let i = 0, data = {}, busy = false, sentStart = false, cur = null;
+
+/* restore draft, homepage quiz answers, URL params */
+try { const d = JSON.parse(localStorage.getItem(KEY) || "{}"); data = d.data || {}; i = Math.min(d.i || 0, Q.length - 2); } catch(e) {}
+try { const lead = JSON.parse(localStorage.getItem("pb-lead") || "null"); if (lead) { const m = {first:"first_name",biz:"business",email:"email",phone:"phone",trade:"trade",revenue:"revenue",jobvalue:"job_value",quotes:"quotes",stall:"stall",discount:"discount"}; for (const k in m) if (lead[k] && !data[m[k]]) data[m[k]] = lead[k]; if (lead.close_pct && !data.close_rate) data.close_rate = lead.close_pct; } } catch(e) {}
+try { const p = new URLSearchParams(location.search), m = {first_name:["first_name","firstname","first"],last_name:["last_name","lastname","last"],email:["email"],phone:["phone","mobile"],business:["company","company_name","business"]}; for (const k in m) for (const a of m[k]) { const v = p.get(a); if (v && !data[k]) { data[k] = v; break; } } } catch(e) {}
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify({i, data})); } catch(e) {} };
+
+function qText(s){ return esc(s).replace("{, first}", data.first_name ? `, <em>${esc(data.first_name)}</em>` : ""); }
+function qNumber(q){ const n = QUESTIONS.indexOf(q) + 1; return n > 0 ? n : 0; }
+
+function view(q){
+  const num = qNumber(q), total = QUESTIONS.length, req = q.req ? '<span class="req" aria-hidden="true">*</span>' : "";
+  const head = `<div class="qnum">${num}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg><span style="color:var(--dim)">of ${total}</span></div><h1 class="qh">${qText(q.q)}${req}</h1>${q.d?`<p class="qd">${esc(q.d)}</p>`:""}`;
+  const okBtn = (label="OK") => `<div class="act"><button type="button" class="btn btn-gold" data-ok>${label} ${ARROW}</button><span class="hint">press <kbd>Enter ↵</kbd></span>${!q.req && q.type!=="slider" ? '<button type="button" class="skip" data-skip>Skip</button>' : ""}</div><div data-err></div>`;
+  switch(q.type){
+    case "intro": return `<div class="q-in intro"><img class="intro-logo" src="images/logo-full.png" alt="Paul Broome Sales Mastery" width="403" height="327"><div class="paul"><img src="images/paul.webp" alt="Paul Broome"><div><b>Paul Broome</b><span>Home Improvement Sales Coach</span></div></div><h1 class="qh">Let's get you ready for <em>your call.</em></h1><p class="qd">A few quick questions about your business, your numbers and how you sell. I'll read every answer before we speak, so our 60 minutes go on fixing the leak, not fact-finding.</p><div class="facts"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>About 4 minutes</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Saves as you go</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>Strictly confidential</span></div><div class="act"><button type="button" class="btn btn-gold" data-ok>${data.first_name && i===0 && Object.keys(data).length>3 ? "Continue Where I Left Off" : "Start The Assessment"} ${ARROW}</button><span class="hint">press <kbd>Enter ↵</kbd></span></div></div>`;
+    case "two": return `<div class="q-in">${head}<div class="inp two">${q.f.map(f=>`<div class="line-in"><label for="i_${f.n}">${esc(f.l)}</label><input id="i_${f.n}" name="${f.n}" type="text" autocomplete="${f.ac||"off"}" placeholder="${esc(f.ph||"")}" value="${esc(data[f.n])}"></div>`).join("")}</div>${okBtn()}</div>`;
+    case "email": case "tel": case "text": return `<div class="q-in">${head}<div class="inp"><div class="line-in"><input id="i_${q.n}" name="${q.n}" type="${q.type==="text"?"text":q.type}" autocomplete="${q.ac||"off"}" ${q.type==="tel"?'inputmode="tel"':""} placeholder="${esc(q.ph||"")}" value="${esc(data[q.n])}" aria-label="${esc(q.q)}"></div></div>${okBtn()}</div>`;
+    case "money": return `<div class="q-in">${head}<div class="inp"><div class="line-in money"><span class="pfx">£</span><input id="i_${q.n}" name="${q.n}" type="text" inputmode="numeric" placeholder="${esc(q.ph||"")}" value="${esc(data[q.n])}" aria-label="${esc(q.q)}"></div></div>${okBtn()}</div>`;
+    case "textarea": return `<div class="q-in">${head}<div class="inp"><div class="line-in"><textarea id="i_${q.n}" name="${q.n}" placeholder="${esc(q.ph||"")}" aria-label="${esc(q.q)}">${esc(data[q.n])}</textarea></div></div><div class="act"><button type="button" class="btn btn-gold" data-ok>OK ${ARROW}</button><span class="hint"><kbd>Shift</kbd> + <kbd>Enter ↵</kbd> for a new line</span>${!q.req?'<button type="button" class="skip" data-skip>Skip</button>':""}</div><div data-err></div></div>`;
+    case "choice": case "multi": {
+      const multi = q.type === "multi", cur = data[q.n], sel = o => multi ? (Array.isArray(cur) && cur.includes(o)) : cur === o;
+      return `<div class="q-in">${head}<div class="opts ${q.img?"cards":(q.grid?"grid2":"")}" style="--cols:${(n=>n<=5?n:n===6?3:n===10?5:4)(q.o.length)}" role="${multi?"group":"radiogroup"}" aria-label="${esc(q.q)}">${q.o.map((o,k)=>`<button type="button" class="opt ${sel(o)?"sel":""}" style="--n:${k}" role="${multi?"checkbox":"radio"}" aria-checked="${sel(o)}" data-v="${esc(o)}"><span class="k">${String.fromCharCode(65+k)}</span>${(q.img||q.ic)?`<span class="ic">${svg(iconFor(q,k))}</span>`:""}<span class="tx">${esc(o)}</span>${TICK}</button>`).join("")}</div>${multi?`<p class="multi-note">Choose as many as you like.</p>${okBtn()}`:(cur!==undefined&&cur!==""?okBtn():(!q.req?`<div class="act"><button type="button" class="skip" data-skip>Skip</button></div>`:""))+'<div data-err></div>'}</div>`;
+    }
+    case "slider": { const v = data[q.n] ?? q.def; return `<div class="q-in">${head}<div class="sld"><div class="sld-val" id="sv">${v}<small>%</small></div><input type="range" id="i_${q.n}" min="${q.min}" max="${q.max}" step="${q.step}" value="${v}" aria-label="${esc(q.q)}" style="--p:${(v-q.min)/(q.max-q.min)*100}%"><div class="sld-scale"><span>${q.min}%</span><span>${Math.round((q.min+q.max)/2)}%</span><span>${q.max}%</span></div></div>${okBtn()}</div>`; }
+    case "consent": return `<div class="q-in">${head}<label class="consent"><input type="checkbox" id="i_consent" ${data.consent?"checked":""}><span>${esc(q.l)}</span></label><div class="act"><button type="button" class="btn btn-gold" data-ok>Send My Assessment To Paul ${ARROW}</button></div><div data-err></div></div>`;
+    case "leak": { const r = leak(); return `<div class="q-in"><div class="qnum" style="color:var(--bad)">YOUR SALES LEAK</div><h1 class="qh">${data.first_name?esc(data.first_name)+", here's":"Here's"} what your numbers suggest.</h1><div class="leak-big" id="lk">£0<small> / year</small></div><div class="leak-bar"><i id="lkb"></i></div><div class="leak-stats"><div><b>${r.cr}%</b><span>Close rate now</span></div><div><b>${r.target}%</b><span>Achievable</span></div><div><b>${r.lost.toFixed(1)}</b><span>Jobs lost a month</span></div></div><p class="qd">Paul will show you exactly where those jobs slip away on your call. A few more questions about how you sell.</p><div class="act"><button type="button" class="btn btn-gold" data-ok>Keep Going ${ARROW}</button><span class="hint">press <kbd>Enter ↵</kbd></span></div><p class="hint" style="margin-top:18px">Illustrative estimate based on your answers. Not a promise of results.</p></div>`; }
+    case "done": return `<div class="q-in"><div class="done-tick"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5" fill="none" stroke="#06261a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h1 class="qh" style="margin-top:28px">Thank you${data.first_name?", "+esc(data.first_name):""}. <em>Paul has your answers.</em></h1><p class="qd">He'll review everything before your strategy call, so you can get straight to where your sales are leaking and how to fix it.</p><div class="sum"><div><span>Close rate</span><b>${esc(data.close_rate)}% → ${esc(data.target_close||"60%")}</b></div><div><span>Biggest leak</span><b>${esc(data.stall||"To discuss")}</b></div><div><span>Timeline</span><b>${esc(data.timeline||"—")}</b></div></div><div class="act"><a class="btn btn-gold" href="${THANKYOU_URL}#video">Watch The Fast-Start Video ${ARROW}</a><a class="btn btn-ghost" href="/">Back To Homepage</a></div></div>`;
+  }
+}
+
+function leak(){
+  const jv = {"Under £5k":3500,"£5k – £10k":7500,"£10k – £20k":15000,"£20k – £40k":28000,"£40k+":50000}[data.job_value] || 7500;
+  const qn = {"Fewer than 10":7,"10 – 20":15,"20 – 40":30,"40 – 80":60,"80+":100}[data.quotes] || 15;
+  const c = (data.close_rate || 30)/100, t = Math.max(.6, c+.1), lost = Math.max(0, qn*(t-c));
+  return {annual: lost*jv*12, lost, cr: Math.round(c*100), target: Math.round(t*100)};
+}
+
+function progress(){
+  const q = Q[i], n = q.type==="done" ? QUESTIONS.length : q.type==="intro" ? 0 : (qNumber(q) || QUESTIONS.indexOf(Q.slice(0,i).filter(x=>x.n||x.f).pop())+1);
+  $("#prog").style.width = (n / QUESTIONS.length * 100) + "%";
+  const chip = $("#chip"); if (q.sec !== undefined) { chip.hidden = false; chip.innerHTML = `<b>${q.sec+1}/5</b> · ${SECS[q.sec]}`; } else chip.hidden = true;
+  $("#up").disabled = i === 0 || q.type === "done"; $("#down").disabled = q.type === "done";
+}
+
+function show(dir){
+  const stage = $("#stage");
+  stage.querySelectorAll(".q:not(.leave)").forEach(old => { if (REDUCE) { old.remove(); return; } old.classList.remove("enter","rev"); old.classList.add("leave"); if (dir<0) old.classList.add("rev"); old.setAttribute("aria-hidden","true"); old.inert = true; setTimeout(()=>old.remove(), 380); });
+  const el = document.createElement("section"); el.className = "q enter" + (dir<0?" rev":""); el.innerHTML = view(Q[i]); el.dataset.idx = i;
+  stage.appendChild(el); cur = el; busy = false; bind(el); progress(); save();
+  const f = el.querySelector("input:not([type=checkbox]):not([type=range]),textarea"); if (f) setTimeout(()=>f.focus({preventScroll:true}), REDUCE?0:420);
+  if (Q[i].type === "leak") runLeak(el);
+  if (Q[i].type === "done") { confetti(); try { localStorage.removeItem(KEY); } catch(e) {} }
+}
+
+function bind(el){
+  const q = Q[i];
+  el.querySelectorAll("[data-ok]").forEach(b => b.onclick = next);
+  el.querySelectorAll("[data-skip]").forEach(b => b.onclick = () => { if (q.n) delete data[q.n]; go(1); });
+  el.querySelectorAll(".opt").forEach(o => o.onclick = () => pick(o));
+  const r = el.querySelector("input[type=range]");
+  if (r) r.oninput = () => { const v = +r.value, sv = $("#sv"); sv.innerHTML = v + "<small>%</small>"; sv.classList.add("bump"); clearTimeout(sv._t); sv._t = setTimeout(()=>sv.classList.remove("bump"), 140); r.style.setProperty("--p", ((v-q.min)/(q.max-q.min)*100) + "%"); data[q.n] = v; };
+  el.querySelectorAll("input[type=text],input[type=email],input[type=tel],textarea").forEach(inp => inp.oninput = () => { data[inp.name] = inp.value; clearErr(); });
+}
+
+function pick(o){
+  if (!cur || !cur.contains(o)) return;
+  const q = Q[i], v = o.dataset.v;
+  if (q.type === "multi") {
+    const arr = Array.isArray(data[q.n]) ? data[q.n] : []; const k = arr.indexOf(v);
+    if (k >= 0) arr.splice(k,1); else arr.push(v); data[q.n] = arr;
+    o.classList.toggle("sel"); o.setAttribute("aria-checked", o.classList.contains("sel")); clearErr(); save(); return;
+  }
+  if (busy) return; busy = true;
+  data[q.n] = v;
+  cur.querySelectorAll(".opt").forEach(x => { const s = x === o; x.classList.toggle("sel", s); x.setAttribute("aria-checked", s); });
+  o.classList.add("flash");
+  const at = i; setTimeout(() => { busy = false; if (i === at) go(1); }, REDUCE ? 120 : 640);
+}
+
+function validate(){
+  const q = Q[i]; let msg = "";
+  if (q.type === "two") { const f = q.f.find(f=>!f.opt && !(data[f.n]||"").trim()); if (f) msg = `Please enter your ${f.l.toLowerCase()}.`; }
+  else if (q.type === "email") { const v = (data.email||"").trim(); if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) msg = v ? "That email doesn't look right. Try name@company.co.uk." : "Please enter your email."; }
+  else if (q.type === "tel") { const d = (data.phone||"").replace(/\D/g,""); if (d.length < 10) msg = d ? "Please enter your full mobile number." : "Please enter your mobile number."; }
+  else if (q.type === "consent") { data.consent = $("#i_consent").checked; if (!data.consent) msg = "Please tick the box so Paul can use your answers."; }
+  else if (q.req && q.type === "multi") { if (!(data[q.n]||[]).length) msg = "Choose at least one option."; }
+  else if (q.req && q.type === "textarea") { if (!(data[q.n]||"").trim()) msg = "Please add a few words. It helps Paul prepare."; }
+  else if (q.req && q.type === "choice") { if (!data[q.n]) msg = "Please choose an option."; }
+  if (q.type === "slider" && data[q.n] === undefined) data[q.n] = q.def;
+  if (msg) { const box = cur.querySelector("[data-err]"); if (box) box.innerHTML = `<div class="err" role="alert"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5v.5"/></svg>${esc(msg)}</div>`; const tgt = cur.querySelector(".inp, .opts, .consent"); if (tgt && !REDUCE) { tgt.classList.remove("shake"); void tgt.offsetWidth; tgt.classList.add("shake"); } return false; }
+  return true;
+}
+function clearErr(){ const b = cur.querySelector("[data-err]"); if (b) b.innerHTML = ""; }
+
+function next(){
+  if (busy) return; const q = Q[i];
+  if (!validate()) return;
+  if (q.id === "phone" && !sentStart) { sentStart = true; send("started"); }
+  if (q.type === "consent") { send("completed"); }
+  go(1);
+}
+function go(d){ if (busy && d > 0 && Q[i].type==="choice") return; const ni = i + d; if (ni < 0 || ni >= Q.length) return; if (Q[i].type === "done") return; i = ni; show(d); }
+
+function send(stage){
+  if (!WEBHOOK_URL) return;
+  const payload = stage === "started" ? {first_name:data.first_name,last_name:data.last_name,email:data.email,phone:data.phone,stage,source:"7 Steps Pre-Call Assessment"} : {...data, stage, source:"7 Steps Pre-Call Assessment", estimated_annual_leak:Math.round(leak().annual), submitted_at:new Date().toISOString()};
+  fetch(WEBHOOK_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)}).catch(()=>{});
+}
+
+function runLeak(el){
+  const r = leak(), n = el.querySelector("#lk"), b = el.querySelector("#lkb");
+  const draw = v => n.innerHTML = "£" + Math.round(v).toLocaleString("en-GB") + "<small> / year</small>";
+  if (REDUCE) { draw(r.annual); b.style.width = Math.min(100, r.annual/1500000*100)+"%"; return; }
+  setTimeout(() => { b.style.width = Math.min(100, r.annual/1500000*100) + "%"; const t0 = performance.now(); (function f(t){ const k = Math.min(1,(t-t0)/1500), e = 1-Math.pow(1-k,3); draw(r.annual*e); if (k<1) requestAnimationFrame(f); })(t0); }, 450);
+}
+
+function confetti(){
+  if (REDUCE) return; const c = $("#confetti"), x = c.getContext("2d"), dpr = devicePixelRatio||1, W = c.width = innerWidth*dpr, H = c.height = innerHeight*dpr;
+  const cols = ["#ffd98c","#e8b65a","#5fbf8c","#5b86ff","#ffffff"], P = Array.from({length:170},()=>({x:W*.5+(Math.random()-.5)*W*.3,y:H*.42,vx:(Math.random()-.5)*17*dpr,vy:(-Math.random()*15-6)*dpr,s:(Math.random()*6+4)*dpr,r:Math.random()*6,vr:(Math.random()-.5)*.3,c:cols[Math.random()*cols.length|0]})), t0 = performance.now();
+  (function f(t){ const a = (t-t0)/1000; x.clearRect(0,0,W,H); P.forEach(p=>{ p.vy += .36*dpr; p.vx *= .99; p.x += p.vx; p.y += p.vy; p.r += p.vr; x.save(); x.translate(p.x,p.y); x.rotate(p.r); x.globalAlpha = Math.max(0,1-a/3.2); x.fillStyle = p.c; x.fillRect(-p.s/2,-p.s/4,p.s,p.s/2); x.restore(); }); if (a < 3.4) requestAnimationFrame(f); else x.clearRect(0,0,W,H); })(t0);
+}
+
+/* keyboard: Enter = OK, A–Z = pick, arrows = navigate */
+document.addEventListener("keydown", e => {
+  const q = Q[i], t = e.target;
+  if (e.key === "Enter" && !(t.tagName === "TEXTAREA" && e.shiftKey)) { if (t.tagName === "A") return; if (t.classList && t.classList.contains("opt")) return; e.preventDefault(); if (q.type === "choice" && !data[q.n] && q.req) { validate(); return; } next(); return; }
+  if ((q.type === "choice" || q.type === "multi") && /^[a-z]$/i.test(e.key) && !["INPUT","TEXTAREA"].includes(t.tagName) && !e.metaKey && !e.ctrlKey) {
+    const o = cur && cur.querySelectorAll(".opt")[e.key.toUpperCase().charCodeAt(0)-65]; if (o) { e.preventDefault(); pick(o); }
+  }
+  if (e.key === "ArrowUp" && !["INPUT","TEXTAREA"].includes(t.tagName) && t.type !== "range") { e.preventDefault(); go(-1); }
+});
+$("#up").onclick = () => go(-1);
+$("#down").onclick = () => { if (Q[i].type === "intro" || Q[i].type === "leak") { next(); return; } next(); };
+
+/* wheel / swipe up-down could be added later; keep it explicit */
+show(1);
+</script>
