@@ -1,0 +1,875 @@
+<!doctype html>
+<html lang="en-GB">
+<meta charset="utf-8">
+<link rel="icon" type="image/png" href="images/favicon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Book Your Discovery Call</title>
+<meta name="description" content="Book your free 30-minute discovery call with Paul Broome and find out how to go from losing deals to closing at 60–75% in 90 days.">
+<meta name="author" content="Paul Broome">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;1,600;1,800&family=Figtree:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: dark navy "boardroom" with gold leaf. Hero = thesis (the leak) + assessment launcher; long-form sales letter below, measured 1180px column. */
+:root{
+  --navy-900:#081330; --navy-800:#0d1c44; --navy-700:#14295c; --navy-600:#1e3874; --sapphire:#2f63ff;
+  --line:#2b4482; --gold:#e8b65a; --gold-hi:#ffd98c; --gold-lo:#b38636;
+  --ink:#f4f6fc; --mute:#b7c2dc; --dim:#8693b3; --glass:linear-gradient(140deg,rgba(255,255,255,.12),rgba(255,255,255,.035)); --glass-b:rgba(255,255,255,.15); --leak:#e0664f; --good:#5fbf8c;
+  --f-display:"Playfair Display",Georgia,"Times New Roman",serif;
+  --f-body:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --r:14px; --wrap:1180px;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+body{background:var(--navy-900);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.6;margin:0;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:var(--gold-hi)}
+h1,h2,h3{font-family:var(--f-display);font-weight:800;line-height:1.08;text-wrap:balance;margin:0}
+p{margin:0}
+.wrap{max-width:var(--wrap);margin:0 auto;padding-inline:clamp(16px,4vw,40px)}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+.gold{color:var(--gold-hi)}
+em.g{font-style:italic;background:linear-gradient(100deg,var(--gold-hi),var(--gold) 55%,var(--gold-lo));-webkit-background-clip:text;background-clip:text;color:transparent;padding-right:.06em}
+:focus-visible{outline:2px solid var(--gold-hi);outline-offset:3px;border-radius:6px}
+
+/* Buttons */
+.btn{appearance:none;border:0;cursor:pointer;font:700 16px/1 var(--f-body);letter-spacing:.02em;display:inline-flex;align-items:center;gap:10px;padding:18px 28px;border-radius:999px;text-decoration:none;transition:transform .15s ease,box-shadow .2s ease,background .2s}
+.btn-gold{background:linear-gradient(180deg,var(--gold-hi),var(--gold));color:#1a1405;box-shadow:0 10px 30px -10px rgba(214,171,79,.7),inset 0 1px 0 rgba(255,255,255,.4)}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 16px 36px -10px rgba(214,171,79,.8),inset 0 1px 0 rgba(255,255,255,.4)}
+.btn-ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.btn-ghost:hover{border-color:var(--gold)}
+.btn .arr{transition:transform .2s}
+.btn:hover .arr{transform:translateX(4px)}
+.cta-note{font-size:14px;color:var(--mute);margin-top:12px}
+
+/* Nav */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(7,13,28,.82);backdrop-filter:blur(12px);border-bottom:1px solid rgba(38,55,94,.6)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:68px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink)}
+.crest{width:38px;height:42px;flex:none}
+.brand b{font-family:var(--f-display);font-size:18px;display:block;line-height:1.1}
+.brand small{font-family:var(--f-mono);font-size:10px;letter-spacing:.18em;color:var(--gold);text-transform:uppercase}
+.nav-links{display:flex;gap:28px;align-items:center}
+.nav-links a{color:var(--mute);text-decoration:none;font-weight:600;font-size:15px}
+.nav-links a:hover{color:var(--ink)}
+.nav-links a.btn-gold,.nav-links a.btn-gold:hover{color:#1a1405}
+.nav .btn{padding:12px 20px;font-size:14px}
+@media (max-width:860px){.nav-links a:not(.btn){display:none}}
+@media (max-width:420px){.brand small{display:none}}
+
+/* Hero */
+.hero{position:relative;padding-block:clamp(48px,8vw,96px) clamp(56px,8vw,100px);overflow:hidden}
+.hero::before{content:"";position:absolute;inset:-20% -10% auto auto;width:780px;height:780px;background:radial-gradient(closest-side,rgba(214,171,79,.16),transparent 70%);pointer-events:none}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(32px,5vw,72px);align-items:center;position:relative}
+.hero-grid>*{min-width:0}
+.hero h1{font-size:clamp(40px,6.2vw,76px);letter-spacing:-.01em;margin-top:18px}
+.hero .lede{font-size:clamp(18px,1.6vw,20px);color:var(--mute);max-width:56ch;margin-top:22px}
+.hero .lede strong{color:var(--ink)}
+.hero-cta{margin-top:34px;display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.assure{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:18px;font-size:14px;color:var(--mute)}
+.assure span::before{content:"✓";color:var(--gold);margin-right:7px;font-weight:800}
+
+/* Leak card */
+.leak{background:linear-gradient(160deg,var(--navy-700),var(--navy-800));border:1px solid var(--line);border-radius:22px;padding:28px;box-shadow:0 40px 80px -40px rgba(0,0,0,.8)}
+.leak .eyebrow{display:flex;justify-content:space-between}
+.leak-big{font-family:var(--f-display);font-size:clamp(56px,7vw,84px);line-height:1;margin-top:14px;font-weight:800}
+.leak-sub{color:var(--mute);font-size:15px;margin-top:6px}
+.pipe{margin-top:24px;display:grid;gap:10px}
+.pipe-row{display:grid;grid-template-columns:110px 1fr 64px;gap:12px;align-items:center;font-size:13px;color:var(--mute)}
+.pipe-bar{height:12px;border-radius:99px;background:var(--navy-600);overflow:hidden}
+.pipe-bar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--gold-lo),var(--gold-hi));transform-origin:left;animation:grow 1.2s cubic-bezier(.2,.8,.2,1) both}
+.pipe-bar i.red{background:linear-gradient(90deg,#9b3b2b,var(--leak))}
+.pipe-row b{font-family:var(--f-mono);color:var(--ink);text-align:right;font-weight:600}
+@keyframes grow{from{transform:scaleX(.08)}}
+.leak-foot{margin-top:22px;padding-top:16px;border-top:1px dashed var(--line);font-size:12.5px;color:var(--dim)}
+
+/* Stat strip */
+.stats{border-block:1px solid var(--line);background:var(--navy-800)}
+.stats .wrap{display:grid;grid-template-columns:repeat(4,1fr)}
+.stat{padding:30px 18px;text-align:center;border-left:1px solid var(--line)}
+.stat:first-child{border-left:0}
+.stat b{display:block;font-family:var(--f-display);font-size:clamp(34px,4vw,48px);color:var(--gold-hi);line-height:1}
+.stat span{display:block;margin-top:8px;font-family:var(--f-mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+@media (max-width:760px){.stats .wrap{grid-template-columns:repeat(2,1fr)}.stat:nth-child(3){border-left:0}.stat:nth-child(n+3){border-top:1px solid var(--line)}}
+
+/* Sections */
+section.block{padding-block:clamp(64px,9vw,120px)}
+.head{max-width:760px}
+.head h2{font-size:clamp(32px,4.4vw,54px);margin-top:14px}
+.head p{color:var(--mute);margin-top:18px;font-size:18px}
+.center{text-align:center;margin-inline:auto}
+
+/* Trades ticker */
+.trades{padding-block:26px;overflow:hidden;border-bottom:1px solid var(--line)}
+.trades-track{display:flex;gap:44px;width:max-content;animation:tick 40s linear infinite;font-family:var(--f-display);font-style:italic;font-size:22px;color:var(--dim)}
+.trades-track span::after{content:"◆";font-style:normal;font-size:10px;color:var(--gold-lo);margin-left:44px;vertical-align:middle}
+@keyframes tick{to{transform:translateX(-50%)}}
+
+/* Seven links */
+.chain{margin-top:56px;display:grid;grid-template-columns:repeat(7,1fr);gap:10px}
+.link{position:relative;border:1px solid var(--line);background:var(--navy-800);border-radius:var(--r);padding:20px 14px 18px;text-align:center}
+.link .n{font-family:var(--f-display);font-size:38px;color:var(--gold);line-height:1}
+.link small{display:block;font-family:var(--f-mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin-top:8px}
+.link.broken{border-color:rgba(224,102,79,.6);background:linear-gradient(180deg,rgba(224,102,79,.12),var(--navy-800))}
+.link.broken .n{color:var(--leak)}
+.link.broken small{color:var(--leak)}
+.chain-key{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:22px}
+.key{border-radius:var(--r);padding:22px 24px;background:var(--navy-800);border:1px solid var(--line)}
+.key b{font-family:var(--f-display);font-size:22px;display:block}
+.key p{color:var(--mute);margin-top:6px;font-size:16px}
+.key.win b{color:var(--good)} .key.lose b{color:var(--leak)}
+@media (max-width:760px){.chain{grid-template-columns:repeat(4,1fr)}.chain-key{grid-template-columns:1fr}}
+
+/* Discover list */
+.disc{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(32px,5vw,72px);align-items:start}
+.disc>*{min-width:0}
+.disc-list{list-style:none;padding:0;margin:0;display:grid;gap:0}
+.disc-list li{display:grid;grid-template-columns:28px 1fr;gap:14px;padding:18px 0;border-bottom:1px solid var(--line);color:var(--mute)}
+.disc-list li:first-child{border-top:1px solid var(--line)}
+.disc-list li::before{content:"";width:18px;height:18px;margin-top:4px;border-radius:50%;border:2px solid var(--gold);background:radial-gradient(circle,var(--gold) 35%,transparent 40%)}
+.disc-list strong{color:var(--ink)}
+.disc .sticky{position:sticky;top:110px}
+@media (max-width:860px){.disc{grid-template-columns:1fr}.disc .sticky{position:static}}
+
+/* Story */
+.story{background:linear-gradient(180deg,var(--navy-800),var(--navy-900))}
+.story-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(32px,5vw,80px)}
+.story-grid>*{min-width:0}
+.portrait{border-radius:22px;border:1px solid var(--line);background:
+  radial-gradient(circle at 50% 30%,rgba(214,171,79,.25),transparent 60%),var(--navy-700);aspect-ratio:4/5;max-width:100%;display:flex;flex-direction:column;justify-content:flex-end;padding:26px;position:sticky;top:110px;overflow:hidden}
+.portrait .mono{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--f-display);font-size:180px;color:rgba(214,171,79,.14);font-style:italic}
+.portrait b{font-family:var(--f-display);font-size:28px;position:relative}
+.portrait span{color:var(--mute);font-size:15px;position:relative}
+.timeline{display:grid;gap:0;margin-top:34px}
+.tl{display:grid;grid-template-columns:110px 1fr;gap:20px;padding:20px 0;border-top:1px solid var(--line)}
+.tl .yr{font-family:var(--f-mono);color:var(--gold);font-size:14px;padding-top:3px}
+.tl h3{font-family:var(--f-body);font-weight:800;font-size:19px;line-height:1.3}
+.tl p{color:var(--mute);margin-top:6px}
+.story-copy>p{color:var(--mute);margin-top:16px;font-size:18px}
+.story-copy>p strong{color:var(--ink)}
+.pull{font-family:var(--f-display);font-style:italic;font-size:clamp(24px,2.6vw,32px);line-height:1.25;color:var(--ink);margin-top:34px;padding-left:22px;border-left:3px solid var(--gold)}
+.failed{margin-top:18px;display:grid;gap:8px}
+.failed div{color:var(--mute);padding-left:28px;position:relative}
+.failed div::before{content:"✕";position:absolute;left:0;color:var(--leak);font-weight:800}
+@media (max-width:860px){.story-grid{grid-template-columns:1fr}.portrait{position:relative;top:0;aspect-ratio:16/10}.tl{grid-template-columns:80px 1fr}}
+
+/* Results */
+.results{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:52px}
+.res{border:1px solid var(--line);border-radius:18px;background:var(--navy-800);padding:28px;display:flex;flex-direction:column;gap:14px}
+.res .big{font-family:var(--f-display);font-size:clamp(34px,3.4vw,44px);color:var(--gold-hi);line-height:1}
+.res h3{font-family:var(--f-body);font-size:19px;font-weight:800;line-height:1.3}
+.res p{color:var(--mute);font-size:16px}
+.res .tag{margin-top:auto;font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+@media (max-width:900px){.results{grid-template-columns:1fr}}
+
+/* Testimonials */
+.tgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-rows:1fr;gap:18px;margin-top:52px}
+@media (max-width:980px){.tgrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:620px){.tgrid{grid-template-columns:minmax(0,1fr);grid-auto-rows:auto}}
+.t{display:flex;flex-direction:column;min-width:0;overflow-wrap:break-word;border:1px solid var(--line);border-radius:18px;padding:26px;background:var(--navy-800)}
+.t .delta{align-self:flex-start}
+.t .stars{color:var(--gold);letter-spacing:3px;font-size:14px}
+.t h3{font-size:22px;margin-top:10px}
+.t .delta{display:inline-flex;align-items:center;gap:8px;margin-top:14px;font-family:var(--f-mono);font-size:13px;font-weight:600;padding:6px 12px;border-radius:99px;background:rgba(95,191,140,.12);color:var(--good)}
+.t p{color:var(--mute);margin:14px 0 20px;font-size:16px}
+.t .who{margin-top:auto;padding-top:14px;padding-top:14px;border-top:1px solid var(--line);font-weight:700;font-size:15px}
+.t .who span{display:block;font-weight:500;color:var(--dim);font-size:14px}
+
+/* Guarantee */
+.guar{border:1px solid var(--gold-lo);border-radius:26px;padding:clamp(32px,5vw,64px);background:
+  radial-gradient(circle at 85% 0%,rgba(214,171,79,.18),transparent 55%),var(--navy-800);display:grid;grid-template-columns:auto 1fr;gap:clamp(24px,4vw,56px);align-items:center}
+.guar>*{min-width:0}
+.seal{width:170px;height:170px;flex:none}
+.guar h2{font-size:clamp(30px,3.6vw,46px);margin-top:12px}
+.guar blockquote{margin:18px 0 0;font-family:var(--f-display);font-style:italic;font-size:clamp(22px,2.2vw,28px);color:var(--gold-hi);line-height:1.3}
+.guar p{color:var(--mute);margin-top:14px}
+@media (max-width:700px){.guar{grid-template-columns:1fr;text-align:center}.seal{margin:0 auto;width:140px;height:140px}}
+
+/* Final */
+.final{text-align:center}
+.final h2{font-size:clamp(36px,5vw,64px)}
+.final p{color:var(--mute);max-width:60ch;margin:20px auto 0;font-size:18px}
+.final .hero-cta{justify-content:center}
+
+/* Footer */
+footer{border-top:1px solid var(--line);padding-block:44px;color:var(--dim);font-size:13.5px}
+footer .row{display:flex;flex-wrap:wrap;gap:16px 32px;justify-content:space-between;align-items:center}
+footer a{color:var(--mute);text-decoration:none}
+footer a:hover{color:var(--gold-hi)}
+footer .legal{display:flex;gap:20px;flex-wrap:wrap}
+footer .disc-txt{margin-top:24px;max-width:90ch;line-height:1.6}
+
+/* ===== Assessment ===== */
+.quiz{position:fixed;inset:0;z-index:50;background:rgba(4,8,18,.86);backdrop-filter:blur(10px);display:flex;align-items:flex-start;justify-content:center;overflow-y:auto;padding:calc(env(safe-area-inset-top,0px) + 24px) 16px calc(env(safe-area-inset-bottom,0px) + 24px)}
+.qcard{width:100%;max-width:640px;background:linear-gradient(170deg,var(--navy-700),var(--navy-800));border:1px solid var(--line);border-radius:24px;box-shadow:0 50px 120px -30px rgba(0,0,0,.9);overflow:hidden;margin-block:auto}
+.qtop{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 22px;border-bottom:1px solid var(--line)}
+.qtop .eyebrow{font-size:11px}
+.qclose{background:none;border:1px solid var(--line);color:var(--mute);width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:18px;line-height:1}
+.qclose:hover{color:var(--ink);border-color:var(--gold)}
+.qprog{height:4px;background:var(--navy-600)}
+.qprog i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--gold-lo),var(--gold-hi));transition:width .4s ease}
+.qbody{padding:clamp(24px,5vw,40px)}
+.qstep{animation:fadeUp .35s ease both}
+@keyframes fadeUp{from{opacity:.0;transform:translateY(10px)}}
+.qcount{font-family:var(--f-mono);font-size:12px;color:var(--gold);letter-spacing:.12em}
+.qstep h3{font-size:clamp(26px,3.6vw,34px);margin-top:10px}
+.qstep .hint{color:var(--mute);margin-top:10px;font-size:15.5px}
+.opts{display:grid;gap:10px;margin-top:24px}
+.opts.two{grid-template-columns:1fr 1fr}
+@media (max-width:480px){.opts.two{grid-template-columns:1fr}}
+.opt{display:flex;align-items:center;gap:14px;text-align:left;width:100%;padding:16px 18px;border-radius:14px;border:1px solid var(--line);background:var(--navy-800);color:var(--ink);font:600 16px/1.35 var(--f-body);cursor:pointer;transition:border-color .15s,background .15s,transform .1s}
+.opt:hover{border-color:var(--gold-lo);background:var(--navy-700)}
+.opt:active{transform:scale(.99)}
+.opt .k{flex:none;width:28px;height:28px;border-radius:8px;border:1px solid var(--line);display:grid;place-items:center;font-family:var(--f-mono);font-size:12px;color:var(--mute)}
+.opt.sel{border-color:var(--gold);background:rgba(214,171,79,.1)}
+.opt.sel .k{background:var(--gold);color:#1a1405;border-color:var(--gold)}
+.field{display:grid;gap:6px;margin-top:16px}
+.field label{font-size:14px;font-weight:700;color:var(--mute)}
+.field input{width:100%;padding:15px 16px;border-radius:12px;border:1px solid var(--line);background:var(--navy-900);color:var(--ink);font:500 16px var(--f-body)}
+.field input:focus{outline:none;border-color:var(--gold)}
+.field .err{color:var(--leak);font-size:13.5px}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}
+@media (max-width:480px){.frow{grid-template-columns:1fr}}
+.qnav{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:28px}
+.qback{background:none;border:0;color:var(--mute);font:600 15px var(--f-body);cursor:pointer;padding:10px 0}
+.qback:hover{color:var(--ink)}
+.qback[disabled]{visibility:hidden}
+.privacy{font-size:13px;color:var(--dim);margin-top:16px}
+.intro-pts{display:grid;gap:10px;margin-top:22px}
+.intro-pts div{display:flex;gap:12px;color:var(--mute)}
+.intro-pts b{color:var(--gold);font-family:var(--f-mono)}
+/* Result */
+.rnum{font-family:var(--f-display);font-weight:800;font-size:clamp(52px,9vw,80px);line-height:1;color:var(--leak);margin-top:12px}
+.rgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:22px}
+.rgrid div{border:1px solid var(--line);border-radius:12px;padding:14px;background:var(--navy-900)}
+.rgrid b{display:block;font-family:var(--f-mono);font-size:19px;color:var(--ink);font-variant-numeric:tabular-nums}
+.rgrid span{font-size:12px;color:var(--dim);text-transform:uppercase;letter-spacing:.08em}
+@media (max-width:480px){.rgrid{grid-template-columns:1fr}}
+.diag{margin-top:22px;border-left:3px solid var(--gold);padding:4px 0 4px 18px}
+.diag b{font-size:17px}
+.diag p{color:var(--mute);margin-top:6px;font-size:15.5px}
+.toast{margin-top:16px;font-size:13.5px;color:var(--good)}
+
+/* ===== v2: imagery + motion ===== */
+.hero{background:var(--navy-900) url("images/hero-bg.webp") center/cover no-repeat}
+.hero::after{content:"";position:absolute;inset:auto 0 0 0;height:160px;background:linear-gradient(transparent,var(--navy-900));pointer-events:none}
+#sparks{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.hero-grid{z-index:1}
+em.g{background-size:220% 100%;animation:shimmer 6s ease-in-out infinite}
+@keyframes shimmer{0%,100%{background-position:0 0}50%{background-position:100% 0}}
+.hero h1 .line{display:block;animation:rise .9s cubic-bezier(.2,.8,.2,1) both}
+.hero h1 .line:nth-child(2){animation-delay:.15s}
+.hero .lede,.hero-cta,.assure{animation:rise .9s cubic-bezier(.2,.8,.2,1) both}
+.hero .lede{animation-delay:.3s}.hero-cta{animation-delay:.42s}.assure{animation-delay:.52s}
+@keyframes rise{from{transform:translateY(22px);opacity:.15}}
+
+/* Hero visual: Paul + floating cards */
+.stage{position:relative;width:100%;padding:0 0 90px 70px}
+.stage .pipe-row:nth-child(-n+2),.stage .leak-foot{display:none}
+.photo{position:relative;border-radius:200px 200px 24px 24px;overflow:hidden;aspect-ratio:4/5;max-width:100%;border:1px solid rgba(214,171,79,.45);
+  background:radial-gradient(circle at 50% 35%,rgba(214,171,79,.3),transparent 60%),linear-gradient(180deg,var(--navy-600),var(--navy-800));box-shadow:0 60px 100px -40px rgba(0,0,0,.9),0 0 0 8px rgba(214,171,79,.06)}
+.photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 20%}
+.photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(7,13,28,.85))}
+.photo .ph{position:absolute;inset:0;display:none;place-items:center;font-family:var(--f-display);font-style:italic;font-size:clamp(110px,14vw,170px);color:rgba(214,171,79,.22)}
+.photo.nophoto img{display:none}.photo.nophoto .ph{display:grid}
+.photo .cap{display:none}
+.photo .cap b{font-family:var(--f-display);font-size:24px;display:block}
+.photo .cap span{font-size:14px;color:var(--mute)}
+.ring{position:absolute;inset:-26px -26px auto auto;width:150px;height:150px;animation:spin 30s linear infinite;z-index:2}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (max-width:900px){.gauge-chip{left:-8px!important;top:-26px!important}}
+.stage .leak{position:absolute;left:0;bottom:0;width:min(290px,72%);padding:20px;z-index:3;animation:float 7s ease-in-out infinite}
+.stage .leak .leak-big{font-size:52px}
+.stage .leak .pipe-row{grid-template-columns:96px 1fr 44px}
+@keyframes float{50%{transform:translateY(-10px)}}
+.gauge-chip{position:absolute;left:-22px;top:-30px;max-width:250px;z-index:3;background:rgba(11,20,40,.92);border:1px solid var(--line);border-radius:18px;padding:14px 16px;display:flex;gap:12px;align-items:center;backdrop-filter:blur(8px);animation:float 8s ease-in-out -3s infinite}
+.gauge-chip svg{width:64px;height:40px}
+.gauge-chip b{font-family:var(--f-mono);font-size:20px;display:block;color:var(--good)}
+.gauge-chip span{display:block;font-size:10.5px;line-height:1.35;color:var(--mute);text-transform:uppercase;letter-spacing:.1em}
+.needle{transform-origin:32px 36px;animation:needle 4s cubic-bezier(.5,0,.2,1) infinite alternate}
+@keyframes needle{from{transform:rotate(0deg)}to{transform:rotate(45deg)}}
+@media (max-width:900px){.hero-grid{grid-template-columns:1fr}.stage{max-width:460px;margin:10px auto 0;padding:0 0 70px 28px}.ring{width:110px;height:110px;inset:-14px -6px auto auto}.stage .leak .leak-big{font-size:42px}}
+
+/* Method blueprint */
+#method{position:relative;background:url("images/blueprint.webp") center/cover no-repeat}
+#method::before{content:"";position:absolute;inset:0;background:linear-gradient(var(--navy-900),rgba(7,13,28,.55) 30%,rgba(7,13,28,.55) 70%,var(--navy-900))}
+#method .wrap{position:relative}
+.chain{position:relative}
+.link{transition:transform .3s,border-color .3s,box-shadow .3s}
+.chain.run .link{animation:lit 7s infinite}
+.chain.run .link:nth-child(1){animation-delay:0s}.chain.run .link:nth-child(2){animation-delay:.35s}.chain.run .link:nth-child(3){animation-delay:.7s}
+.chain.run .link:nth-child(5){animation-delay:1.75s}.chain.run .link:nth-child(6){animation-delay:2.1s}.chain.run .link:nth-child(7){animation-delay:2.45s}
+@keyframes lit{0%,4%{transform:none}8%{transform:translateY(-6px);border-color:var(--gold);box-shadow:0 0 30px -6px rgba(214,171,79,.6)}20%,100%{transform:none}}
+.chain.run .link.broken{animation:crack 7s 1.05s infinite}
+@keyframes crack{0%,3%{transform:none}5%{transform:translateX(-5px) rotate(-3deg)}7%{transform:translateX(5px) rotate(3deg)}9%{transform:translateX(-3px)}11%{transform:none;box-shadow:0 0 40px -4px rgba(224,102,79,.7)}30%,100%{transform:none}}
+.chain::before{content:"";position:absolute;left:4%;right:4%;top:50%;height:2px;background:linear-gradient(90deg,var(--gold) 0 50%,var(--leak) 50% 57%,var(--line) 57%);z-index:-1}
+
+/* Scroll reveal (only applied to elements below the fold by JS) */
+.pre{transform:translateY(28px);opacity:.25;transition:transform .8s cubic-bezier(.2,.8,.2,1),opacity .8s}
+.pre.in{transform:none;opacity:1}
+
+/* Cards hover */
+.res,.t,.key{transition:transform .25s ease,border-color .25s,box-shadow .25s}
+.res:hover,.t:hover{transform:translateY(-4px);border-color:var(--gold-lo);box-shadow:0 30px 60px -30px rgba(214,171,79,.35)}
+
+/* Story with photo + vein */
+.story{background:var(--navy-800) url("images/gold-vein.webp") center/cover no-repeat;position:relative}
+.story::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(7,13,28,.2),rgba(7,13,28,.75) 55%)}
+.story .wrap{position:relative}
+.portrait{padding:0;background:var(--navy-700)}
+.portrait img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 20%}
+.portrait.nophoto img{display:none}
+.portrait:not(.nophoto) .mono{display:none}
+.portrait .cap{position:absolute;inset:auto 0 0 0;padding:26px;background:linear-gradient(transparent,rgba(7,13,28,.92));z-index:1}
+.portrait .cap b{display:block}
+
+/* Video testimonials */
+.vids{position:relative;background:linear-gradient(180deg,var(--navy-900),var(--navy-800))}
+.vgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:52px}
+.vcard{position:relative;border:1px solid var(--line);border-radius:20px;overflow:hidden;background:var(--navy-700);cursor:pointer;text-align:left;padding:0;color:var(--ink);font:inherit;display:flex;flex-direction:column;transition:transform .25s,border-color .25s,box-shadow .25s}
+.vcard:hover{transform:translateY(-5px);border-color:var(--gold);box-shadow:0 30px 70px -30px rgba(214,171,79,.45)}
+.vthumb{position:relative;aspect-ratio:9/12;max-width:100%;background:radial-gradient(circle at 70% 20%,rgba(214,171,79,.28),transparent 55%),url("images/gold-vein.webp") center/cover;overflow:hidden}
+.vthumb video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.75;transition:opacity .3s,transform .6s}
+.vcard:hover .vthumb video{opacity:1;transform:scale(1.04)}
+.vthumb .q{position:absolute;inset:auto 22px 22px 22px;font-family:var(--f-display);font-size:clamp(26px,2.6vw,34px);line-height:1.05;z-index:1;text-shadow:0 2px 20px rgba(0,0,0,.6)}
+.vthumb .q em{color:var(--gold-hi)}
+.vthumb::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 40%,rgba(7,13,28,.9))}
+.play{position:absolute;left:50%;top:42%;translate:-50% -50%;width:76px;height:76px;border-radius:50%;background:linear-gradient(180deg,var(--gold-hi),var(--gold));display:grid;place-items:center;z-index:2;box-shadow:0 0 0 0 rgba(214,171,79,.6);animation:pulse 2.4s infinite}
+.play svg{width:26px;height:26px;margin-left:4px}
+@keyframes pulse{70%{box-shadow:0 0 0 22px rgba(214,171,79,0)}100%{box-shadow:0 0 0 0 rgba(214,171,79,0)}}
+.vmeta{padding:18px 22px 22px;display:grid;gap:4px}
+.vmeta b{font-size:17px}.vmeta span{color:var(--mute);font-size:14.5px}
+.vnum{position:absolute;top:16px;left:18px;z-index:2;font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;color:var(--gold-hi);background:rgba(7,13,28,.6);padding:5px 10px;border-radius:99px;border:1px solid rgba(214,171,79,.35)}
+@media (max-width:900px){.vgrid{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.vgrid{grid-template-columns:1fr}.vthumb{aspect-ratio:4/4}}
+.vmodal{position:fixed;inset:0;z-index:60;background:rgba(3,6,14,.92);display:grid;place-items:center;padding:24px 16px}
+.vbox{position:relative;width:min(900px,100%);max-height:90vh}
+.vbox video{width:100%;max-height:84vh;border-radius:16px;background:#000;display:block}
+.vbox .qclose{position:absolute;top:-48px;right:0}
+.vmissing{border:1px dashed var(--gold-lo);border-radius:16px;padding:48px 24px;text-align:center;color:var(--mute)}
+.vmissing b{display:block;font-family:var(--f-display);font-size:26px;color:var(--ink);margin-bottom:8px}
+
+/* Guarantee / final */
+.guar{background:radial-gradient(circle at 85% 0%,rgba(214,171,79,.18),transparent 55%),url("images/gold-vein.webp") center/cover,var(--navy-800)}
+.seal .rot{transform-origin:85px 85px;animation:spin 24s linear infinite}
+.final{position:relative;overflow:hidden}
+.final .btn-gold{animation:pulse 2.6s infinite}
+
+/* ===== v3: brighter palette + glassmorphism ===== */
+body{background:var(--navy-900)}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:
+  radial-gradient(40vw 40vw at 8% 18%,rgba(47,99,255,.30),transparent 70%),
+  radial-gradient(36vw 36vw at 92% 55%,rgba(232,182,90,.14),transparent 70%),
+  radial-gradient(50vw 40vw at 40% 105%,rgba(47,99,255,.22),transparent 70%),var(--navy-900)}
+main,footer{position:relative}
+.glass,.leak,.gauge-chip,.link,.key,.res,.t,.vcard,.qcard,.guar,.stats .wrap,.btn-ghost,.portrait .cap{
+  background:var(--glass);border:1px solid var(--glass-b);
+  -webkit-backdrop-filter:blur(18px) saturate(150%);backdrop-filter:blur(18px) saturate(150%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 30px 60px -30px rgba(2,6,20,.7)}
+.nav{background:rgba(8,19,48,.55);-webkit-backdrop-filter:blur(18px) saturate(160%);backdrop-filter:blur(18px) saturate(160%);border-bottom:1px solid rgba(255,255,255,.08)}
+.hero{background:url("images/hero-home.webp") 80% bottom/cover no-repeat,var(--navy-900)}
+@media (max-width:900px){.hero{background-size:260% auto;background-position:62% 100%}}
+.hero::before{background:radial-gradient(closest-side,rgba(47,99,255,.22),transparent 70%);inset:-30% auto auto -15%}
+.hero::after{background:linear-gradient(transparent,rgba(8,19,48,.0))}
+.stats{background:transparent;border:0;padding-inline:16px;margin-top:-40px;position:relative;z-index:2}
+.stats .wrap{border-radius:24px;padding-inline:0;max-width:calc(var(--wrap) - 80px)}
+.stat{border-left-color:rgba(255,255,255,.1)}
+.stat:nth-child(n+3){border-top-color:rgba(255,255,255,.1)}
+.trades{border-bottom:0;margin-top:24px}
+#method{background:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px) 0 0/48px 48px,linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px) 0 0/48px 48px}
+#method::before{background:linear-gradient(var(--navy-900),transparent 25%,transparent 75%,var(--navy-900));opacity:.9}
+.link.broken{background:linear-gradient(180deg,rgba(224,102,79,.22),rgba(224,102,79,.04));border-color:rgba(224,102,79,.6)}
+.btn-gold{background:linear-gradient(180deg,#ffe3a3,var(--gold) 60%,#d29d3e);box-shadow:0 12px 34px -10px rgba(232,182,90,.75),inset 0 1px 0 rgba(255,255,255,.6)}
+.btn-ghost{color:var(--ink)}
+.btn-ghost:hover{border-color:var(--gold-hi)}
+.photo{border:1px solid rgba(255,255,255,.22);box-shadow:0 0 0 10px rgba(255,255,255,.05),0 0 0 11px rgba(255,255,255,.1),0 60px 100px -40px rgba(0,0,0,.9);background:#1d1f24}
+.photo::after{background:linear-gradient(180deg,transparent 60%,rgba(8,19,48,.75))}
+.photo img{object-position:50% 15%}
+.ring circle{fill:rgba(13,28,68,.7)}
+.stage .leak{background:linear-gradient(140deg,rgba(20,41,92,.72),rgba(13,28,68,.55))}
+.gauge-chip{background:linear-gradient(140deg,rgba(20,41,92,.7),rgba(13,28,68,.5))}
+.story{background:transparent}
+.story::before{display:none}
+.portrait{background:#1d1f24;border-color:rgba(255,255,255,.2)}
+.portrait .cap{inset:auto 14px 14px 14px;border-radius:16px;padding:16px 18px;background:linear-gradient(140deg,rgba(20,41,92,.65),rgba(13,28,68,.45))}
+.vmeta{background:transparent}
+.vthumb{background:radial-gradient(circle at 70% 20%,rgba(232,182,90,.3),transparent 55%),radial-gradient(circle at 10% 90%,rgba(47,99,255,.35),transparent 60%),url("images/gold-vein.webp") center/cover}
+.t .delta{background:rgba(95,191,140,.16)}
+.t .who{border-top-color:rgba(255,255,255,.1)}
+.guar{background:radial-gradient(circle at 85% 0%,rgba(232,182,90,.22),transparent 55%),radial-gradient(circle at 0% 100%,rgba(47,99,255,.25),transparent 55%),var(--glass);border-color:rgba(232,182,90,.45)}
+.qcard{background:linear-gradient(160deg,rgba(25,50,110,.75),rgba(13,28,68,.7))}
+.opt{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.12)}
+.opt:hover{background:rgba(255,255,255,.09)}
+.field input,.rgrid div{background:rgba(5,12,32,.55);border-color:rgba(255,255,255,.14)}
+.quiz{background:rgba(5,10,28,.6)}
+footer{border-top-color:rgba(255,255,255,.08);background:rgba(5,12,32,.5)}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.leak,.res,.t,.vcard,.qcard,.key,.link,.stats .wrap{background:var(--navy-800)}}
+
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+
+/* Brand logo (image) */
+.brand{display:flex;align-items:center}
+.brand .logo-h{height:56px;width:auto;display:block}
+@media (max-width:520px){.brand .logo-h{height:44px}}
+.foot-logo{display:block;height:96px;width:auto;margin:0 0 26px}
+</style>
+<style>
+/* ===== Book-a-call page ===== */
+.bc-hero{padding-block:clamp(26px,4vw,44px) clamp(56px,7vw,90px)}
+.bc-hero::before{inset:0;width:auto;height:auto;background:linear-gradient(90deg,rgba(8,19,48,.95),rgba(8,19,48,.85) 50%,rgba(8,19,48,.6));z-index:0}
+.bc-hero .wrap{position:relative;z-index:1}
+.funnel{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:clamp(24px,3.5vw,36px)}
+.fs{display:inline-flex;align-items:center;gap:10px;padding:8px 14px 8px 8px;border-radius:99px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);font-size:13.5px;font-weight:700;color:var(--mute)}
+.fs i{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font:600 12px var(--f-mono);font-style:normal;border:1.5px solid rgba(255,255,255,.25)}
+.fs.done{color:var(--good);border-color:rgba(95,191,140,.35)}.fs.done i{background:var(--good);border-color:var(--good);color:#06261a}
+.fs.cur{color:var(--ink);border-color:var(--gold);background:rgba(232,182,90,.1)}.fs.cur i{border-color:var(--gold);color:var(--gold-hi);animation:okp 2.2s infinite}
+@keyframes okp{0%{box-shadow:0 0 0 0 rgba(232,182,90,.55)}70%{box-shadow:0 0 0 10px rgba(232,182,90,0)}100%{box-shadow:0 0 0 0 rgba(232,182,90,0)}}
+.fline{width:28px;height:2px;background:linear-gradient(90deg,var(--good),var(--gold))}.fline.off{background:rgba(255,255,255,.15)}
+@media (max-width:640px){.fs span{display:none}.fs{padding:6px}}
+
+.bc-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);grid-template-areas:"intro cal" "more cal";grid-template-rows:auto 1fr;column-gap:clamp(28px,4vw,52px);align-items:start}
+.bc-grid>*{min-width:0}
+.bc-intro{grid-area:intro}.bc-more{grid-area:more}.cal{grid-area:cal}
+.bc-intro h1{font-size:clamp(34px,4.4vw,56px);margin-top:14px}
+.bc-intro .lede{color:var(--mute);font-size:clamp(17px,1.5vw,19px);margin-top:16px;max-width:56ch}
+.bc-intro .lede strong{color:var(--ink)}
+.vid{position:relative;margin-top:26px;border-radius:20px;overflow:hidden;aspect-ratio:16/9;max-width:100%;background:#000;border:1px solid var(--glass-b);box-shadow:0 0 0 8px rgba(255,255,255,.04),0 40px 80px -40px rgba(0,0,0,.9)}
+.vid video{width:100%;height:100%;display:block;object-fit:cover}
+.vid .cover{position:absolute;inset:0;border:0;padding:0;cursor:pointer;display:grid;place-items:center;color:var(--ink);font:inherit;background:linear-gradient(180deg,rgba(8,19,48,.15),rgba(8,19,48,.75)),url("images/hero-home.webp") 70% 100%/cover}
+.vid .cover .thumb{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .6s}
+.vid .cover.has-thumb .thumb{opacity:1}
+.vid .cover::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,19,48,.05),rgba(8,19,48,.72))}
+.vid .cover>span{z-index:1}
+.vid .play{position:relative;left:auto;top:auto;translate:none;z-index:1;width:84px;height:84px;border-radius:50%;background:linear-gradient(180deg,#ffe3a3,var(--gold));display:grid;place-items:center;box-shadow:0 0 0 0 rgba(232,182,90,.6);animation:pulse 2.4s infinite}
+.vid .play svg{width:28px;height:28px;margin-left:5px}
+.vid .lbl{position:absolute;left:20px;bottom:18px;display:flex;align-items:center;gap:10px;font-family:var(--f-mono);font-size:12px;letter-spacing:.12em;color:var(--gold-hi)}
+.vid .lbl svg{width:18px;height:18px}
+.myleak{margin-top:20px;display:grid;grid-template-columns:auto 1fr;gap:6px 18px;align-items:center;padding:16px 20px;border-radius:16px;border:1px solid rgba(224,102,79,.35);background:linear-gradient(120deg,rgba(224,102,79,.13),rgba(224,102,79,.02))}
+.myleak b{font-family:var(--f-display);font-size:clamp(28px,3vw,36px);color:#ff8f7a;line-height:1;font-variant-numeric:tabular-nums}
+.myleak span{color:var(--mute);font-size:14.5px}
+
+.cal{border-radius:24px;overflow:hidden;position:sticky;top:96px}
+.cal-head{padding:22px 22px 6px}
+.cal-head .eyebrow{font-size:11.5px}
+.cal-head h2{font-size:clamp(26px,2.6vw,32px);margin-top:8px}
+.cal-head p{color:var(--mute);font-size:15px;margin-top:10px}
+.cal-tags{display:flex;flex-wrap:wrap;gap:8px;padding:14px 22px 0}
+.cal-tags em{font-style:normal;font-size:12.5px;font-weight:700;color:var(--ink);padding:5px 11px;border-radius:99px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1)}
+.cal-tags em.live{color:var(--good);border-color:rgba(95,191,140,.35)}
+#cal-embed{position:relative;min-height:680px;padding:14px}
+#cal-embed iframe{display:block;width:100%;min-height:680px;border:0;border-radius:14px;background:#fff}
+#cal-embed br{display:none}
+.cal-foot{padding:4px 22px 18px;font-size:13px;color:var(--dim);text-align:center}
+.cal-foot a{color:var(--gold-hi)}
+.scarce{display:flex;align-items:center;justify-content:center;gap:8px;margin:0 22px 18px;padding:10px 14px;border-radius:12px;background:rgba(232,182,90,.08);border:1px solid rgba(232,182,90,.3);font-size:13.5px;color:var(--gold-hi);font-weight:700}
+@media (max-width:980px){.bc-grid{grid-template-columns:minmax(0,1fr);grid-template-areas:"intro" "cal" "more";row-gap:30px}.cal{position:static}}
+@media (max-width:600px){#cal-embed{padding:6px}}
+
+/* What I do */
+.wid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(28px,5vw,72px);align-items:start}
+.wid>*{min-width:0}
+.wid h2{font-size:clamp(28px,3.4vw,42px);margin-top:14px}
+.wid .big{font-size:clamp(17px,1.5vw,19px);color:var(--mute);margin-top:18px}
+.wid .big strong{color:var(--ink)}
+.ben{display:grid;gap:14px}
+.ben article{display:grid;grid-template-columns:52px minmax(0,1fr);gap:16px;padding:22px;border-radius:18px}
+.ben .bi{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;color:var(--gold-hi);background:rgba(232,182,90,.12);border:1px solid rgba(232,182,90,.35)}
+.ben .bi svg{width:24px;height:24px}
+.ben h3{font-family:var(--f-body);font-weight:800;font-size:18px}
+.ben p{color:var(--mute);margin-top:4px;font-size:15.5px}
+@media (max-width:900px){.wid{grid-template-columns:1fr}}
+
+/* 7 steps staircase */
+.stairs{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:10px;align-items:end;margin-top:52px}
+.st{position:relative;border-radius:16px 16px 6px 6px;padding:18px 14px;display:flex;flex-direction:column;gap:8px;border:1px solid var(--glass-b);background:linear-gradient(180deg,rgba(232,182,90,.14),rgba(255,255,255,.03) 45%);min-height:calc(190px + var(--k) * 26px);transition:transform .3s,border-color .3s,box-shadow .3s}
+.st:hover{transform:translateY(-6px);border-color:var(--gold);box-shadow:0 26px 50px -26px rgba(232,182,90,.55)}
+.st .n{font-family:var(--f-display);font-size:42px;line-height:1;color:transparent;-webkit-text-stroke:1.2px var(--gold)}
+.st h3{font-family:var(--f-body);font-weight:800;font-size:14.5px;line-height:1.3;letter-spacing:.01em}
+.st p{color:var(--mute);font-size:13.5px;line-height:1.45}
+.stairs-base{height:4px;border-radius:99px;margin-top:10px;background:linear-gradient(90deg,var(--gold-lo),var(--gold-hi),var(--good))}
+@media (max-width:1100px){.stairs{grid-template-columns:repeat(4,minmax(0,1fr))}.st{min-height:0}}
+@media (max-width:640px){.stairs{grid-template-columns:minmax(0,1fr)}.st{flex-direction:row;flex-wrap:wrap;align-items:baseline;gap:4px 14px}.st .n{font-size:34px}.st h3{flex:1;font-size:16px}.st p{flex-basis:100%}.stairs-base{display:none}}
+
+/* On the call */
+.otc{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:48px}
+.otc article{padding:24px;border-radius:18px}
+.otc .num{font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;color:var(--gold)}
+.otc h3{font-family:var(--f-body);font-weight:800;font-size:18px;margin-top:10px;line-height:1.3}
+.otc p{color:var(--mute);font-size:15px;margin-top:6px}
+@media (max-width:980px){.otc{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.otc{grid-template-columns:minmax(0,1fr)}}
+.ctr{display:flex;flex-direction:column;align-items:center;gap:12px;margin-top:36px;text-align:center}
+.ctr small{color:var(--dim);font-size:13.5px}
+
+/* Familiar */
+.fam{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,64px);align-items:center}
+.fam>*{min-width:0}
+.fam h2{font-size:clamp(30px,3.6vw,46px);margin-top:14px}
+.pains{list-style:none;margin:26px 0 0;padding:0;display:grid;gap:12px}
+.pains li{display:grid;grid-template-columns:26px minmax(0,1fr);gap:12px;color:var(--mute)}
+.pains li::before{content:"✕";width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:800;color:#ff8f7a;background:rgba(224,102,79,.14);border:1px solid rgba(224,102,79,.35)}
+.story-card{padding:clamp(24px,3vw,36px);border-radius:24px;position:relative}
+.story-card .qm{width:40px;height:30px;color:var(--gold)}
+.story-card p{font-family:var(--f-display);font-style:italic;font-size:clamp(19px,1.9vw,23px);line-height:1.45;margin-top:14px;color:var(--ink)}
+.story-card .fix{margin-top:20px;padding-top:18px;border-top:1px solid rgba(255,255,255,.1);font-family:var(--f-body);font-style:normal;font-size:16px;color:var(--mute)}
+.story-card .fix b{color:var(--gold-hi)}
+@media (max-width:900px){.fam{grid-template-columns:1fr}}
+
+/* Meet Paul */
+.mp{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(28px,5vw,72px);align-items:start}
+.mp>*{min-width:0}
+.mp-photo{position:sticky;top:100px;border-radius:24px 120px 24px 24px;overflow:hidden;aspect-ratio:4/5;max-width:100%;background:#1d1f24;box-shadow:0 60px 100px -40px rgba(0,0,0,.9)}
+.mp-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 15%;display:block}
+.mp-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(8,19,48,.9))}
+.mp-photo figcaption{position:absolute;left:22px;right:22px;bottom:20px;z-index:1}
+.mp-photo figcaption b{font-family:var(--f-display);font-size:26px;display:block}
+.mp-photo figcaption span{color:var(--mute);font-size:14px}
+.mp h2{font-size:clamp(30px,3.6vw,46px);margin-top:14px}
+.mp .sub{color:var(--gold-hi);font-weight:700;margin-top:10px}
+.mp .txt{color:var(--mute);margin-top:16px;font-size:17px}
+.mp .txt strong{color:var(--ink)}
+.cred{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:28px}
+.cred div{padding:16px;border-radius:16px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.03)}
+.cred b{display:block;font-family:var(--f-display);font-size:30px;color:var(--gold-hi);line-height:1.05}
+.cred span{font-size:12.5px;color:var(--mute);text-transform:uppercase;letter-spacing:.08em}
+@media (max-width:640px){.cred{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.years{margin-top:30px;display:grid;gap:0;border-left:2px solid rgba(232,182,90,.4);padding-left:22px}
+.yr{position:relative;padding-bottom:20px}
+.yr::before{content:"";position:absolute;left:-29px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 5px rgba(232,182,90,.15)}
+.yr b{font-family:var(--f-mono);font-size:13px;color:var(--gold);letter-spacing:.08em}
+.yr p{color:var(--mute);margin-top:2px}
+.yr p strong{color:var(--ink)}
+@media (max-width:900px){.mp{grid-template-columns:1fr}.mp-photo{position:relative;top:0;aspect-ratio:4/3.6;max-width:520px}}
+
+/* Inside */
+.inside{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:48px}
+.inside article{display:flex;gap:16px;align-items:flex-start;padding:22px;border-radius:18px}
+.inside .ii{flex:none;width:46px;height:46px;border-radius:13px;display:grid;place-items:center;color:var(--gold-hi);background:rgba(232,182,90,.12);border:1px solid rgba(232,182,90,.35)}
+.inside .ii svg{width:22px;height:22px}
+.inside h3{font-family:var(--f-body);font-weight:800;font-size:17px;line-height:1.3}
+.inside p{color:var(--mute);font-size:14.5px;margin-top:4px}
+.inside article.hl{grid-column:span 3;background:linear-gradient(120deg,rgba(232,182,90,.16),rgba(255,255,255,.03));border-color:rgba(232,182,90,.45)}
+.inside article.hl h3{font-size:20px}
+@media (max-width:980px){.inside{grid-template-columns:repeat(2,minmax(0,1fr))}.inside article.hl{grid-column:span 2}}
+@media (max-width:600px){.inside{grid-template-columns:minmax(0,1fr)}.inside article.hl{grid-column:auto}}
+
+/* FAQ */
+.wif{max-width:860px;margin:48px auto 0;border-radius:22px;padding:6px 26px}
+.wif details{border-bottom:1px solid rgba(255,255,255,.08)}
+.wif details:last-child{border-bottom:0}
+.wif summary{list-style:none;cursor:pointer;padding:20px 40px 20px 0;font-weight:800;font-size:17.5px;position:relative}
+.wif summary::-webkit-details-marker{display:none}
+.wif summary::after{content:"+";position:absolute;right:4px;top:16px;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;color:var(--gold-hi);border:1px solid rgba(232,182,90,.4);font-size:18px;transition:transform .25s}
+.wif details[open] summary::after{transform:rotate(45deg)}
+.wif details p{color:var(--mute);padding:0 0 20px;max-width:70ch}
+
+/* Final */
+.fin{text-align:center;border-radius:28px;padding:clamp(36px,6vw,72px) clamp(20px,4vw,56px);background:radial-gradient(circle at 85% 0%,rgba(232,182,90,.22),transparent 55%),radial-gradient(circle at 0% 100%,rgba(47,99,255,.25),transparent 55%),var(--glass);border:1px solid rgba(232,182,90,.45)}
+.fin h2{font-size:clamp(32px,4.4vw,56px)}
+.fin p{color:var(--mute);max-width:62ch;margin:18px auto 0;font-size:18px}
+.fin .ctr{margin-top:28px}
+.tgrid.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media (max-width:980px){.tgrid.three{grid-template-columns:minmax(0,1fr);grid-auto-rows:auto}}
+.ben article,.otc article,.inside article,.wif,.story-card{background:var(--glass);border:1px solid var(--glass-b);-webkit-backdrop-filter:blur(18px) saturate(150%);backdrop-filter:blur(18px) saturate(150%);box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 30px 60px -30px rgba(2,6,20,.7)}
+
+/* fixes: separation under hero + wider calendar */
+.bc-hero{position:relative}
+.bc-hero{background:transparent!important}
+.bc-hero::before{inset:0!important;width:auto!important;height:auto!important;z-index:0;
+  background:linear-gradient(90deg,rgba(8,19,48,.95),rgba(8,19,48,.85) 50%,rgba(8,19,48,.6)),url("images/hero-home.webp") 80% bottom/cover no-repeat,var(--navy-900)!important;
+  -webkit-mask-image:linear-gradient(180deg,#000 72%,transparent);mask-image:linear-gradient(180deg,#000 72%,transparent)}
+.bc-hero::after{display:none}
+.wid-sec{padding-top:clamp(72px,9vw,120px);position:relative}
+.wid-sec::before{content:"";position:absolute;top:0;left:50%;translate:-50% 0;width:min(1180px,calc(100% - 32px));height:1px;background:linear-gradient(90deg,transparent,rgba(232,182,90,.45),transparent)}
+@media (min-width:981px){
+  .bc-hero .wrap,.nav .wrap{max-width:1600px}
+  .bc-grid{grid-template-columns:minmax(0,1fr) min(50vw,980px)}
+}
+</style>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="/" aria-label="Paul Broome Sales Mastery home"><img class="logo-h" src="images/logo-horizontal.png" alt="Paul Broome Sales Mastery" width="655" height="217"></a>
+    <nav class="nav-links" aria-label="Page">
+      <a href="#steps">The 7 Steps</a>
+      <a href="#paul">About Paul</a>
+      <a href="#faq">Questions</a>
+      <a class="btn btn-gold" href="#book">Book My Call</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+<!-- HERO + CALENDAR -->
+<section class="hero bc-hero" id="book">
+  <div class="wrap">
+    <div class="funnel" aria-label="Your progress">
+      <span class="fs done"><i>✓</i><span>Sales Leak Assessment</span></span><span class="fline"></span>
+      <span class="fs cur" aria-current="step"><i>2</i><span>Book Your Call</span></span><span class="fline off"></span>
+      <span class="fs"><i>3</i><span>Prepare For Your Call</span></span>
+    </div>
+
+    <div class="bc-grid">
+      <div class="bc-intro">
+        <div class="eyebrow">For UK home improvement business owners</div>
+        <h1><span class="line">From losing deals to closing at</span> <span class="line"><em class="g">60–75% in 90 days.</em></span></h1>
+        <p class="lede">How <strong>UK home improvement business owners</strong> stop losing £45K–£135K per month, without pushy scripts, complicated funnels, or anyone knowing they needed help.</p>
+        <div class="vid" id="vid">
+          <video id="bcv" playsinline controls preload="none" hidden>
+            <source src="https://assets.cdn.filesafe.space/2x8A5up52ublohNgZGKU/media/6984480cd017c3d65391a2a5.mov" type="video/mp4">
+            <source src="https://assets.cdn.filesafe.space/2x8A5up52ublohNgZGKU/media/6984480cd017c3d65391a2a5.mov" type="video/quicktime">
+          </video>
+          <button class="cover" id="bcplay" type="button" aria-label="Play video from Paul">
+            <video class="thumb" id="bcthumb" muted playsinline preload="metadata" aria-hidden="true" tabindex="-1"></video>
+            <span class="play"><svg viewBox="0 0 24 24"><path d="M6 4l15 8-15 8z" fill="#1a1405"/></svg></span>
+            <span class="lbl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/></svg>PRESS PLAY &amp; TURN UP YOUR VOLUME</span>
+          </button>
+        </div>
+        <div class="myleak" id="myleak" hidden><b id="myleakN">£0</b><span>Your estimated sales leak each year, from your assessment answers. Illustrative, not a promise of results.</span></div>
+      </div>
+
+      <div class="cal glass" aria-label="Paul's booking calendar">
+        <div class="cal-head">
+          <div class="eyebrow">Your sales transformation starts here</div>
+          <h2>Book your free 30&#8209;minute discovery call</h2>
+          <p>On this confidential call you'll discover exactly how to stop losing deals to "ghosting" and "we're getting more quotes", and start closing at 60–75% in under 90 days, without pushy scripts or complicated systems.</p>
+        </div>
+        <div class="cal-tags"><em>30 minutes</em><em>Free</em><em>Confidential</em><em class="live">● Live calendar</em></div>
+        <div id="cal-embed">
+          <!-- ===== GHL CALENDAR EMBED (from GoHighLevel) ===== -->
+          <iframe src="https://paul.7stepstosalesmastery.com/widget/booking/bkrsE26sQmcKSfOkvrys" allow="payment" style="width: 100%;border:none;overflow: hidden;" scrolling="no" id="bkrsE26sQmcKSfOkvrys_1791384774356" title="Book a call with Paul Broome"></iframe><br><script src="https://paul.7stepstosalesmastery.com/js/form_embed.js" type="text/javascript"></script>
+          <!-- ===== END GHL CALENDAR EMBED ===== -->
+        </div>
+        <div class="scarce">Limited to 10 consultations per week</div>
+        <div class="cal-foot">Calendar not loading? <a id="calOpen" href="https://paul.7stepstosalesmastery.com/widget/booking/bkrsE26sQmcKSfOkvrys" target="_blank" rel="noopener">Open it in a new tab</a></div>
+      </div>
+
+      <div class="bc-more"></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT I DO -->
+<section class="block wid-sec">
+  <div class="wrap wid">
+    <div>
+      <div class="eyebrow">What I do</div>
+      <h2>Go from losing deals to closing at <em class="g">60–75%.</em></h2>
+      <p class="big"><strong>I help UK home improvement business owners, especially those losing 4–7 jobs a month, close at 60–75% using my proven Conversation Control™ System.</strong></p>
+      <p class="big">I specialise in fixing conversation breakdowns without complicated systems, and without anyone finding out you needed help. It's built exclusively for tradespeople who want results, simplicity and proven frameworks. No pushy scripts. No complicated funnels. Just private, professional sales mastery.</p>
+    </div>
+    <div class="ben">
+      <article><span class="bi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v12H8l-4 4z"/><path d="M8 9h8M8 12h5"/></svg></span><div><h3>Stop losing control of conversations</h3><p>Eliminate the exact moments where "we're getting more quotes" happens, and the hidden triggers killing your closes.</p></div></article>
+      <article><span class="bi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.6-3.4 8.4-8 9-4.6-.6-8-4.4-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></span><div><h3>Achieve complete sales confidence</h3><p>Sell at your best with conversation control, price anchoring and the confidence to stop discounting.</p></div></article>
+      <article><span class="bi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20h18"/><path d="M6 16v-4M11 16V8M16 16v-6"/><path d="M5 9l5-4 4 3 6-5"/></svg></span><div><h3>Transform with proven frameworks</h3><p>No guesswork and no trial and error. Battle-tested, step-by-step systems using conversation psychology, already working for 100+ owners.</p></div></article>
+    </div>
+  </div>
+</section>
+
+<!-- 7 STEPS -->
+<section class="block" id="steps" style="padding-top:0">
+  <div class="wrap">
+    <div class="head center">
+      <div class="eyebrow">How I can help you</div>
+      <h2>My simple <em class="g">7 Steps</em> to Sales Mastery™</h2>
+      <p>We'll walk through the 7 Steps on your call, and show you which one is costing you the most.</p>
+    </div>
+    <div class="stairs">
+      <article class="st" style="--k:0"><span class="n">1</span><h3>Control the conversation</h3><p>Spot the hidden moments where control slips and customers start comparing prices instead of buying value.</p></article>
+      <article class="st" style="--k:1"><span class="n">2</span><h3>Diagnose before you propose</h3><p>Stop quoting too early. Ask the right questions so customers sell themselves before price is mentioned.</p></article>
+      <article class="st" style="--k:2"><span class="n">3</span><h3>Anchor value before price</h3><p>Make the difference between you and cheap competitors tangible, measurable and verifiable.</p></article>
+      <article class="st" style="--k:3"><span class="n">4</span><h3>Close cleanly and confidently</h3><p>Close frameworks that feel natural, not pushy. No manipulation, no pressure, just confident control.</p></article>
+      <article class="st" style="--k:4"><span class="n">5</span><h3>Turn statements into questions</h3><p>Rewire how you communicate so customers convince themselves instead of you defending your price.</p></article>
+      <article class="st" style="--k:5"><span class="n">6</span><h3>Handle price objections before they happen</h3><p>Prevent "we're getting more quotes" by anchoring value in the right sequence.</p></article>
+      <article class="st" style="--k:6"><span class="n">7</span><h3>Track &amp; improve</h3><p>Build permanent mastery with tracking, call reviews and continuous improvement that sticks.</p></article>
+    </div>
+    <div class="stairs-base" aria-hidden="true"></div>
+  </div>
+</section>
+
+<!-- ON THE CALL -->
+<section class="block" style="padding-top:0">
+  <div class="wrap">
+    <div class="head center">
+      <div class="eyebrow">Your free discovery call</div>
+      <h2>What happens on <em class="g">the call.</em></h2>
+    </div>
+    <div class="otc">
+      <article><div class="num">01</div><h3>Find where deals are lost</h3><p>We pinpoint why you're losing deals and exactly where conversation control is slipping.</p></article>
+      <article><div class="num">02</div><h3>Your 90-day action plan</h3><p>A personal plan based on your close rate, quote volume and type of business.</p></article>
+      <article><div class="num">03</div><h3>How 35% became 75%</h3><p>I'll show you the same steps I used to transform my own close rate.</p></article>
+      <article><div class="num">04</div><h3>What's realistic for you</h3><p>Why 60–75% in 90 days is achievable, even if sales coaching has failed you before.</p></article>
+    </div>
+    <div class="ctr"><a class="btn btn-gold" href="#book">Book My Free Discovery Call Now <span class="arr">→</span></a><small>Aim: recover £45K–£135K a month within 90 days. Results vary.</small></div>
+  </div>
+</section>
+
+<!-- FAMILIAR -->
+<section class="block" style="padding-top:0">
+  <div class="wrap fam">
+    <div>
+      <div class="eyebrow">If this sounds familiar, you're not alone</div>
+      <h2>Successful business. <em class="g">Struggling sales.</em></h2>
+      <ul class="pains">
+        <li>You do quality work and have a good reputation, but lose 4–7 jobs a month to "we're getting more quotes"</li>
+        <li>Your close rate is stuck between 20% and 30%</li>
+        <li>Cashflow is tight and discounting is eating your margins</li>
+        <li>Payroll keeps you up at night</li>
+        <li>You've tried sales training before and it didn't stick</li>
+        <li>After 20+ years in the trade, it's embarrassing to admit sales is the problem</li>
+        <li>You replay lost conversations at 3am and worry about where the business is heading</li>
+      </ul>
+    </div>
+    <figure class="story-card" style="margin:0">
+      <svg class="qm" viewBox="0 0 40 30" aria-hidden="true"><path d="M0 30V17C0 7 5 1 15 0l2 4c-5 2-8 5-8 10h7v16zm23 0V17c0-10 5-16 15-17l2 4c-5 2-8 5-8 10h7v16z" fill="currentColor"/></svg>
+      <p>You're out on site visits every day, quoting £15K–£30K jobs. The work is great. But every evening you're checking your phone for replies that never come. At 3am you're doing the maths on next month, wondering how to defend your price one more time.</p>
+      <div class="fix"><b>It isn't your work, and it isn't your price.</b> It's where control slips in the conversation, and that can be fixed.</div>
+    </figure>
+  </div>
+</section>
+
+<!-- MEET PAUL -->
+<section class="block" id="paul" style="padding-top:0">
+  <div class="wrap mp">
+    <figure class="mp-photo" style="margin:0">
+      <img src="images/paul.webp" alt="Paul Broome" loading="lazy">
+      <figcaption><b>Paul Broome</b><span>Founder, ComfyRoof.co.uk · Sales coach</span></figcaption>
+    </figure>
+    <div>
+      <div class="eyebrow">Why I can help you</div>
+      <h2>Not another sales trainer. <em class="g">A business owner who still sells.</em></h2>
+      <p class="sub">From a 35% close rate and £600K lost revenue to a 75% close rate.</p>
+      <p class="txt">I'm not a traditional sales trainer or business coach. I run ComfyRoof.co.uk (15+ years) and I've been in home improvements for 43 years. I understand sales conversations from personal struggle, and then <strong>37 years of testing and refining</strong>, turned into a method now trusted by UK business owners across every home improvement sector.</p>
+      <p class="txt">Most clients get breakthrough clarity on their first call, and the majority hit 60–75% within 90 days. This isn't theory or motivation. It's a complete system with real coaching, proven frameworks and ongoing accountability.</p>
+      <div class="cred">
+        <div><b>43</b><span>Years in home improvements</span></div>
+        <div><b>4,300+</b><span>High-ticket jobs closed</span></div>
+        <div><b>£50M+</b><span>In sales</span></div>
+        <div><b>75%</b><span>Personal close rate</span></div>
+        <div><b>15+</b><span>Years running ComfyRoof</span></div>
+        <div><b>Weekly</b><span>Still selling on real jobs</span></div>
+      </div>
+      <div class="years">
+        <div class="yr"><b>1982</b><p>Starts in home improvement sales.</p></div>
+        <div class="yr"><b>1987</b><p>Stuck at a 35% close rate, losing <strong>£600K a year</strong> in easy jobs.</p></div>
+        <div class="yr"><b>THE BREAKTHROUGH</b><p>Analyses <strong>200+ recorded calls</strong> and finds 7 specific steps in every home improvement sale.</p></div>
+        <div class="yr"><b>6 MONTHS LATER</b><p>Close rate up to <strong>67%</strong>, then <strong>75%</strong> within a year, recovering <strong>£480K+</strong> in lost revenue.</p></div>
+        <div class="yr" style="padding-bottom:0"><b>TODAY</b><p>Still selling every week, and coaching owners to do the same with the Conversation Control™ System.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSIDE -->
+<section class="block" style="padding-top:0">
+  <div class="wrap">
+    <div class="head center">
+      <div class="eyebrow">Inside the 7 Steps to Sales Mastery™</div>
+      <h2>Everything you <em class="g">get.</em></h2>
+    </div>
+    <div class="inside">
+      <article><span class="ii"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg></span><div><h3>Conversation breakdown finder</h3><p>Pinpoints exactly where your sales conversations go wrong.</p></div></article>
+      <article><span class="ii"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4v-4h4v-4h4V8h4"/></svg></span><div><h3>The 7-step control framework</h3><p>The full Conversation Control™ System, step by step.</p></div></article>
+      <article><span class="ii"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M7 21h10M4 7h16"/><path d="M4 7l-2.5 6a3 3 0 0 0 5 0zM20 7l-2.5 6a3 3 0 0 0 5 0z"/></svg></span><div><h3>Value anchoring protocols</h3><p>So price stops being the conversation.</p></div></article>
+      <article><span class="ii"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="3" width="12" height="15" rx="1.5"/><path d="M5 6.5V20a1 1 0 0 0 1 1h10M11 8h6M11 11.5h6M11 15h3"/></svg></span><div><h3>Done-for-you scripts &amp; templates</h3><p>Ready to use on your very next quote.</p></div></article>
+      <article><span class="ii"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1v-6h3zM3 19a2 2 0 0 0 2 2h1v-6H3z"/></svg></span><div><h3>Live coaching &amp; call reviews</h3><p>Paul personally reviews your real sales calls.</p></div></article>
+      <article><span class="ii"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></span><div><h3>100% private</h3><p>Your team and competitors never need to know.</p></div></article>
+      <article class="hl"><span class="ii"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span><div><h3>24 live group coaching sessions + 3 private 1-to-1 deep dives</h3><p>Real coaching and ongoing accountability over 90 days, not a course you watch once and forget.</p></div></article>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="block" style="padding-top:0">
+  <div class="wrap">
+    <div class="head center"><div class="eyebrow">Real owners, real results</div><h2>What happened <em class="g">next.</em></h2></div>
+    <div class="tgrid three">
+      <article class="t"><div class="stars" aria-label="5 stars">★★★★★</div><h3>"Lost 7 straight, then closed 3 in a row"</h3><div class="delta">27% → 63% close rate</div><p>Paul showed me the exact conversation breakdown causing "we're getting more prices". I fixed it straight away and closed my next 3 quotes at full price.</p><div class="who">Rob H.<span>Kitchen Installer, Birmingham</span></div></article>
+      <article class="t"><div class="stars" aria-label="5 stars">★★★★★</div><h3>"The real deal"</h3><div class="delta">24% → 59% in 90 days</div><p>Paul is still actively selling. Within 3 weeks I closed four jobs in a row at full price, with no discounting and no "let me check with my partner".</p><div class="who">M.T.<span>Roofing Company, Manchester</span></div></article>
+      <article class="t"><div class="stars" aria-label="5 stars">★★★★★</div><h3>"Paid for itself in month one"</h3><div class="delta">31% → 66% close rate</div><p>In the first month I closed two jobs that would normally have stalled, which covered the cost. Same enquiries, same pricing, completely different results.</p><div class="who">A.J.<span>Garage Conversion Specialist, Hertfordshire</span></div></article>
+    </div>
+  </div>
+</section>
+
+<!-- BUT WHAT IF -->
+<section class="block" id="faq" style="padding-top:0">
+  <div class="wrap">
+    <div class="head center"><div class="eyebrow">Common concerns</div><h2>But what <em class="g">if…?</em></h2></div>
+    <div class="wif">
+      <details><summary>"I don't have time for a 90-day programme."</summary><p>You don't need hours. You need focused changes in the conversations you're already having. Most owners see their first win within 3–5 days.</p></details>
+      <details><summary>"I can't afford £10,000 right now."</summary><p>One extra job closed at full price can cover the programme several times over, and payment plans are available. The bigger cost is carrying on losing deals.</p></details>
+      <details><summary>"I'm not ready yet. I need to think about it."</summary><p>You don't need to be ready, you need to stop the leak. Every week you wait is often another £10K–£30K in jobs that go elsewhere.</p></details>
+      <details><summary>"I've tried sales training before and it didn't work."</summary><p>Generic scripts aren't built for home improvement. This is, and I still use it on real jobs every week, so you're learning what works now, not theory.</p></details>
+      <details><summary>"My situation is different."</summary><p>Conservatories, windows, extensions, roofing: the trades differ, but the conversation breakdowns are the same. The framework works across all of them.</p></details>
+      <details><summary>"What if people find out I needed help with sales?"</summary><p>They won't. It's completely confidential, no different from hiring an accountant or a solicitor. Your team and competitors never need to know.</p></details>
+      <details><summary>"I'm already too busy to implement another system."</summary><p>It replaces the guesswork you're already doing, rather than adding to it. The first fixes take minutes to learn and you use them on your next quote.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL -->
+<section class="block" style="padding-top:0">
+  <div class="wrap">
+    <div class="fin">
+      <div class="eyebrow">Your next 90 days</div>
+      <h2 style="margin-top:14px">Your 60–75% close rate is <em class="g">less than 90 days away.</em></h2>
+      <p>UK business owners are already closing at 60–75% within 90 days. No pushy tactics, no complicated funnels and no public exposure. If you're ready to stop losing £45K–£135K a month, book your free discovery call now.</p>
+      <div class="ctr"><a class="btn btn-gold" href="#book">Book My Free Discovery Call Now <span class="arr">→</span></a><small>Paul works with you personally, so calls are limited to 10 a week.</small></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <img class="foot-logo" src="images/logo-full.png" alt="Paul Broome Sales Mastery" width="403" height="327" loading="lazy">
+    <div class="row">
+      <div>© 2026 Paul Broome Sales Mastery · Specialist sales coaching for UK home improvement businesses</div>
+      <div class="legal">
+        <a href="https://7stepstosalesmastery.com/privacy">Privacy Policy</a>
+        <a href="https://7stepstosalesmastery.com/terms-service">Terms of Service</a>
+        <a href="https://7stepstosalesmastery.com/disclaimer">Disclaimer</a>
+      </div>
+    </div>
+    <p class="disc-txt">Results may vary. Your success depends on your effort, commitment and willingness to implement the Conversation Control™ System. Individual close rates vary with market conditions, implementation and circumstances. This is business education, not a guarantee of specific results. Testimonials reflect individual experiences and are not typical results. This site is not part of, or endorsed by, Facebook or Meta Platforms Inc.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const esc = v => String(v ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let lead = null; try { lead = JSON.parse(localStorage.getItem("pb-lead") || "null"); } catch(e) {}
+
+  /* personalised leak figure from the homepage assessment */
+  if (lead && lead.jobvalue && lead.quotes) {
+    const jv = {"Under £5k":3500,"£5k – £10k":7500,"£10k – £20k":15000,"£20k – £40k":28000,"£40k+":50000}[lead.jobvalue];
+    const qn = {"Fewer than 10":7,"10 – 20":15,"20 – 40":30,"40 – 80":60,"80+":100}[lead.quotes];
+    const c = (lead.close_pct || 30)/100, t = Math.max(.6, c+.1), annual = (jv && qn) ? Math.max(0, qn*(t-c))*jv*12 : 0;
+    if (annual > 0) {
+      const box = document.getElementById("myleak"), n = document.getElementById("myleakN"); box.hidden = false;
+      const t0 = performance.now();
+      (function f(tm){ const k = reduce ? 1 : Math.min(1,(tm-t0)/1400), v = annual*(1-Math.pow(1-k,3)); n.textContent = "£" + Math.round(v).toLocaleString("en-GB"); if (k<1) requestAnimationFrame(f); })(t0);
+    }
+  }
+
+  /* video: random-frame thumbnail + click to play */
+  const v = document.getElementById("bcv"), cov = document.getElementById("bcplay"), th = document.getElementById("bcthumb");
+  const src = v.querySelector("source").getAttribute("src");
+  const pick = 4 + Math.random()*26;
+  th.addEventListener("loadedmetadata", () => { const d = th.duration || 0; th.currentTime = d && pick > d*.9 ? d*(.15+Math.random()*.6) : pick; }, {once:true});
+  th.addEventListener("seeked", () => cov.classList.add("has-thumb"), {once:true});
+  th.src = src;
+  cov.addEventListener("click", () => { v.hidden = false; cov.hidden = true; v.play().catch(()=>{}); });
+
+  /* reveal on scroll (below the fold only) */
+  if (!reduce && "IntersectionObserver" in window) {
+    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), {threshold:.12});
+    document.querySelectorAll(".head,.ben article,.st,.otc article,.pains li,.story-card,.cred div,.yr,.inside article,.t,.wif,.fin").forEach((el,i) => {
+      if (el.getBoundingClientRect().top > innerHeight) { el.classList.add("pre"); el.style.transitionDelay = (i%4)*70 + "ms"; io.observe(el); }
+    });
+  }
+})();
+</script>
