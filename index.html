@@ -696,27 +696,35 @@ const CALENDAR_PAGE = "/book-call.html"; // page that holds the GHL calendar
 const WEBHOOK_URL = ""; // GoHighLevel inbound webhook URL. Leave blank in preview.
 
 const Q = [
-  {id:"trade", q:"What type of home improvement business do you run?", two:true,
-   opts:["Conservatory roofs","Windows & doors","Kitchens & bathrooms","Extensions & building","Roofing","Solar & renewables","Boilers & heating","Other"]},
-  {id:"revenue", q:"Roughly how much revenue do you do per month?",
-   opts:[["Under £25k",15000],["£25k – £50k",37000],["£50k – £100k",75000],["£100k – £250k",170000],["£250k+",300000]]},
-  {id:"jobvalue", q:"What's your average job value?",
-   opts:[["Under £5k",3500],["£5k – £10k",7500],["£10k – £20k",15000],["£20k – £40k",28000],["£40k+",50000]]},
-  {id:"quotes", q:"How many quotes do you send in a typical month?",
-   opts:[["Fewer than 10",7],["10 – 20",15],["20 – 40",30],["40 – 80",60],["80+",100]]},
-  {id:"close", q:"Out of every 10 quotes, how many do you close?",
+  {id:"adspend", q:"Does your business currently invest more than £5,000 per month on lead generation or advertising?",
+   opts:["Yes — more than £5,000 per month","No — less than £5,000 per month"]},
+  {id:"sector", q:"Which sector best describes your business?", two:true,
+   opts:["Windows & Doors","Conservatories","Conservatory Roofs","Kitchens","Bathrooms","Solar","Landscaping","Roofing","Other"]},
+  {id:"years", q:"How many years have you been trading?", type:"text", ph:"e.g. 12 years"},
+  {id:"appointments", q:"Approximately how many sales appointments does your business run each month?",
+   opts:[["0-10",7],["11-20",15],["21-40",30],["41-60",50],["60+",75]]},
+  {id:"salespeople", q:"How many salespeople do you currently have?",
+   opts:["Just me","2-3","4-6","7-10","10+"]},
+  {id:"convert", q:"Out of every 10 appointments, how many do you typically convert into sales?",
    hint:"Be honest. Nobody sees this but you.",
-   opts:[["1–2 out of 10",.15],["3 out of 10",.3],["4 out of 10",.4],["5 out of 10",.5],["6+ out of 10",.62]]},
-  {id:"stall", q:"Where do most of your lost deals go quiet?",
+   opts:[["1-2",.15],["3-4",.35],["5-6",.55],["7-8",.75],["9-10",.9]]},
+  {id:"costs", q:"Which of these costs you the most business?", two:true,
    opts:[
-     ["Straight after I send the quote", "After the quote", "Control is being handed to the customer at the proposal. They leave the conversation holding the price and nothing else."],
-     ["When they say they're getting more prices", "The comparison trap", "Your value hasn't been made tangible before price appears, so the customer compares on the only thing they can measure."],
-     ["They ask 'how much?' too early and I answer", "Price too early", "Price is landing before pain. Pain Before Proposal: once price leads, every step after it is a negotiation."],
-     ["'We need to think about it'", "The think-it-over stall", "The decision isn't being secured in the room. Somewhere in the middle steps, urgency and commitment are being skipped."],
-     ["Honestly, I don't know", "Unknown leak", "That's the most expensive answer, because you can't fix a leak you can't see. This is exactly what the discovery call maps out."]
+     ["“We need to think about it.”","The think-it-over stall","The decision isn't being secured in the room. Somewhere in the middle steps, urgency and commitment are being skipped."],
+     ["“We want a few more quotes.”","The comparison trap","Your value hasn't been made tangible before price appears, so the customer compares on the only thing they can measure."],
+     ["“Your price is too high.”","Price before value","Price is landing before pain. Pain Before Proposal: once price leads, every step after it is a negotiation."],
+     ["Losing to cheaper competitors.","Competing on price","If the cheapest quote wins, the customer couldn't see the difference. That's a value-building gap, not a pricing problem."],
+     ["Too much discounting.","The discount leak","Every discount comes straight off profit. It usually means control was handed over before the close."],
+     ["Endless follow-up.","The follow-up treadmill","Deals that need chasing were never closed properly at the appointment. The fix sits in the room, not in the follow-up."],
+     ["Inconsistent salespeople.","No shared process","When every rep sells their own way, results swing. A repeatable 7-step process makes performance predictable."],
+     ["Other","Hidden leak","You can't fix a leak you can't see. This is exactly what the discovery call maps out."]
    ]},
-  {id:"discount", q:"How often do you drop your price to win a job?",
-   opts:["Rarely or never","Sometimes","Most of the time"]},
+  {id:"aov", q:"What is your average order value?",
+   opts:[["Under £5,000",3500],["£5,000–£10,000",7500],["£10,000–£20,000",15000],["£20,000–£50,000",32000],["Over £50,000",60000]]},
+  {id:"improve", q:"Which improvement would have the biggest impact on your business?",
+   opts:["Converting more appointments into sales","Reducing discounting","Increasing average order value","Improving sales consistency across the team","Handling objections more effectively","Closing more sales at the first appointment"]},
+  {id:"timing", q:"If there was a way to help you convert more of the leads you're already paying for — without increasing your advertising budget — how soon would you want to implement it?",
+   opts:["Immediately","Within the next 30 days","Within the next 90 days","Just researching at the moment"]},
 ];
 
 const state = {step:-1, a:{}, contact:{}};
@@ -735,7 +743,7 @@ document.addEventListener("keydown", e => {
   if(quiz.hidden) return;
   if(e.key === "Escape") close();
   const s = Q[qi()];
-  if(s && /^[1-9]$/.test(e.key) && !["INPUT","TEXTAREA"].includes(e.target.tagName)){ const i = +e.key - 1; if(s.opts[i]) pick(i); }
+  if(s && s.opts && /^[1-9]$/.test(e.key) && !["INPUT","TEXTAREA"].includes(e.target.tagName)){ const i = +e.key - 1; if(s.opts[i]) pick(i); }
 });
 
 function progress(){ const p = state.step < 0 ? 0 : Math.min(1, (state.step+1)/(TOTAL+1)); bar.style.width = (p*100)+"%"; }
@@ -752,17 +760,35 @@ function renderIntro(){
   body.innerHTML = `<div class="qstep">
     <div class="qcount">2-MINUTE ASSESSMENT</div>
     <h3>Find where your sales are leaking.</h3>
-    <p class="hint">Seven quick questions about your quotes and close rate. At the end you'll see an estimate of what the leak costs you per year, and the most likely step where control slips.</p>
-    <div class="intro-pts"><div><b>01</b>Tell us where to send your results</div><div><b>02</b>Answer 7 quick questions (click, or press 1–9)</div><div><b>03</b>See your annual leak figure and book a free call with Paul</div></div>
+    <p class="hint">Ten quick questions about your appointments and close rate. At the end you'll see an estimate of what the leak costs you per year, and the most likely step where control slips.</p>
+    <div class="intro-pts"><div><b>01</b>Tell us where to send your results</div><div><b>02</b>Answer 10 quick questions (click, or press 1–9)</div><div><b>03</b>See your annual leak figure and book a free call with Paul</div></div>
     <div class="qnav"><span></span><button class="btn btn-gold" id="go" type="button">Start The Assessment <span class="arr">→</span></button></div>
     <p class="privacy">Your answers stay private and are never shared.</p></div>`;
   document.getElementById("go").onclick = () => { state.step = 0; render(); };
 }
 
 function label(o){ return Array.isArray(o) ? o[0] : o; }
+function ans(s){ const v = state.a[s.id]; return s.type === "text" ? v : label(s.opts[v]); }
+
+function renderText(s){
+  body.innerHTML = `<form class="qstep" id="tform" novalidate>
+    <div class="qcount">QUESTION ${state.step} OF ${Q.length}</div>
+    <h3><label for="f-text">${esc(s.q)}</label></h3>
+    <div class="field"><input id="f-text" name="t" placeholder="${esc(s.ph||"")}" value="${esc(state.a[s.id]||"")}" required><span class="err" hidden>Please answer to continue.</span></div>
+    <div class="qnav"><button class="qback" id="back" type="button">← Back</button><button class="btn btn-gold" type="submit">Next <span class="arr">→</span></button></div></form>`;
+  const inp = document.getElementById("f-text"); setTimeout(()=>inp.focus(), 50);
+  inp.addEventListener("input", () => { if(inp.value.trim()){ inp.nextElementSibling.hidden = true; inp.removeAttribute("aria-invalid"); } });
+  document.getElementById("back").onclick = () => { state.step--; render(); };
+  document.getElementById("tform").addEventListener("submit", e => {
+    e.preventDefault(); const v = inp.value.trim();
+    inp.nextElementSibling.hidden = !!v; inp.setAttribute("aria-invalid", !v); if(!v) return inp.focus();
+    state.a[s.id] = v; state.step++; render(); if(state.step === Q.length+1) submit("completed");
+  });
+}
 
 function renderQ(){
   const s = Q[qi()], cur = state.a[s.id];
+  if(s.type === "text") return renderText(s);
   body.innerHTML = `<div class="qstep">
     <div class="qcount">QUESTION ${state.step} OF ${Q.length}</div>
     <h3>${esc(s.q)}</h3>${s.hint?`<p class="hint">${esc(s.hint)}</p>`:""}
@@ -785,20 +811,21 @@ function renderContact(){
   body.innerHTML = `<form class="qstep" id="cform" novalidate>
     <div class="qcount">STEP 1 · YOUR DETAILS</div>
     <h3>First, where should Paul send your results?</h3>
-    <p class="hint">Seven quick questions follow. At the end you'll see your leak figure, then you can book your free 30-minute discovery call with Paul.</p>
+    <p class="hint">Ten quick questions follow. At the end you'll see your leak figure, then you can book your free 30-minute discovery call with Paul.</p>
     <div class="frow">
-      <div class="field"><label for="f-first">First name</label><input id="f-first" name="first" autocomplete="given-name" value="${esc(c.first||"")}" required><span class="err" hidden>Enter your first name.</span></div>
-      <div class="field"><label for="f-biz">Business name</label><input id="f-biz" name="biz" autocomplete="organization" value="${esc(c.biz||"")}"></div>
+      <div class="field"><label for="f-name">Your name</label><input id="f-name" name="fullname" autocomplete="name" value="${esc(c.name||"")}" required><span class="err" hidden>Enter your name.</span></div>
+      <div class="field"><label for="f-biz">Company name</label><input id="f-biz" name="biz" autocomplete="organization" value="${esc(c.biz||"")}" required><span class="err" hidden>Enter your company name.</span></div>
     </div>
+    <div class="field"><label for="f-phone">Phone</label><input id="f-phone" name="phone" type="tel" autocomplete="tel" placeholder="07…" value="${esc(c.phone||"")}" required><span class="err" hidden>Enter a UK phone number so Paul's team can reach you.</span></div>
     <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" value="${esc(c.email||"")}" required><span class="err" hidden>Enter a valid email, like name@company.co.uk.</span></div>
-    <div class="field"><label for="f-phone">Mobile</label><input id="f-phone" name="phone" type="tel" autocomplete="tel" placeholder="07…" value="${esc(c.phone||"")}" required><span class="err" hidden>Enter a UK mobile number so Paul's team can reach you.</span></div>
     <div class="qnav"><button class="qback" id="back" type="button">← Back</button><button class="btn btn-gold" type="submit">Start The Questions <span class="arr">→</span></button></div>
     <p class="privacy">By continuing you agree to be contacted about your results. Unsubscribe any time.</p></form>`;
   document.getElementById("back").onclick = () => { state.step--; render(); };
   document.getElementById("cform").addEventListener("submit", e => {
     e.preventDefault();
-    const f = e.target, v = {first:f.first.value.trim(), biz:f.biz.value.trim(), email:f.email.value.trim(), phone:f.phone.value.trim()};
-    const checks = {"f-first": v.first.length>0, "f-email": /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.email), "f-phone": v.phone.replace(/\D/g,"").length>=10};
+    const f = e.target, v = {name:f.fullname.value.trim(), biz:f.biz.value.trim(), phone:f.phone.value.trim(), email:f.email.value.trim()};
+    v.first = v.name.split(/\s+/)[0] || "";
+    const checks = {"f-name": v.name.length>0, "f-biz": v.biz.length>0, "f-phone": v.phone.replace(/\D/g,"").length>=10, "f-email": /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.email) };
     let ok = true;
     for(const id in checks){ const el = document.getElementById(id); el.nextElementSibling.hidden = checks[id]; el.setAttribute("aria-invalid", !checks[id]); if(!checks[id] && ok){ el.focus(); ok=false; } }
     if(!ok) return;
@@ -808,30 +835,30 @@ function renderContact(){
 
 function calc(){
   const val = k => { const s = Q.find(q=>q.id===k); return s.opts[state.a[k]][1]; };
-  const job = val("jobvalue"), quotes = val("quotes"), close = val("close");
-  const target = Math.max(.6, close + .1);
-  const lostJobs = quotes * (target - close);
-  const disc = [0, .04, .08][state.a.discount] || 0;
+  const job = val("aov"), quotes = val("appointments"), close = val("convert");
+  const target = Math.min(.95, Math.max(.6, close + .1));
+  const lostJobs = Math.max(0, quotes * (target - close));
+  const disc = (state.a.costs === 4 || state.a.improve === 1) ? .06 : 0;
   const discountLeak = quotes * close * job * disc;
   const monthly = lostJobs * job + discountLeak;
   return {job, quotes, close, target, lostJobs, monthly, annual: monthly*12};
 }
 
 function renderResult(){
-  const r = calc(), stall = Q.find(q=>q.id==="stall").opts[state.a.stall];
+  const r = calc(), stall = Q.find(q=>q.id==="costs").opts[state.a.costs];
   body.innerHTML = `<div class="qstep">
     <div class="qcount">${esc((state.contact.first||"Your").toUpperCase())}${state.contact.first?"'S":""} RESULT</div>
     <h3>Your estimated sales leak</h3>
     <div class="rnum">${fmt(r.annual)}<span style="font-size:.35em;color:var(--mute);font-family:var(--f-body);font-weight:600"> / year</span></div>
     <div class="rgrid">
-      <div><b>${Math.round(r.close*100)}%</b><span>Close rate now</span></div>
+      <div><b>${Math.round(r.close*100)}%</b><span>Conversion now</span></div>
       <div><b>${Math.round(r.target*100)}%</b><span>Achievable</span></div>
-      <div><b>${r.lostJobs.toFixed(1)}</b><span>Jobs lost / month</span></div>
+      <div><b>${r.lostJobs.toFixed(1)}</b><span>Sales lost / month</span></div>
     </div>
     <div class="diag"><b>Likely leak point: ${esc(stall[1])}</b><p>${esc(stall[2])}</p></div>
     <p class="hint" style="margin-top:20px">Paul will walk you through exactly where control is slipping on a free, private 30-minute discovery call, and how to get it back starting with your next quote.</p>
     <div class="qnav" style="justify-content:flex-start;flex-wrap:wrap"><a class="btn btn-gold" href="${CALENDAR_PAGE}">Book My Free Discovery Call <span class="arr">→</span></a><button class="qback" id="redo" type="button" style="margin-left:auto">Retake</button></div>
-    <p class="privacy">Illustrative estimate based on your answers: ${r.quotes} quotes a month × ${fmt(r.job)} average job, against a ${Math.round(r.target*100)}% close rate, plus discounting. Not a promise of results.</p>
+    <p class="privacy">Illustrative estimate based on your answers: about ${r.quotes} appointments a month × ${fmt(r.job)} average order, against a ${Math.round(r.target*100)}% close rate, plus discounting. Not a promise of results.</p>
     <p class="toast" id="toast" hidden></p></div>`;
   document.getElementById("redo").onclick = () => { clearInterval(window.__redir); state.step = 1; state.a = {}; render(); };
   startRedirect();
@@ -840,8 +867,10 @@ function renderResult(){
 function storeLead(){
   try{
     const lead = {...state.contact};
-    Q.forEach(s => { if(state.a[s.id]!==undefined) lead[s.id] = label(s.opts[state.a[s.id]]); });
-    if(state.a.close!==undefined) lead.close_pct = Math.round(Q.find(q=>q.id==="close").opts[state.a.close][1]*100);
+    Q.forEach(s => { if(state.a[s.id]!==undefined) lead[s.id] = ans(s); });
+    lead.full_name = state.contact.name;
+    if(state.a.convert!==undefined) lead.close_pct = Math.round(Q.find(q=>q.id==="convert").opts[state.a.convert][1]*100);
+    if(state.step > Q.length){ const r = calc(); lead.annual_leak = Math.round(r.annual); }
     localStorage.setItem("pb-lead", JSON.stringify(lead));
   }catch(e){}
 }
@@ -862,7 +891,7 @@ function submit(stage){
   if(!WEBHOOK_URL) return;
   if(stage === "started"){ fetch(WEBHOOK_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({...state.contact, source:"7 Steps Sales Leak Assessment", stage})}).catch(()=>{}); return; }
   const r = calc(), payload = {...state.contact, stage, source:"7 Steps Sales Leak Assessment",
-    answers: Object.fromEntries(Q.map(s => [s.id, label(s.opts[state.a[s.id]])])),
+    answers: Object.fromEntries(Q.map(s => [s.id, ans(s)])),
     close_rate:Math.round(r.close*100), annual_leak:Math.round(r.annual), monthly_leak:Math.round(r.monthly)};
   fetch(WEBHOOK_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)})
     .then(()=>{const t=document.getElementById("toast"); if(t){t.hidden=false;t.textContent="✓ Results sent to "+state.contact.email;}})

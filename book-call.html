@@ -858,10 +858,8 @@ footer{border-top-color:rgba(255,255,255,.08);background:rgba(5,12,32,.5)}
   let lead = null; try { lead = JSON.parse(localStorage.getItem("pb-lead") || "null"); } catch(e) {}
 
   /* personalised leak figure from the homepage assessment */
-  if (lead && lead.jobvalue && lead.quotes) {
-    const jv = {"Under £5k":3500,"£5k – £10k":7500,"£10k – £20k":15000,"£20k – £40k":28000,"£40k+":50000}[lead.jobvalue];
-    const qn = {"Fewer than 10":7,"10 – 20":15,"20 – 40":30,"40 – 80":60,"80+":100}[lead.quotes];
-    const c = (lead.close_pct || 30)/100, t = Math.max(.6, c+.1), annual = (jv && qn) ? Math.max(0, qn*(t-c))*jv*12 : 0;
+  if (lead && lead.annual_leak) {
+    const annual = +lead.annual_leak;
     if (annual > 0) {
       const box = document.getElementById("myleak"), n = document.getElementById("myleakN"); box.hidden = false;
       const t0 = performance.now();
