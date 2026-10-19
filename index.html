@@ -413,6 +413,13 @@ footer{border-top-color:rgba(255,255,255,.08);background:rgba(5,12,32,.5)}
 .brand .logo-h{height:56px;width:auto;display:block}
 @media (max-width:520px){.brand .logo-h{height:44px}}
 .foot-logo{display:block;height:96px;width:auto;margin:0 0 26px}
+
+/* site-wide footer page links */
+.foot-nav{display:flex;flex-wrap:wrap;gap:10px 22px;margin:0 0 22px;padding:0 0 18px;border-bottom:1px solid rgba(255,255,255,.08)}
+.foot-nav a{color:var(--ink);font-weight:700;font-size:14.5px;text-decoration:none}
+.foot-nav a:hover{color:var(--gold-hi)}
+.direct-link{margin-top:14px;font-size:14.5px;color:var(--mute)}
+.direct-link a{color:var(--gold-hi);font-weight:700;text-underline-offset:3px}
 </style>
 
 <!-- NAV -->
@@ -424,6 +431,7 @@ footer{border-top-color:rgba(255,255,255,.08);background:rgba(5,12,32,.5)}
       <a href="#story">About Paul</a>
       <a href="#results">Results</a>
       <a href="#reviews">Reviews</a>
+      <a href="/book-call.html">Book A Call</a>
       <button class="btn btn-gold" data-open-quiz type="button">Find My Sales Leak</button>
     </nav>
   </div>
@@ -442,6 +450,7 @@ footer{border-top-color:rgba(255,255,255,.08);background:rgba(5,12,32,.5)}
         <a class="btn btn-ghost" href="#method">How The 7 Steps Work</a>
       </div>
       <div class="assure"><span>Takes about 2 minutes</span><span>Your answers stay private</span><span>No obligation</span></div>
+      <p class="direct-link">Already know you want help? <a href="/book-call.html">Book your free discovery call →</a></p>
     </div>
 
     <div class="stage">
@@ -637,7 +646,7 @@ footer{border-top-color:rgba(255,255,255,.08);background:rgba(5,12,32,.5)}
     <div class="eyebrow">Your next 90 days</div>
     <h2 style="margin-top:14px">Ready to fix your close rate <em class="g">too?</em></h2>
     <p>Your cashflow, your reputation and your peace of mind depend on you showing up confident, in control and closing at 60–75%. Find out where your sales are leaking, then book your free 30-minute discovery call.</p>
-    <div class="hero-cta"><button class="btn btn-gold" data-open-quiz type="button">Yes! I Want To Fix My Close Rate <span class="arr">→</span></button></div>
+    <div class="hero-cta"><button class="btn btn-gold" data-open-quiz type="button">Yes! I Want To Fix My Close Rate <span class="arr">→</span></button><a class="btn btn-ghost" href="/book-call.html">Book My Discovery Call</a></div>
     <p class="cta-note">Join 100+ UK home improvement business owners who've fixed their close rate.</p>
   </div>
 </section>
@@ -645,6 +654,11 @@ footer{border-top-color:rgba(255,255,255,.08);background:rgba(5,12,32,.5)}
 
 <footer>
   <div class="wrap">
+    <nav class="foot-nav" aria-label="Site pages">
+      <a href="/">Home</a>
+      <a href="/#assess">Sales Leak Assessment</a>
+      <a href="/book-call.html">Book A Discovery Call</a>
+    </nav>
     <img class="foot-logo" src="images/logo-full.png" alt="Paul Broome Sales Mastery" width="403" height="327" loading="lazy">
     <div class="row">
       <div>© 2026 Paul Broome Sales Mastery · Specialist sales coaching for UK home improvement businesses</div>

@@ -414,6 +414,13 @@ footer{border-top-color:rgba(255,255,255,.08);background:rgba(5,12,32,.5)}
 .brand .logo-h{height:56px;width:auto;display:block}
 @media (max-width:520px){.brand .logo-h{height:44px}}
 .foot-logo{display:block;height:96px;width:auto;margin:0 0 26px}
+
+/* site-wide footer page links */
+.foot-nav{display:flex;flex-wrap:wrap;gap:10px 22px;margin:0 0 22px;padding:0 0 18px;border-bottom:1px solid rgba(255,255,255,.08)}
+.foot-nav a{color:var(--ink);font-weight:700;font-size:14.5px;text-decoration:none}
+.foot-nav a:hover{color:var(--gold-hi)}
+.direct-link{margin-top:14px;font-size:14.5px;color:var(--mute)}
+.direct-link a{color:var(--gold-hi);font-weight:700;text-underline-offset:3px}
 </style>
 <style>
 /* ===== Book-a-call page ===== */
@@ -596,6 +603,7 @@ footer{border-top-color:rgba(255,255,255,.08);background:rgba(5,12,32,.5)}
       <a href="#steps">The 7 Steps</a>
       <a href="#paul">About Paul</a>
       <a href="#faq">Questions</a>
+      <a href="/">Home</a>
       <a class="btn btn-gold" href="#book">Book My Call</a>
     </nav>
   </div>
@@ -606,7 +614,7 @@ footer{border-top-color:rgba(255,255,255,.08);background:rgba(5,12,32,.5)}
 <section class="hero bc-hero" id="book">
   <div class="wrap">
     <div class="funnel" aria-label="Your progress">
-      <span class="fs done"><i>✓</i><span>Sales Leak Assessment</span></span><span class="fline"></span>
+      <a class="fs done" href="/#assess" style="text-decoration:none" title="Take or retake the Sales Leak Assessment"><i>✓</i><span>Sales Leak Assessment</span></a><span class="fline"></span>
       <span class="fs cur" aria-current="step"><i>2</i><span>Book Your Call</span></span><span class="fline off"></span>
       <span class="fs"><i>3</i><span>Prepare For Your Call</span></span>
     </div>
@@ -643,6 +651,7 @@ footer{border-top-color:rgba(255,255,255,.08);background:rgba(5,12,32,.5)}
           <!-- ===== END GHL CALENDAR EMBED ===== -->
         </div>
         <div class="scarce">Limited to 10 consultations per week</div>
+        <div class="cal-foot" style="padding-bottom:6px">Not taken the 2-minute assessment yet? <a href="/#assess">Find your sales leak first</a></div>
         <div class="cal-foot">Calendar not loading? <a id="calOpen" href="https://paul.7stepstosalesmastery.com/widget/booking/bkrsE26sQmcKSfOkvrys" target="_blank" rel="noopener">Open it in a new tab</a></div>
       </div>
 
@@ -824,6 +833,11 @@ footer{border-top-color:rgba(255,255,255,.08);background:rgba(5,12,32,.5)}
 
 <footer>
   <div class="wrap">
+    <nav class="foot-nav" aria-label="Site pages">
+      <a href="/">Home</a>
+      <a href="/#assess">Sales Leak Assessment</a>
+      <a href="/book-call.html">Book A Discovery Call</a>
+    </nav>
     <img class="foot-logo" src="images/logo-full.png" alt="Paul Broome Sales Mastery" width="403" height="327" loading="lazy">
     <div class="row">
       <div>© 2026 Paul Broome Sales Mastery · Specialist sales coaching for UK home improvement businesses</div>

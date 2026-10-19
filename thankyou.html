@@ -434,6 +434,13 @@ footer{border-top-color:rgba(255,255,255,.08);background:rgba(5,12,32,.5)}
 .atc .added{display:none;margin-top:10px;font-size:13.5px;color:var(--good);font-weight:700}
 .atc.done .added{display:block}
 @media (max-width:420px){.atc .pick{grid-template-columns:1fr}}
+
+/* site-wide footer page links */
+.foot-nav{display:flex;flex-wrap:wrap;gap:10px 22px;margin:0 0 22px;padding:0 0 18px;border-bottom:1px solid rgba(255,255,255,.08)}
+.foot-nav a{color:var(--ink);font-weight:700;font-size:14.5px;text-decoration:none}
+.foot-nav a:hover{color:var(--gold-hi)}
+.direct-link{margin-top:14px;font-size:14.5px;color:var(--mute)}
+.direct-link a{color:var(--gold-hi);font-weight:700;text-underline-offset:3px}
 </style>
 <style>
 /* Thank-you page additions — same tokens as homepage */
@@ -571,6 +578,7 @@ footer{border-top-color:rgba(255,255,255,.08);background:rgba(5,12,32,.5)}
       <a href="#agenda">Your Call</a>
       <a href="#prepare">Prepare</a>
       <a href="#questions">Questions</a>
+      <a href="/">Home</a>
       <a class="btn btn-gold" href="#video">Watch The Video</a>
     </nav>
   </div>
@@ -620,6 +628,7 @@ footer{border-top-color:rgba(255,255,255,.08);background:rgba(5,12,32,.5)}
           <a class="cal-btn" id="calApple" href="#" aria-disabled="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M4 17v3h16v-3"/></svg>Apple / Other</a>
         </div>
         <p class="added" id="atcAdded">✓ Saved. See you on the call.</p>
+        <p class="direct-link" style="margin-top:12px;font-size:13.5px">Need a different time? <a href="/book-call.html">Choose another slot</a></p>
       </div>
     </aside>
   </div>
@@ -754,6 +763,11 @@ footer{border-top-color:rgba(255,255,255,.08);background:rgba(5,12,32,.5)}
 
 <footer>
   <div class="wrap">
+    <nav class="foot-nav" aria-label="Site pages">
+      <a href="/">Home</a>
+      <a href="/#assess">Sales Leak Assessment</a>
+      <a href="/book-call.html">Book A Discovery Call</a>
+    </nav>
     <img class="foot-logo" src="images/logo-full.png" alt="Paul Broome Sales Mastery" width="403" height="327" loading="lazy">
     <div class="row">
       <div>© 2026 Paul Broome Sales Mastery · Specialist sales coaching for UK home improvement businesses</div>
