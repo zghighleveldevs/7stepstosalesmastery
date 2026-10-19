@@ -635,7 +635,7 @@ footer{border-top-color:rgba(255,255,255,.08);background:rgba(5,12,32,.5)}
             <span class="lbl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/></svg>PRESS PLAY &amp; TURN UP YOUR VOLUME</span>
           </button>
         </div>
-        <div class="myleak" id="myleak" hidden><b id="myleakN">£0</b><span>Your estimated sales leak each year, from your assessment answers. Illustrative, not a promise of results.</span></div>
+        <div class="myleak" id="myleak" hidden><b id="myleakN">£0</b><span>Your estimated sales leak each year: last month's lost deals × 12. Illustrative, not a promise of results.</span></div>
       </div>
 
       <div class="cal glass" aria-label="Paul's booking calendar">
@@ -651,7 +651,7 @@ footer{border-top-color:rgba(255,255,255,.08);background:rgba(5,12,32,.5)}
           <!-- ===== END GHL CALENDAR EMBED ===== -->
         </div>
         <div class="scarce">Limited to 10 consultations per week</div>
-        <div class="cal-foot" style="padding-bottom:6px">Not taken the 2-minute assessment yet? <a href="/#assess">Find your sales leak first</a></div>
+        <div class="cal-foot" style="padding-bottom:6px">Not taken the 4-minute assessment yet? <a href="/#assess">Find your sales leak first</a></div>
         <div class="cal-foot">Calendar not loading? <a id="calOpen" href="https://paul.7stepstosalesmastery.com/widget/booking/bkrsE26sQmcKSfOkvrys" target="_blank" rel="noopener">Open it in a new tab</a></div>
       </div>
 
@@ -858,15 +858,12 @@ footer{border-top-color:rgba(255,255,255,.08);background:rgba(5,12,32,.5)}
   let lead = null; try { lead = JSON.parse(localStorage.getItem("pb-lead") || "null"); } catch(e) {}
 
   /* personalised leak figure from the homepage assessment */
-  if (lead && lead.jobvalue && lead.quotes) {
-    const jv = {"Under £5k":3500,"£5k – £10k":7500,"£10k – £20k":15000,"£20k – £40k":28000,"£40k+":50000}[lead.jobvalue];
-    const qn = {"Fewer than 10":7,"10 – 20":15,"20 – 40":30,"40 – 80":60,"80+":100}[lead.quotes];
-    const c = (lead.close_pct || 30)/100, t = Math.max(.6, c+.1), annual = (jv && qn) ? Math.max(0, qn*(t-c))*jv*12 : 0;
-    if (annual > 0) {
-      const box = document.getElementById("myleak"), n = document.getElementById("myleakN"); box.hidden = false;
-      const t0 = performance.now();
-      (function f(tm){ const k = reduce ? 1 : Math.min(1,(tm-t0)/1400), v = annual*(1-Math.pow(1-k,3)); n.textContent = "£" + Math.round(v).toLocaleString("en-GB"); if (k<1) requestAnimationFrame(f); })(t0);
-    }
+  const lostVal = lead ? parseFloat(String(lead.lost_value || "").replace(/[£,\s]/g,"")) : NaN;
+  if (!isNaN(lostVal) && lostVal > 0) {
+    const annual = lostVal * 12;
+    const box = document.getElementById("myleak"), n = document.getElementById("myleakN"); box.hidden = false;
+    const t0 = performance.now();
+    (function f(tm){ const k = reduce ? 1 : Math.min(1,(tm-t0)/1400), v = annual*(1-Math.pow(1-k,3)); n.textContent = "£" + Math.round(v).toLocaleString("en-GB"); if (k<1) requestAnimationFrame(f); })(t0);
   }
 
   /* video: random-frame thumbnail + click to play */

@@ -3,7 +3,7 @@
 <meta charset="utf-8">
 <link rel="icon" type="image/png" href="images/favicon.png">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Pre-Call Sales Assessment</title>
+<title>Sales Assessment Form</title>
 <meta name="description" content="Complete your pre-call sales assessment so Paul Broome can prepare for your free discovery call.">
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -311,48 +311,36 @@ function iconFor(q, k){
 }
 const svg = inner => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${inner}</svg>`;
 
-const SECS = ["About you","Your business","Your numbers","How you sell","Your goals"];
+const SECS = ["About you","Your business","Your numbers","Your sales process","Why now","Next steps"];
 
-/* type: intro | text | two | email | tel | money | textarea | choice | multi | slider | consent | leak | done */
+/* Paul's assessment questions (same set as the homepage pop-up) */
 const Q = [
  {type:"intro"},
- {id:"name", sec:0, type:"two", q:"First, what's your name?", f:[{n:"first_name",l:"First name",ac:"given-name",ph:"Paul"},{n:"last_name",l:"Last name",ac:"family-name",ph:"Broome"}], req:1},
- {id:"email", sec:0, type:"email", n:"email", q:"Nice to meet you{, first}. What's your best email?", d:"Paul will send your call notes here.", ph:"name@company.co.uk", ac:"email", req:1},
- {id:"phone", sec:0, type:"tel", n:"phone", q:"And your mobile number?", d:"In case Paul needs to reach you before the call.", ph:"07700 900000", ac:"tel", req:1},
- {id:"biz", sec:0, type:"two", q:"What's your business called?", f:[{n:"business",l:"Business name",ac:"organization",ph:"Hart Windows Ltd"},{n:"website",l:"Website (optional)",ph:"www.yourbusiness.co.uk",opt:1}], req:1},
- {id:"role", sec:0, type:"choice", n:"role", img:1, ic:["owner","manager","seller","dots"], q:"What's your role in the business?", o:["Owner / Director","Sales manager","Salesperson","Other"], req:1},
- {id:"trade", sec:1, type:"choice", n:"trade", grid:1, img:1, ic:["conservatory","window","kitchen","extension","roof","solar","flame","tree","garage","dots"], q:"What do you install or sell?", o:["Conservatory roofs","Windows & doors","Kitchens & bathrooms","Extensions & building","Roofing","Solar & renewables","Boilers & heating","Landscaping","Garage conversions","Other"], req:1},
- {id:"region", sec:1, type:"choice", n:"region", grid:1, ic:Array(12).fill("pin"), q:"Where are you based?", o:["London","South East","South West","East of England","East Midlands","West Midlands","Yorkshire & the Humber","North West","North East","Wales","Scotland","Northern Ireland"], req:1},
- {id:"years", sec:1, type:"choice", n:"years", img:1, lv:1, q:"How long have you been trading?", o:["Under 2 years","2 – 5 years","5 – 10 years","10 – 20 years","20+ years"], req:1},
- {id:"team", sec:1, type:"choice", n:"team", img:1, ic:["p1","p2","p3","crowd","office"], q:"How big is the team, including you?", o:["Just me","2 – 5","6 – 15","16 – 50","50+"], req:1},
- {id:"sellers", sec:1, type:"choice", n:"sellers", img:1, ic:["p1","p2","p3","shuffle"], q:"Who does the selling?", o:["Just me","Me plus 1–2 others","A dedicated sales team","Mixed / it varies"], req:1},
- {id:"sell_where", sec:1, type:"choice", n:"sell_where", img:1, ic:["home","shop","phone","layers"], q:"Where do most of your sales happen?", o:["In the customer's home","Showroom","Phone or video","A mix"]},
- {id:"revenue", sec:2, type:"choice", n:"revenue", img:1, lv:1, q:"Roughly how much revenue do you do per month?", d:"Best guesses are fine.", o:["Under £25k","£25k – £50k","£50k – £100k","£100k – £250k","£250k+"], req:1},
- {id:"job_value", sec:2, type:"choice", n:"job_value", img:1, lv:1, q:"What's your average job value?", o:["Under £5k","£5k – £10k","£10k – £20k","£20k – £40k","£40k+"], req:1},
- {id:"quotes", sec:2, type:"choice", n:"quotes", img:1, lv:1, q:"How many quotes do you send in a typical month?", o:["Fewer than 10","10 – 20","20 – 40","40 – 80","80+"], req:1},
- {id:"close_rate", sec:2, type:"slider", n:"close_rate", q:"Out of every 10 quotes, how many do you win?", d:"Drag to your current close rate. Be honest, nobody sees this but Paul.", min:5, max:90, step:5, def:30, req:1},
- {id:"leads", sec:2, type:"choice", n:"leads", img:1, lv:1, q:"How many new enquiries do you get each month?", o:["Fewer than 20","20 – 50","50 – 100","100 – 200","200+"]},
- {id:"ad_spend", sec:2, type:"choice", n:"ad_spend", img:1, lv:1, q:"What do you spend on marketing each month?", o:["None","Under £1k","£1k – £3k","£3k – £10k","£10k+"]},
- {id:"lead_sources", sec:2, type:"multi", n:"lead_sources", grid:1, img:1, ic:["mega","search","star","heart","globe","knock","stand","dots"], q:"Where do your leads come from?", o:["Facebook / Instagram ads","Google ads","Trade directories","Referrals & word of mouth","Website / SEO","Canvassing","Shows & exhibitions","Other"]},
+ {id:"full_name", sec:0, type:"text", n:"full_name", q:"First, what's your full name?", ph:"Paul Broome", ac:"name", req:1},
+ {id:"email", sec:0, type:"email", n:"email", q:"Nice to meet you{, first}. What's your email?", d:"Paul will send your call notes here.", ph:"name@company.co.uk", ac:"email", req:1},
+ {id:"sell", sec:1, type:"text", n:"sell", q:"What do you sell and your average order value (£)?", ph:"e.g. Conservatory roofs, about £12,000", req:1},
+ {id:"revenue", sec:1, type:"choice", n:"revenue", img:1, lv:1, q:"What is your current monthly revenue (£)?", o:["Under £10k","£10k–£30k","£30k–£50k","£50k+"], req:1},
+ {id:"leads_week", sec:2, type:"number", n:"leads_week", q:"How many qualified leads do you work per week?", ph:"e.g. 8", req:1},
+ {id:"close_rate", sec:2, type:"number", n:"close_rate", q:"What is your current close rate (%)?", ph:"e.g. 30", max:100, suf:"%", req:1},
+ {id:"losing", sec:2, type:"choice", n:"losing", img:1, ic:["think","couple","pound","mega","dots"], q:"Where are you losing most deals right now?", o:["“Need to think about it”","“Speak to partner”","Price","Poor leads","Other"], req:1},
+ {id:"lost_deals", sec:2, type:"number", n:"lost_deals", q:"How many deals did you lose last month that should have closed?", ph:"e.g. 4", req:1},
+ {id:"lost_value", sec:2, type:"number", money:1, n:"lost_value", q:"What was the approximate value of those lost deals (£)?", ph:"e.g. 45,000", req:1},
  {id:"leak", sec:2, type:"leak"},
- {id:"stall", sec:3, type:"choice", n:"stall", ic:["send","scales","tag","think","question"], q:"Where do most of your lost deals go quiet?", o:["Straight after I send the quote","When they say they're getting more prices","They ask 'how much?' too early and I answer","'We need to think about it'","Honestly, I don't know"], req:1},
- {id:"objections", sec:3, type:"multi", n:"objections", img:1, ic:["docs","think","pound","couple","calendar","callback"], q:"Which objections do you hear most?", o:["\"We're getting more quotes\"","\"We need to think about it\"","\"It's too expensive\"","\"I need to speak to my partner\"","\"It's not the right time\"","\"We'll call you back\""], req:1},
- {id:"discount", sec:3, type:"choice", n:"discount", img:1, ic:["shield","halftag","down"], q:"How often do you drop your price to win a job?", o:["Rarely or never","Sometimes","Most of the time"], req:1},
- {id:"price_when", sec:3, type:"choice", n:"price_when", img:1, ic:["door1","door2","mail","shuffle"], q:"When do customers first hear the price?", o:["On the first visit","On a second visit","In a quote sent afterwards","It varies"]},
- {id:"follow_up", sec:3, type:"choice", n:"follow_up", img:1, ic:["none","phone","repeat","bolt"], q:"What happens after you send a quote?", o:["No set process","One call or text","Several follow-ups","Automated CRM follow-up"], req:1},
- {id:"crm", sec:3, type:"choice", n:"crm", img:1, ic:["clipboard","sheet","rocket","db"], q:"What system do you use to track leads?", o:["None / paper","Spreadsheet","GoHighLevel","Another CRM"]},
- {id:"target_close", sec:4, type:"choice", n:"target_close", img:1, gauge:[.5,.6,.7,.8], q:"What close rate would you like to hit?", o:["50%","60%","70%","75%+"], req:1},
- {id:"revenue_goal", sec:4, type:"money", n:"revenue_goal", q:"What monthly revenue do you want in 12 months' time?", ph:"100,000"},
- {id:"timeline", sec:4, type:"choice", n:"timeline", img:1, ic:["bolt","calendar","clock","search"], q:"How soon do you want this fixed?", o:["Right now","Within 30 days","1 – 3 months","Just exploring"], req:1},
- {id:"tried", sec:4, type:"multi", n:"tried", img:1, ic:["cap","play","coach","hire","none"], q:"What have you tried before?", o:["Sales courses","Books / YouTube","Business coaching","Hiring sales staff","Nothing yet"]},
- {id:"challenge", sec:4, type:"textarea", n:"challenge", q:"In a sentence or two, what's your biggest sales challenge right now?", ph:"e.g. I'm losing 4–5 jobs a month after the quote to cheaper competitors…", req:1},
- {id:"invest", sec:4, type:"choice", n:"invest", ic:["check","info","pause"], q:"If Paul's coaching is the right fit, are you in a position to invest in it?", o:["Yes, if it's the right fit","I'd need to know more first","Not right now"], req:1},
- {id:"notes", sec:4, type:"textarea", n:"notes", q:"Anything else Paul should know before your call?", ph:"Optional"},
- {id:"consent", sec:4, type:"consent", n:"consent", q:"Last thing. Can Paul use your answers to prepare?", l:"I agree to Paul Broome Sales Mastery using these answers to prepare for my discovery call and to contact me about it.", req:1},
+ {id:"process", sec:3, type:"choice", n:"process", img:1, ic:["check","repeat","shuffle"], q:"Do you currently follow a structured sales process?", o:["Yes — consistent framework","Somewhat — inconsistent","No — I wing it"], req:1},
+ {id:"invested", sec:3, type:"choice", n:"invested", img:1, ic:["check","none"], q:"Have you ever invested in sales coaching or training before?", o:["Yes","No"], req:1},
+ {id:"tried", sec:3, type:"textarea", n:"tried", q:"If yes, what did you try… and why didn't it work?", ph:"e.g. An online sales course. The scripts felt pushy and didn't fit home improvement…", req:1, showIf: d => d.invested === "Yes"},
+ {id:"frustrates", sec:4, type:"textarea", n:"frustrates", q:"What specifically frustrates you most about your current sales results?", ph:"Type your answer…", req:1},
+ {id:"why_now", sec:4, type:"textarea", n:"why_now", q:"Why is it important to fix this now?", ph:"Type your answer…", req:1},
+ {id:"consequences", sec:4, type:"textarea", n:"consequences", q:"What are the consequences to you personally if nothing changes in the next 3–6 months?", ph:"Type your answer…", req:1},
+ {id:"decision", sec:5, type:"choice", n:"decision", img:1, ic:["p1","couple"], q:"Are you the sole decision maker when it comes to investing in improving your business?", o:["Yes","No"], req:1},
+ {id:"ready", sec:5, type:"choice", n:"ready", img:1, ic:["bolt","tag","search"], q:"After we identify a clear way to increase your sales, are you ready to invest and implement immediately?", o:["Yes — ready now","Depends on cost","No — just exploring"], req:1},
  {type:"done"},
 ];
-const QUESTIONS = Q.filter(x => x.n || x.f);
-const KEY = "pb-assessment-v2";
+const shown = q => !q.showIf || q.showIf(data);
+const isDetail = x => x.id === "full_name" || x.id === "email";
+const QS = () => Q.filter(x => (x.n || x.f) && shown(x));
+const NUMQ = () => QS().filter(x => !isDetail(x));
+const KEY = "pb-assessment-v3";
 const REDUCE = matchMedia("(prefers-reduced-motion: reduce)").matches;
 const $ = s => document.querySelector(s);
 const esc = v => String(v ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
@@ -360,21 +348,23 @@ let i = 0, data = {}, busy = false, sentStart = false, cur = null;
 
 /* restore draft, homepage quiz answers, URL params */
 try { const d = JSON.parse(localStorage.getItem(KEY) || "{}"); data = d.data || {}; i = Math.min(d.i || 0, Q.length - 2); } catch(e) {}
-try { const lead = JSON.parse(localStorage.getItem("pb-lead") || "null"); if (lead) { const m = {first:"first_name",biz:"business",email:"email",phone:"phone",trade:"trade",revenue:"revenue",jobvalue:"job_value",quotes:"quotes",stall:"stall",discount:"discount"}; for (const k in m) if (lead[k] && !data[m[k]]) data[m[k]] = lead[k]; if (lead.close_pct && !data.close_rate) data.close_rate = lead.close_pct; } } catch(e) {}
-try { const p = new URLSearchParams(location.search), m = {first_name:["first_name","firstname","first"],last_name:["last_name","lastname","last"],email:["email"],phone:["phone","mobile"],business:["company","company_name","business"]}; for (const k in m) for (const a of m[k]) { const v = p.get(a); if (v && !data[k]) { data[k] = v; break; } } } catch(e) {}
+try { const lead = JSON.parse(localStorage.getItem("pb-lead") || "null"); if (lead) { ["full_name","email",...Q.filter(x=>x.n).map(x=>x.n)].forEach(k => { if (lead[k] !== undefined && lead[k] !== "" && (data[k] === undefined || data[k] === "")) data[k] = lead[k]; }); } } catch(e) {}
+try { const p = new URLSearchParams(location.search), m = {full_name:["full_name","name"],email:["email"]}; for (const k in m) for (const a of m[k]) { const v = p.get(a); if (v && !data[k]) { data[k] = v; break; } } } catch(e) {}
 const save = () => { try { localStorage.setItem(KEY, JSON.stringify({i, data})); } catch(e) {} };
 
-function qText(s){ return esc(s).replace("{, first}", data.first_name ? `, <em>${esc(data.first_name)}</em>` : ""); }
-function qNumber(q){ const n = QUESTIONS.indexOf(q) + 1; return n > 0 ? n : 0; }
+function qText(s){ return esc(s).replace("{, first}", firstName() ? `, <em>${esc(firstName())}</em>` : ""); }
+function qNumber(q){ const n = NUMQ().indexOf(q) + 1; return n > 0 ? n : 0; }
+const firstName = () => String(data.full_name || "").trim().split(/\s+/)[0] || "";
 
 function view(q){
-  const num = qNumber(q), total = QUESTIONS.length, req = q.req ? '<span class="req" aria-hidden="true">*</span>' : "";
-  const head = `<div class="qnum">${num}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg><span style="color:var(--dim)">of ${total}</span></div><h1 class="qh">${qText(q.q)}${req}</h1>${q.d?`<p class="qd">${esc(q.d)}</p>`:""}`;
+  const num = qNumber(q), total = Q.filter(x => (x.n || x.f) && !isDetail(x) && (shown(x) || data.invested === undefined)).length, req = q.req ? '<span class="req" aria-hidden="true">*</span>' : "";
+  const head = isDetail(q) ? `<div class="qnum">YOUR DETAILS</div><h1 class="qh">${qText(q.q)}${req}</h1>${q.d?`<p class="qd">${esc(q.d)}</p>`:""}` : `<div class="qnum">QUESTION ${num}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg><span style="color:var(--dim)">of ${total}</span></div><h1 class="qh">${qText(q.q)}${req}</h1>${q.d?`<p class="qd">${esc(q.d)}</p>`:""}`;
   const okBtn = (label="OK") => `<div class="act"><button type="button" class="btn btn-gold" data-ok>${label} ${ARROW}</button><span class="hint">press <kbd>Enter ↵</kbd></span>${!q.req && q.type!=="slider" ? '<button type="button" class="skip" data-skip>Skip</button>' : ""}</div><div data-err></div>`;
   switch(q.type){
-    case "intro": return `<div class="q-in intro"><img class="intro-logo" src="images/logo-full.png" alt="Paul Broome Sales Mastery" width="403" height="327"><div class="paul"><img src="images/paul.webp" alt="Paul Broome"><div><b>Paul Broome</b><span>Home Improvement Sales Coach</span></div></div><h1 class="qh">Let's get you ready for <em>your call.</em></h1><p class="qd">A few quick questions about your business, your numbers and how you sell. I'll read every answer before we speak, so our 30 minutes go on fixing the leak, not fact-finding.</p><div class="facts"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>About 4 minutes</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Saves as you go</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>Strictly confidential</span></div><div class="act"><button type="button" class="btn btn-gold" data-ok>${data.first_name && i===0 && Object.keys(data).length>3 ? "Continue Where I Left Off" : "Start The Assessment"} ${ARROW}</button><span class="hint">press <kbd>Enter ↵</kbd></span></div></div>`;
+    case "intro": return `<div class="q-in intro"><img class="intro-logo" src="images/logo-full.png" alt="Paul Broome Sales Mastery" width="403" height="327"><div class="paul"><img src="images/paul.webp" alt="Paul Broome"><div><b>Paul Broome</b><span>Home Improvement Sales Coach</span></div></div><h1 class="qh">Let's get you ready for <em>your call.</em></h1><p class="qd">Please answer the following as clearly as you can, as it will save us a ton of time on our upcoming call. I'll read every answer before we speak.</p><div class="facts"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>About 4 minutes</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Saves as you go</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>Strictly confidential</span></div><div class="act"><button type="button" class="btn btn-gold" data-ok>${data.full_name && i===0 && Object.keys(data).length>3 ? "Continue Where I Left Off" : "Start The Assessment"} ${ARROW}</button><span class="hint">press <kbd>Enter ↵</kbd></span></div></div>`;
     case "two": return `<div class="q-in">${head}<div class="inp two">${q.f.map(f=>`<div class="line-in"><label for="i_${f.n}">${esc(f.l)}</label><input id="i_${f.n}" name="${f.n}" type="text" autocomplete="${f.ac||"off"}" placeholder="${esc(f.ph||"")}" value="${esc(data[f.n])}"></div>`).join("")}</div>${okBtn()}</div>`;
     case "email": case "tel": case "text": return `<div class="q-in">${head}<div class="inp"><div class="line-in"><input id="i_${q.n}" name="${q.n}" type="${q.type==="text"?"text":q.type}" autocomplete="${q.ac||"off"}" ${q.type==="tel"?'inputmode="tel"':""} placeholder="${esc(q.ph||"")}" value="${esc(data[q.n])}" aria-label="${esc(q.q)}"></div></div>${okBtn()}</div>`;
+    case "number": return `<div class="q-in">${head}<div class="inp"><div class="line-in${q.money?" money":""}">${q.money?'<span class="pfx">£</span>':""}<input id="i_${q.n}" name="${q.n}" type="text" inputmode="decimal" placeholder="${esc(q.ph||"")}" value="${esc(data[q.n])}" aria-label="${esc(q.q)}"${q.suf?' style="padding-right:46px"':""}>${q.suf?`<span class="pfx" style="left:auto;right:0">${q.suf}</span>`:""}</div></div>${okBtn()}</div>`;
     case "money": return `<div class="q-in">${head}<div class="inp"><div class="line-in money"><span class="pfx">£</span><input id="i_${q.n}" name="${q.n}" type="text" inputmode="numeric" placeholder="${esc(q.ph||"")}" value="${esc(data[q.n])}" aria-label="${esc(q.q)}"></div></div>${okBtn()}</div>`;
     case "textarea": return `<div class="q-in">${head}<div class="inp"><div class="line-in"><textarea id="i_${q.n}" name="${q.n}" placeholder="${esc(q.ph||"")}" aria-label="${esc(q.q)}">${esc(data[q.n])}</textarea></div></div><div class="act"><button type="button" class="btn btn-gold" data-ok>OK ${ARROW}</button><span class="hint"><kbd>Shift</kbd> + <kbd>Enter ↵</kbd> for a new line</span>${!q.req?'<button type="button" class="skip" data-skip>Skip</button>':""}</div><div data-err></div></div>`;
     case "choice": case "multi": {
@@ -383,22 +373,21 @@ function view(q){
     }
     case "slider": { const v = data[q.n] ?? q.def; return `<div class="q-in">${head}<div class="sld"><div class="sld-val" id="sv">${v}<small>%</small></div><input type="range" id="i_${q.n}" min="${q.min}" max="${q.max}" step="${q.step}" value="${v}" aria-label="${esc(q.q)}" style="--p:${(v-q.min)/(q.max-q.min)*100}%"><div class="sld-scale"><span>${q.min}%</span><span>${Math.round((q.min+q.max)/2)}%</span><span>${q.max}%</span></div></div>${okBtn()}</div>`; }
     case "consent": return `<div class="q-in">${head}<label class="consent"><input type="checkbox" id="i_consent" ${data.consent?"checked":""}><span>${esc(q.l)}</span></label><div class="act"><button type="button" class="btn btn-gold" data-ok>Send My Assessment To Paul ${ARROW}</button></div><div data-err></div></div>`;
-    case "leak": { const r = leak(); return `<div class="q-in"><div class="qnum" style="color:var(--bad)">YOUR SALES LEAK</div><h1 class="qh">${data.first_name?esc(data.first_name)+", here's":"Here's"} what your numbers suggest.</h1><div class="leak-big" id="lk">£0<small> / year</small></div><div class="leak-bar"><i id="lkb"></i></div><div class="leak-stats"><div><b>${r.cr}%</b><span>Close rate now</span></div><div><b>${r.target}%</b><span>Achievable</span></div><div><b>${r.lost.toFixed(1)}</b><span>Jobs lost a month</span></div></div><p class="qd">Paul will show you exactly where those jobs slip away on your call. A few more questions about how you sell.</p><div class="act"><button type="button" class="btn btn-gold" data-ok>Keep Going ${ARROW}</button><span class="hint">press <kbd>Enter ↵</kbd></span></div><p class="hint" style="margin-top:18px">Illustrative estimate based on your answers. Not a promise of results.</p></div>`; }
-    case "done": return `<div class="q-in"><div class="done-tick"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5" fill="none" stroke="#06261a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h1 class="qh" style="margin-top:28px">Thank you${data.first_name?", "+esc(data.first_name):""}. <em>Paul has your answers.</em></h1><p class="qd">He'll review everything before your discovery call, so you can get straight to where your sales are leaking and how to fix it.</p><div class="sum"><div><span>Close rate</span><b>${esc(data.close_rate)}% → ${esc(data.target_close||"60%")}</b></div><div><span>Biggest leak</span><b>${esc(data.stall||"To discuss")}</b></div><div><span>Timeline</span><b>${esc(data.timeline||"—")}</b></div></div><div class="act"><a class="btn btn-gold" href="${THANKYOU_URL}#video">Watch The Fast-Start Video ${ARROW}</a><a class="btn btn-ghost" href="/">Back To Homepage</a></div></div>`;
+    case "leak": { const r = leak(); return `<div class="q-in"><div class="qnum" style="color:var(--bad)">YOUR SALES LEAK</div><h1 class="qh">${firstName()?esc(firstName())+", here's":"Here's"} what your numbers suggest.</h1><div class="leak-big" id="lk">£0<small> / year</small></div><div class="leak-bar"><i id="lkb"></i></div><div class="leak-stats"><div><b>${r.cr!==null?r.cr+"%":"—"}</b><span>Close rate now</span></div><div><b>${r.deals}</b><span>Deals lost last month</span></div><div><b>${"£"+Math.round(r.monthly).toLocaleString("en-GB")}</b><span>Lost last month</span></div></div><p class="qd">Paul will show you exactly where those deals slip away on your call. A few more questions about how you sell.</p><div class="act"><button type="button" class="btn btn-gold" data-ok>Keep Going ${ARROW}</button><span class="hint">press <kbd>Enter ↵</kbd></span></div><p class="hint" style="margin-top:18px">Last month's lost deals × 12 months. Illustrative, not a promise of results.</p></div>`; }
+    case "done": return `<div class="q-in"><div class="done-tick"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5" fill="none" stroke="#06261a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h1 class="qh" style="margin-top:28px">Thank you${firstName()?", "+esc(firstName()):""}. <em>Paul has your answers.</em></h1><p class="qd">He'll review everything before your discovery call, so you can get straight to where your sales are leaking and how to fix it.</p><div class="sum"><div><span>Close rate</span><b>${esc(data.close_rate)}%</b></div><div><span>Losing most deals to</span><b>${esc(data.losing||"—")}</b></div><div><span>Lost last month</span><b>£${Math.round(leak().monthly).toLocaleString("en-GB")}</b></div></div><div class="act"><a class="btn btn-gold" href="${THANKYOU_URL}#video">Watch The Fast-Start Video ${ARROW}</a><a class="btn btn-ghost" href="/">Back To Homepage</a></div></div>`;
   }
 }
 
 function leak(){
-  const jv = {"Under £5k":3500,"£5k – £10k":7500,"£10k – £20k":15000,"£20k – £40k":28000,"£40k+":50000}[data.job_value] || 7500;
-  const qn = {"Fewer than 10":7,"10 – 20":15,"20 – 40":30,"40 – 80":60,"80+":100}[data.quotes] || 15;
-  const c = (data.close_rate || 30)/100, t = Math.max(.6, c+.1), lost = Math.max(0, qn*(t-c));
-  return {annual: lost*jv*12, lost, cr: Math.round(c*100), target: Math.round(t*100)};
+  const n = v => { const x = parseFloat(String(v ?? "").replace(/[£,%\s]/g,"")); return isNaN(x) ? null : x; };
+  const monthly = n(data.lost_value) || 0, cr = n(data.close_rate);
+  return {monthly, annual: monthly*12, deals: n(data.lost_deals) || 0, cr: cr===null ? null : Math.round(cr)};
 }
 
 function progress(){
-  const q = Q[i], n = q.type==="done" ? QUESTIONS.length : q.type==="intro" ? 0 : (qNumber(q) || QUESTIONS.indexOf(Q.slice(0,i).filter(x=>x.n||x.f).pop())+1);
-  $("#prog").style.width = (n / QUESTIONS.length * 100) + "%";
-  const chip = $("#chip"); if (q.sec !== undefined) { chip.hidden = false; chip.innerHTML = `<b>${q.sec+1}/5</b> · ${SECS[q.sec]}`; } else chip.hidden = true;
+  const q = Q[i], qs = QS(), n = q.type==="done" ? qs.length : q.type==="intro" ? 0 : (qNumber(q) || qs.indexOf(Q.slice(0,i).filter(x=>(x.n||x.f)&&shown(x)).pop())+1);
+  $("#prog").style.width = (n / qs.length * 100) + "%";
+  const chip = $("#chip"); if (q.sec !== undefined) { chip.hidden = false; chip.innerHTML = `<b>${q.sec+1}/${SECS.length}</b> · ${SECS[q.sec]}`; } else chip.hidden = true;
   $("#up").disabled = i === 0 || q.type === "done"; $("#down").disabled = q.type === "done";
 }
 
@@ -442,6 +431,8 @@ function validate(){
   if (q.type === "two") { const f = q.f.find(f=>!f.opt && !(data[f.n]||"").trim()); if (f) msg = `Please enter your ${f.l.toLowerCase()}.`; }
   else if (q.type === "email") { const v = (data.email||"").trim(); if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) msg = v ? "That email doesn't look right. Try name@company.co.uk." : "Please enter your email."; }
   else if (q.type === "tel") { const d = (data.phone||"").replace(/\D/g,""); if (d.length < 10) msg = d ? "Please enter your full mobile number." : "Please enter your mobile number."; }
+  else if (q.type === "text" && q.req) { if (!(data[q.n]||"").trim()) msg = q.n === "full_name" ? "Please enter your full name." : "Please answer this question. It helps Paul prepare."; }
+  else if (q.type === "number") { const v = String(data[q.n]||"").replace(/[£,%\s]/g,""), x = parseFloat(v); if (!v) msg = "Please enter a number."; else if (isNaN(x) || x < 0) msg = "Please enter a number, like 4."; else if (q.max && x > q.max) msg = `Please enter a number between 0 and ${q.max}.`; }
   else if (q.type === "consent") { data.consent = $("#i_consent").checked; if (!data.consent) msg = "Please tick the box so Paul can use your answers."; }
   else if (q.req && q.type === "multi") { if (!(data[q.n]||[]).length) msg = "Choose at least one option."; }
   else if (q.req && q.type === "textarea") { if (!(data[q.n]||"").trim()) msg = "Please add a few words. It helps Paul prepare."; }
@@ -455,15 +446,20 @@ function clearErr(){ const b = cur.querySelector("[data-err]"); if (b) b.innerHT
 function next(){
   if (busy) return; const q = Q[i];
   if (!validate()) return;
-  if (q.id === "phone" && !sentStart) { sentStart = true; send("started"); }
-  if (q.type === "consent") { send("completed"); }
+  if (q.id === "email" && !sentStart) { sentStart = true; send("started"); }
   go(1);
 }
-function go(d){ if (busy && d > 0 && Q[i].type==="choice") return; const ni = i + d; if (ni < 0 || ni >= Q.length) return; if (Q[i].type === "done") return; i = ni; show(d); }
+function go(d){
+  if (busy && d > 0 && Q[i].type==="choice") return; if (Q[i].type === "done") return;
+  let ni = i + d; while (ni > 0 && ni < Q.length && !shown(Q[ni])) ni += d;
+  if (ni < 0 || ni >= Q.length) return;
+  if (Q[i].id === "invested" && data.invested !== "Yes") delete data.tried;
+  i = ni; if (Q[i].type === "done") send("completed"); show(d);
+}
 
 function send(stage){
   if (!WEBHOOK_URL) return;
-  const payload = stage === "started" ? {first_name:data.first_name,last_name:data.last_name,email:data.email,phone:data.phone,stage,source:"7 Steps Pre-Call Assessment"} : {...data, stage, source:"7 Steps Pre-Call Assessment", estimated_annual_leak:Math.round(leak().annual), submitted_at:new Date().toISOString()};
+  const payload = stage === "started" ? {full_name:data.full_name,email:data.email,stage,source:"7 Steps Sales Assessment"} : {...data, stage, source:"7 Steps Sales Assessment", estimated_annual_leak:Math.round(leak().annual), submitted_at:new Date().toISOString()};
   fetch(WEBHOOK_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)}).catch(()=>{});
 }
 
