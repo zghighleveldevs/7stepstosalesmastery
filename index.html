@@ -4,7 +4,7 @@
 <link rel="icon" type="image/png" href="images/favicon.png">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>7 Steps to Sales Mastery</title>
-<meta name="description" content="Sales coaching for UK home improvement business owners. Take the 4-minute Sales Leak Assessment and find where your deals are slipping after the quote.">
+<meta name="description" content="Sales coaching for UK home improvement business owners. Take the 2-minute Sales Leak Assessment and find where your deals are slipping after the quote.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;1,600;1,800&family=Figtree:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap">
@@ -421,17 +421,6 @@ footer{border-top-color:rgba(255,255,255,.08);background:rgba(5,12,32,.5)}
 .direct-link{margin-top:14px;font-size:14.5px;color:var(--mute)}
 .direct-link a{color:var(--gold-hi);font-weight:700;text-underline-offset:3px}
 
-/* popup: text / number / long answers */
-.field textarea{width:100%;padding:14px 16px;border-radius:12px;border:1px solid rgba(255,255,255,.14);background:rgba(5,12,32,.55);color:var(--ink);font:500 16px/1.5 var(--f-body);resize:vertical;min-height:120px}
-.field textarea:focus{outline:none;border-color:var(--gold)}
-.qv-wrap{position:relative;margin-top:22px}
-.qv-wrap input{font-size:20px!important;padding:16px 18px!important}
-.qv-wrap.money input{padding-left:38px!important}
-.qv-wrap.pct input{padding-right:44px!important}
-.qv-wrap .pfx,.qv-wrap .sfx{position:absolute;top:50%;translate:0 -50%;color:var(--gold);font-weight:800;font-size:20px}
-.qv-wrap .pfx{left:18px}.qv-wrap .sfx{right:18px}
-#qform .field{margin-top:22px}
-#qerr{display:block;margin-top:10px}
 </style>
 
 <!-- NAV -->
@@ -456,12 +445,12 @@ footer{border-top-color:rgba(255,255,255,.08);background:rgba(5,12,32,.5)}
     <div>
       <div class="eyebrow">For UK home improvement owners doing £50k+ a month</div>
       <h1><span class="line">Stop losing deals</span> <span class="line"><em class="g">after the quote.</em></span></h1>
-      <p class="lede">Most home improvement businesses lose control of the sale at one exact moment, and never hear "we're getting more quotes" coming. <strong>Take the 4-minute Sales Leak Assessment</strong> and see what that moment is costing you each year.</p>
+      <p class="lede">Most home improvement businesses lose control of the sale at one exact moment, and never hear "we're getting more quotes" coming. <strong>Take the 2-minute Sales Leak Assessment</strong> and see what that moment is costing you each year.</p>
       <div class="hero-cta">
         <button class="btn btn-gold" data-open-quiz type="button">Find My Sales Leak <span class="arr">→</span></button>
         <a class="btn btn-ghost" href="#method">How The 7 Steps Work</a>
       </div>
-      <div class="assure"><span>Takes about 4 minutes</span><span>Your answers stay private</span><span>No obligation</span></div>
+      <div class="assure"><span>Takes about 2 minutes</span><span>Your answers stay private</span><span>No obligation</span></div>
       <p class="direct-link">Already know you want help? <a href="/book-call.html">Book your free discovery call →</a></p>
     </div>
 
@@ -539,7 +528,7 @@ footer{border-top-color:rgba(255,255,255,.08);background:rgba(5,12,32,.5)}
     <div class="sticky">
       <div class="eyebrow">Free 30-Minute Discovery Call</div>
       <h2 style="font-size:clamp(32px,4vw,50px);margin-top:14px">What you'll discover</h2>
-      <p style="color:var(--mute);margin-top:18px;font-size:18px">Take the 4-minute assessment, then book your free 30-minute discovery call with Paul to fix what it finds.</p>
+      <p style="color:var(--mute);margin-top:18px;font-size:18px">Take the 2-minute assessment, then book your free 30-minute discovery call with Paul to fix what it finds.</p>
       <div class="hero-cta"><button class="btn btn-gold" data-open-quiz type="button">Yes! Help Me Close My Sales <span class="arr">→</span></button></div>
     </div>
     <ul class="disc-list">
@@ -706,41 +695,38 @@ const BOOKING_URL = "https://paul.7stepstosalesmastery.com/widget/booking/bkrsE2
 const CALENDAR_PAGE = "/book-call.html"; // page that holds the GHL calendar
 const WEBHOOK_URL = ""; // GoHighLevel inbound webhook URL. Leave blank in preview.
 
-/* Paul's assessment questions (same set as the assessment page) */
 const Q = [
-  {id:"sell", type:"text", q:"What do you sell and your average order value (£)?", ph:"e.g. Conservatory roofs, about £12,000"},
-  {id:"revenue", type:"choice", q:"What is your current monthly revenue (£)?", opts:["Under £10k","£10k–£30k","£30k–£50k","£50k+"]},
-  {id:"leads_week", type:"number", q:"How many qualified leads do you work per week?", ph:"e.g. 8"},
-  {id:"close_rate", type:"number", q:"What is your current close rate (%)?", ph:"e.g. 30", max:100, suf:"%"},
-  {id:"losing", type:"choice", q:"Where are you losing most deals right now?", opts:["“Need to think about it”","“Speak to partner”","Price","Poor leads","Other"]},
-  {id:"lost_deals", type:"number", q:"How many deals did you lose last month that should have closed?", ph:"e.g. 4"},
-  {id:"lost_value", type:"number", money:true, q:"What was the approximate value of those lost deals (£)?", ph:"e.g. 45,000"},
-  {id:"process", type:"choice", q:"Do you currently follow a structured sales process?", opts:["Yes — consistent framework","Somewhat — inconsistent","No — I wing it"]},
-  {id:"invested", type:"choice", q:"Have you ever invested in sales coaching or training before?", opts:["Yes","No"]},
-  {id:"tried", type:"textarea", q:"If yes, what did you try… and why didn't it work?", showIf: a => a.invested === "Yes"},
-  {id:"frustrates", type:"textarea", q:"What specifically frustrates you most about your current sales results?"},
-  {id:"why_now", type:"textarea", q:"Why is it important to fix this now?"},
-  {id:"consequences", type:"textarea", q:"What are the consequences to you personally if nothing changes in the next 3–6 months?"},
-  {id:"decision", type:"choice", q:"Are you the sole decision maker when it comes to investing in improving your business?", opts:["Yes","No"]},
-  {id:"ready", type:"choice", q:"After we identify a clear way to increase your sales, are you ready to invest and implement immediately?", opts:["Yes — ready now","Depends on cost","No — just exploring"]},
+  {id:"trade", q:"What type of home improvement business do you run?", two:true,
+   opts:["Conservatory roofs","Windows & doors","Kitchens & bathrooms","Extensions & building","Roofing","Solar & renewables","Boilers & heating","Other"]},
+  {id:"revenue", q:"Roughly how much revenue do you do per month?",
+   opts:[["Under £25k",15000],["£25k – £50k",37000],["£50k – £100k",75000],["£100k – £250k",170000],["£250k+",300000]]},
+  {id:"jobvalue", q:"What's your average job value?",
+   opts:[["Under £5k",3500],["£5k – £10k",7500],["£10k – £20k",15000],["£20k – £40k",28000],["£40k+",50000]]},
+  {id:"quotes", q:"How many quotes do you send in a typical month?",
+   opts:[["Fewer than 10",7],["10 – 20",15],["20 – 40",30],["40 – 80",60],["80+",100]]},
+  {id:"close", q:"Out of every 10 quotes, how many do you close?",
+   hint:"Be honest. Nobody sees this but you.",
+   opts:[["1–2 out of 10",.15],["3 out of 10",.3],["4 out of 10",.4],["5 out of 10",.5],["6+ out of 10",.62]]},
+  {id:"stall", q:"Where do most of your lost deals go quiet?",
+   opts:[
+     ["Straight after I send the quote", "After the quote", "Control is being handed to the customer at the proposal. They leave the conversation holding the price and nothing else."],
+     ["When they say they're getting more prices", "The comparison trap", "Your value hasn't been made tangible before price appears, so the customer compares on the only thing they can measure."],
+     ["They ask 'how much?' too early and I answer", "Price too early", "Price is landing before pain. Pain Before Proposal: once price leads, every step after it is a negotiation."],
+     ["'We need to think about it'", "The think-it-over stall", "The decision isn't being secured in the room. Somewhere in the middle steps, urgency and commitment are being skipped."],
+     ["Honestly, I don't know", "Unknown leak", "That's the most expensive answer, because you can't fix a leak you can't see. This is exactly what the discovery call maps out."]
+   ]},
+  {id:"discount", q:"How often do you drop your price to win a job?",
+   opts:["Rarely or never","Sometimes","Most of the time"]},
 ];
-const DIAG = {
-  "“Need to think about it”": ["The think-it-over stall", "The decision isn't being secured in the room. Somewhere in the middle steps, urgency and commitment are being skipped."],
-  "“Speak to partner”": ["The missing decision-maker", "The real decision-maker isn't fully in the conversation. That's set up at the start of the sale, not handled at the end."],
-  "Price": ["The price trap", "Value isn't being made tangible before price appears, so the customer compares on the only thing they can measure. Pain Before Proposal."],
-  "Poor leads": ["Lead quality or lost control?", "Lead quality matters, but many \"poor leads\" are actually lost in the first conversation. Paul will help you separate the two."],
-  "Other": ["A hidden leak", "Every lost deal breaks at a specific step. Paul will pinpoint exactly where control slips on your call."],
-};
 
 const state = {step:-1, a:{}, contact:{}};
 const quiz = document.getElementById("quiz"), body = document.getElementById("qbody"), bar = document.getElementById("qbar");
+const TOTAL = Q.length + 1; // contact + questions
+const qi = () => state.step - 1; // question index
 const fmt = n => "£" + Math.round(n).toLocaleString("en-GB");
-const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-const vis = () => Q.filter(q => !q.showIf || q.showIf(state.a));
-const totalQs = () => Q.filter(q => !q.showIf || q.showIf(state.a) || state.a.invested === undefined).length;
-const num = v => { const n = parseFloat(String(v ?? "").replace(/[£,%\s]/g,"")); return isNaN(n) ? null : n; };
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 
-function open(){ quiz.hidden = false; document.body.style.overflow="hidden"; if(state.step < 0 || state.step > vis().length + 1) state.step = -1; render(); document.getElementById("qclose").focus(); }
+function open(){ quiz.hidden = false; document.body.style.overflow="hidden"; if(state.step<0||state.step>Q.length+1) {state.step=-1;} render(); document.getElementById("qclose").focus(); }
 function close(){ clearInterval(window.__redir); quiz.hidden = true; document.body.style.overflow=""; }
 document.querySelectorAll("[data-open-quiz]").forEach(b => b.addEventListener("click", open));
 document.getElementById("qclose").addEventListener("click", close);
@@ -748,121 +734,116 @@ quiz.addEventListener("click", e => { if(e.target === quiz) close(); });
 document.addEventListener("keydown", e => {
   if(quiz.hidden) return;
   if(e.key === "Escape") close();
-  const s = vis()[state.step-1];
-  if(s && s.type === "choice" && /^[1-9]$/.test(e.key) && !["INPUT","TEXTAREA"].includes(e.target.tagName)){ const i = +e.key - 1; if(s.opts[i]) pick(i); }
+  const s = Q[qi()];
+  if(s && /^[1-9]$/.test(e.key) && !["INPUT","TEXTAREA"].includes(e.target.tagName)){ const i = +e.key - 1; if(s.opts[i]) pick(i); }
 });
 
-function progress(){ const n = vis().length + 2; const p = state.step < 0 ? 0 : Math.min(1, (state.step+1)/n); bar.style.width = (p*100)+"%"; }
+function progress(){ const p = state.step < 0 ? 0 : Math.min(1, (state.step+1)/(TOTAL+1)); bar.style.width = (p*100)+"%"; }
 
 function render(){
   progress();
-  const qs = vis();
   if(state.step === -1) return renderIntro();
   if(state.step === 0) return renderContact();
-  if(state.step <= qs.length) return renderQ(qs[state.step-1], state.step, totalQs());
+  if(state.step <= Q.length) return renderQ();
   return renderResult();
 }
 
 function renderIntro(){
   body.innerHTML = `<div class="qstep">
-    <div class="qcount">IMPORTANT BEFORE WE SPEAK…</div>
+    <div class="qcount">2-MINUTE ASSESSMENT</div>
     <h3>Find where your sales are leaking.</h3>
-    <p class="hint">Please answer the following as clearly as you can. It will save us a ton of time on our upcoming call, and at the end you'll see what your lost deals are costing you each year.</p>
-    <div class="intro-pts"><div><b>01</b>Your name and email</div><div><b>02</b>15 questions about your sales (about 4 minutes)</div><div><b>03</b>See your yearly sales leak, then book a free 30-minute discovery call</div></div>
+    <p class="hint">Seven quick questions about your quotes and close rate. At the end you'll see an estimate of what the leak costs you per year, and the most likely step where control slips.</p>
+    <div class="intro-pts"><div><b>01</b>Tell us where to send your results</div><div><b>02</b>Answer 7 quick questions (click, or press 1–9)</div><div><b>03</b>See your annual leak figure and book a free call with Paul</div></div>
     <div class="qnav"><span></span><button class="btn btn-gold" id="go" type="button">Start The Assessment <span class="arr">→</span></button></div>
-    <p class="privacy">Your answers stay private and are only seen by Paul.</p></div>`;
+    <p class="privacy">Your answers stay private and are never shared.</p></div>`;
   document.getElementById("go").onclick = () => { state.step = 0; render(); };
+}
+
+function label(o){ return Array.isArray(o) ? o[0] : o; }
+
+function renderQ(){
+  const s = Q[qi()], cur = state.a[s.id];
+  body.innerHTML = `<div class="qstep">
+    <div class="qcount">QUESTION ${state.step} OF ${Q.length}</div>
+    <h3>${esc(s.q)}</h3>${s.hint?`<p class="hint">${esc(s.hint)}</p>`:""}
+    <div class="opts ${s.two?"two":""}" role="radiogroup" aria-label="${esc(s.q)}">
+      ${s.opts.map((o,i)=>`<button type="button" role="radio" aria-checked="${cur===i}" class="opt ${cur===i?"sel":""}" data-i="${i}"><span class="k">${i+1}</span>${esc(label(o))}</button>`).join("")}
+    </div>
+    <div class="qnav"><button class="qback" id="back" type="button">← Back</button><span class="privacy" style="margin:0">Pick one to continue</span></div></div>`;
+  body.querySelectorAll(".opt").forEach(b => b.onclick = () => pick(+b.dataset.i));
+  document.getElementById("back").onclick = () => { state.step--; render(); };
+}
+
+function pick(i){
+  const s = Q[qi()]; if(!s) return; state.a[s.id] = i;
+  body.querySelectorAll(".opt").forEach((b,j)=>{b.classList.toggle("sel",j===i);b.setAttribute("aria-checked",j===i)});
+  setTimeout(()=>{ state.step++; render(); if(state.step === Q.length+1) submit("completed"); }, 260);
 }
 
 function renderContact(){
   const c = state.contact;
   body.innerHTML = `<form class="qstep" id="cform" novalidate>
     <div class="qcount">STEP 1 · YOUR DETAILS</div>
-    <h3>First, who are we speaking to?</h3>
-    <p class="hint">Please answer as clearly as you can. It will save us a ton of time on our upcoming call.</p>
-    <div class="field"><label for="f-name">Full name *</label><input id="f-name" name="name" autocomplete="name" value="${esc(c.full_name)}" required><span class="err" hidden>Please enter your full name.</span></div>
-    <div class="field"><label for="f-email">Email *</label><input id="f-email" name="email" type="email" autocomplete="email" value="${esc(c.email)}" required><span class="err" hidden>Enter a valid email, like name@company.co.uk.</span></div>
+    <h3>First, where should Paul send your results?</h3>
+    <p class="hint">Seven quick questions follow. At the end you'll see your leak figure, then you can book your free 30-minute discovery call with Paul.</p>
+    <div class="frow">
+      <div class="field"><label for="f-first">First name</label><input id="f-first" name="first" autocomplete="given-name" value="${esc(c.first||"")}" required><span class="err" hidden>Enter your first name.</span></div>
+      <div class="field"><label for="f-biz">Business name</label><input id="f-biz" name="biz" autocomplete="organization" value="${esc(c.biz||"")}"></div>
+    </div>
+    <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" value="${esc(c.email||"")}" required><span class="err" hidden>Enter a valid email, like name@company.co.uk.</span></div>
+    <div class="field"><label for="f-phone">Mobile</label><input id="f-phone" name="phone" type="tel" autocomplete="tel" placeholder="07…" value="${esc(c.phone||"")}" required><span class="err" hidden>Enter a UK mobile number so Paul's team can reach you.</span></div>
     <div class="qnav"><button class="qback" id="back" type="button">← Back</button><button class="btn btn-gold" type="submit">Start The Questions <span class="arr">→</span></button></div>
     <p class="privacy">By continuing you agree to be contacted about your results. Unsubscribe any time.</p></form>`;
   document.getElementById("back").onclick = () => { state.step--; render(); };
   document.getElementById("cform").addEventListener("submit", e => {
     e.preventDefault();
-    const f = e.target, v = {full_name:f.name.value.trim(), email:f.email.value.trim()};
-    const checks = {"f-name": v.full_name.length > 1, "f-email": /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.email)};
+    const f = e.target, v = {first:f.first.value.trim(), biz:f.biz.value.trim(), email:f.email.value.trim(), phone:f.phone.value.trim()};
+    const checks = {"f-first": v.first.length>0, "f-email": /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.email), "f-phone": v.phone.replace(/\D/g,"").length>=10};
     let ok = true;
-    for(const id in checks){ const el = document.getElementById(id); el.nextElementSibling.hidden = checks[id]; el.setAttribute("aria-invalid", !checks[id]); if(!checks[id] && ok){ el.focus(); ok = false; } }
+    for(const id in checks){ const el = document.getElementById(id); el.nextElementSibling.hidden = checks[id]; el.setAttribute("aria-invalid", !checks[id]); if(!checks[id] && ok){ el.focus(); ok=false; } }
     if(!ok) return;
-    v.first = v.full_name.split(/\s+/)[0];
     state.contact = v; state.step++; render(); submit("started");
   });
 }
 
-function renderQ(s, n, total){
-  const cur = state.a[s.id], head = `<div class="qcount">QUESTION ${n} OF ${total}</div><h3>${esc(s.q)}</h3>`;
-  const nav = `<div class="qnav"><button class="qback" id="back" type="button">← Back</button>${s.type==="choice" ? '<span class="privacy" style="margin:0">Pick one to continue</span>' : '<button class="btn btn-gold" id="next" type="submit">Continue <span class="arr">→</span></button>'}</div>`;
-  let field = "";
-  if (s.type === "choice") {
-    field = `<div class="opts" role="radiogroup" aria-label="${esc(s.q)}">${s.opts.map((o,k)=>`<button type="button" role="radio" aria-checked="${cur===o}" class="opt ${cur===o?"sel":""}" data-i="${k}"><span class="k">${k+1}</span>${esc(o)}</button>`).join("")}</div>`;
-  } else if (s.type === "textarea") {
-    field = `<div class="field"><textarea id="qv" rows="4" placeholder="Type your answer…" aria-label="${esc(s.q)}">${esc(cur)}</textarea></div>`;
-  } else {
-    const isNum = s.type === "number";
-    field = `<div class="field qv-wrap${s.money?" money":""}${s.suf?" pct":""}">${s.money?'<span class="pfx">£</span>':""}<input id="qv" ${isNum?'inputmode="decimal"':""} type="text" placeholder="${esc(s.ph||"")}" value="${esc(cur)}" aria-label="${esc(s.q)}">${s.suf?`<span class="sfx">${s.suf}</span>`:""}</div>`;
-  }
-  body.innerHTML = `<form class="qstep" id="qform" novalidate>${head}${field}<span class="err" id="qerr" hidden></span>${nav}</form>`;
-  body.querySelectorAll(".opt").forEach(b => b.onclick = () => pick(+b.dataset.i));
-  document.getElementById("back").onclick = () => { saveText(s); state.step--; render(); };
-  const inp = document.getElementById("qv"); if (inp) setTimeout(()=>inp.focus(), 60);
-  document.getElementById("qform").addEventListener("submit", e => { e.preventDefault(); if (s.type !== "choice") nextText(s); });
-}
-
-function saveText(s){ const inp = document.getElementById("qv"); if (inp) state.a[s.id] = inp.value.trim(); }
-function nextText(s){
-  saveText(s); const v = state.a[s.id], err = document.getElementById("qerr"); let msg = "";
-  if (!v) msg = "Please answer this question. It helps Paul prepare for your call.";
-  else if (s.type === "number") { const n = num(v); if (n === null || n < 0) msg = "Please enter a number."; else if (s.max && n > s.max) msg = `Please enter a number between 0 and ${s.max}.`; }
-  if (msg) { err.hidden = false; err.textContent = msg; document.getElementById("qv").focus(); return; }
-  state.step++; render();
-}
-function pick(i){
-  const s = vis()[state.step-1]; if (!s || s.type !== "choice") return;
-  state.a[s.id] = s.opts[i];
-  if (s.id === "invested" && s.opts[i] !== "Yes") delete state.a.tried;
-  body.querySelectorAll(".opt").forEach((b,j)=>{b.classList.toggle("sel",j===i);b.setAttribute("aria-checked",j===i)});
-  setTimeout(()=>{ state.step++; render(); if (state.step > vis().length) submit("completed"); }, 260);
-}
-
 function calc(){
-  const a = state.a, lostVal = num(a.lost_value) || 0, deals = num(a.lost_deals) || 0, cr = num(a.close_rate);
-  return {monthly: lostVal, annual: lostVal*12, deals, cr};
+  const val = k => { const s = Q.find(q=>q.id===k); return s.opts[state.a[k]][1]; };
+  const job = val("jobvalue"), quotes = val("quotes"), close = val("close");
+  const target = Math.max(.6, close + .1);
+  const lostJobs = quotes * (target - close);
+  const disc = [0, .04, .08][state.a.discount] || 0;
+  const discountLeak = quotes * close * job * disc;
+  const monthly = lostJobs * job + discountLeak;
+  return {job, quotes, close, target, lostJobs, monthly, annual: monthly*12};
 }
 
 function renderResult(){
-  const r = calc(), d = DIAG[state.a.losing] || DIAG.Other, first = state.contact.first;
+  const r = calc(), stall = Q.find(q=>q.id==="stall").opts[state.a.stall];
   body.innerHTML = `<div class="qstep">
-    <div class="qcount">${esc((first||"Your").toUpperCase())}${first?"'S":""} RESULT</div>
+    <div class="qcount">${esc((state.contact.first||"Your").toUpperCase())}${state.contact.first?"'S":""} RESULT</div>
     <h3>Your estimated sales leak</h3>
-    <div class="rnum">${r.annual ? fmt(r.annual) : "£—"}<span style="font-size:.35em;color:var(--mute);font-family:var(--f-body);font-weight:600"> / year</span></div>
+    <div class="rnum">${fmt(r.annual)}<span style="font-size:.35em;color:var(--mute);font-family:var(--f-body);font-weight:600"> / year</span></div>
     <div class="rgrid">
-      <div><b>${r.cr!==null?Math.round(r.cr)+"%":"—"}</b><span>Close rate now</span></div>
-      <div><b>${r.deals}</b><span>Deals lost last month</span></div>
-      <div><b>${r.monthly?fmt(r.monthly):"—"}</b><span>Lost last month</span></div>
+      <div><b>${Math.round(r.close*100)}%</b><span>Close rate now</span></div>
+      <div><b>${Math.round(r.target*100)}%</b><span>Achievable</span></div>
+      <div><b>${r.lostJobs.toFixed(1)}</b><span>Jobs lost / month</span></div>
     </div>
-    <div class="diag"><b>Biggest leak: ${esc(d[0])}</b><p>${esc(d[1])}</p></div>
+    <div class="diag"><b>Likely leak point: ${esc(stall[1])}</b><p>${esc(stall[2])}</p></div>
     <p class="hint" style="margin-top:20px">Paul will walk you through exactly where control is slipping on a free, private 30-minute discovery call, and how to get it back starting with your next quote.</p>
     <div class="qnav" style="justify-content:flex-start;flex-wrap:wrap"><a class="btn btn-gold" href="${CALENDAR_PAGE}">Book My Free Discovery Call <span class="arr">→</span></a><button class="qback" id="redo" type="button" style="margin-left:auto">Retake</button></div>
-    <p class="privacy">Based on your answer: ${r.monthly?fmt(r.monthly):"£0"} lost last month × 12 months. Illustrative, not a promise of results.</p>
+    <p class="privacy">Illustrative estimate based on your answers: ${r.quotes} quotes a month × ${fmt(r.job)} average job, against a ${Math.round(r.target*100)}% close rate, plus discounting. Not a promise of results.</p>
     <p class="toast" id="toast" hidden></p></div>`;
-  document.getElementById("redo").onclick = () => { clearInterval(window.__redir); state.step = 1; render(); };
+  document.getElementById("redo").onclick = () => { clearInterval(window.__redir); state.step = 1; state.a = {}; render(); };
   startRedirect();
 }
 
 function storeLead(){
-  try {
-    const lead = {...state.contact, ...state.a};
-    const cr = num(state.a.close_rate); if (cr !== null) lead.close_pct = cr;
+  try{
+    const lead = {...state.contact};
+    Q.forEach(s => { if(state.a[s.id]!==undefined) lead[s.id] = label(s.opts[state.a[s.id]]); });
+    if(state.a.close!==undefined) lead.close_pct = Math.round(Q.find(q=>q.id==="close").opts[state.a.close][1]*100);
     localStorage.setItem("pb-lead", JSON.stringify(lead));
-  } catch(e) {}
+  }catch(e){}
 }
 function startRedirect(){
   clearInterval(window.__redir);
@@ -879,11 +860,13 @@ function startRedirect(){
 function submit(stage){
   storeLead();
   if(!WEBHOOK_URL) return;
-  const r = calc();
-  const payload = stage === "started"
-    ? {...state.contact, stage, source:"7 Steps Sales Leak Assessment"}
-    : {...state.contact, ...state.a, stage, source:"7 Steps Sales Leak Assessment", estimated_annual_leak: Math.round(r.annual)};
-  fetch(WEBHOOK_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)}).catch(()=>{});
+  if(stage === "started"){ fetch(WEBHOOK_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({...state.contact, source:"7 Steps Sales Leak Assessment", stage})}).catch(()=>{}); return; }
+  const r = calc(), payload = {...state.contact, stage, source:"7 Steps Sales Leak Assessment",
+    answers: Object.fromEntries(Q.map(s => [s.id, label(s.opts[state.a[s.id]])])),
+    close_rate:Math.round(r.close*100), annual_leak:Math.round(r.annual), monthly_leak:Math.round(r.monthly)};
+  fetch(WEBHOOK_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)})
+    .then(()=>{const t=document.getElementById("toast"); if(t){t.hidden=false;t.textContent="✓ Results sent to "+state.contact.email;}})
+    .catch(()=>{});
 }
 
 /* ---------- v2 motion ---------- */
@@ -936,7 +919,7 @@ if(location.hash === "#assess") setTimeout(open, 300);
     card.addEventListener("click", () => {
       slot.innerHTML = `<video controls autoplay playsinline src="${card.dataset.video}"></video>`;
       const v = slot.querySelector("video");
-      v.addEventListener("error", () => { slot.innerHTML = '<div class="vmissing"><b>Video coming soon</b>This client story is being added. In the meantime, take the 4-minute assessment.</div>'; });
+      v.addEventListener("error", () => { slot.innerHTML = '<div class="vmissing"><b>Video coming soon</b>This client story is being added. In the meantime, take the 2-minute assessment.</div>'; });
       m.hidden=false; document.body.style.overflow="hidden"; document.getElementById("vclose").focus();
     });
   });

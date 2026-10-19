@@ -348,7 +348,7 @@ let i = 0, data = {}, busy = false, sentStart = false, cur = null;
 
 /* restore draft, homepage quiz answers, URL params */
 try { const d = JSON.parse(localStorage.getItem(KEY) || "{}"); data = d.data || {}; i = Math.min(d.i || 0, Q.length - 2); } catch(e) {}
-try { const lead = JSON.parse(localStorage.getItem("pb-lead") || "null"); if (lead) { ["full_name","email",...Q.filter(x=>x.n).map(x=>x.n)].forEach(k => { if (lead[k] !== undefined && lead[k] !== "" && (data[k] === undefined || data[k] === "")) data[k] = lead[k]; }); } } catch(e) {}
+try { const lead = JSON.parse(localStorage.getItem("pb-lead") || "null"); if (lead) { if (!data.full_name && (lead.full_name || lead.first)) data.full_name = lead.full_name || lead.first; if (!data.email && lead.email) data.email = lead.email; } } catch(e) {}
 try { const p = new URLSearchParams(location.search), m = {full_name:["full_name","name"],email:["email"]}; for (const k in m) for (const a of m[k]) { const v = p.get(a); if (v && !data[k]) { data[k] = v; break; } } } catch(e) {}
 const save = () => { try { localStorage.setItem(KEY, JSON.stringify({i, data})); } catch(e) {} };
 
