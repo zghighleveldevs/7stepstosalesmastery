@@ -1,14 +1,14 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en-GB">
-<meta charset="utf-8">
-<link rel="icon" type="image/png" href="images/favicon.png">
+<head><meta charset="utf-8">
+<link rel="icon" type="image/png" href="/images/favicon.png">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Book Your Discovery Call</title>
-<meta name="description" content="Book your free 30-minute discovery call with Paul Broome and find out how to go from losing deals to closing at 60–75% in 90 days.">
+<meta name="description" content="Book your free 30-minute discovery call with Paul Broome and find out how to go from losing deals to targeting a 60–70% close rate in 90 days.">
 <meta name="author" content="Paul Broome">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;1,600;1,800&family=Figtree:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;1,600;1,800&amp;family=Figtree:wght@400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@500;600&amp;display=swap">
 <style>
 /* Layout: dark navy "boardroom" with gold leaf. Hero = thesis (the leak) + assessment launcher; long-form sales letter below, measured 1180px column. */
 :root{
@@ -594,18 +594,20 @@ footer{border-top-color:rgba(255,255,255,.08);background:rgba(5,12,32,.5)}
   .bc-hero .wrap,.nav .wrap{max-width:1600px}
   .bc-grid{grid-template-columns:minmax(0,1fr) min(50vw,980px)}
 }
+.pm-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:34px}
+.pm{border:1px solid var(--line);border-radius:18px;padding:24px;background:rgba(255,255,255,.03)}
+.pm .stars{color:var(--gold,#d6ab4f);letter-spacing:2px}
+.pm .delta{font-weight:700;color:var(--gold,#d6ab4f);margin:8px 0 10px}
+.pm p{color:var(--mute);margin:0 0 14px}
+.pm .who{font-weight:700}.pm .who span{display:block;font-weight:400;color:var(--dim);font-size:14px}
+.pm-note{text-align:center;color:var(--dim);font-size:14px;margin-top:22px}
+@media (max-width:820px){.pm-grid{grid-template-columns:1fr}}
 </style>
 
 <header class="nav">
   <div class="wrap">
-    <a class="brand" href="/" aria-label="Paul Broome Sales Mastery home"><img class="logo-h" src="images/logo-horizontal.png" alt="Paul Broome Sales Mastery" width="655" height="217"></a>
-    <nav class="nav-links" aria-label="Page">
-      <a href="#steps">The 7 Steps</a>
-      <a href="#paul">About Paul</a>
-      <a href="#faq">Questions</a>
-      <a href="/">Home</a>
-      <a class="btn btn-gold" href="#book">Book My Call</a>
-    </nav>
+    <a class="brand" href="/" aria-label="Paul Broome Sales Mastery home"><img class="logo-h" src="/images/logo-horizontal.png" alt="Paul Broome Sales Mastery" width="655" height="217"></a>
+    <nav class="nav-links" aria-label="Page"><a href="/">Back To Website</a><a href="#call-details">What To Expect</a><a href="#proof">Results</a><a href="#prepare">Prepare For Your Call</a><a href="#book">Book My Free Call</a></nav>
   </div>
 </header>
 
@@ -613,26 +615,22 @@ footer{border-top-color:rgba(255,255,255,.08);background:rgba(5,12,32,.5)}
 <!-- HERO + CALENDAR -->
 <section class="hero bc-hero" id="book">
   <div class="wrap">
-    <div class="funnel" aria-label="Your progress">
-      <a class="fs done" href="/#assess" style="text-decoration:none" title="Take or retake the Sales Leak Assessment"><i>✓</i><span>Sales Leak Assessment</span></a><span class="fline"></span>
-      <span class="fs cur" aria-current="step"><i>2</i><span>Book Your Call</span></span><span class="fline off"></span>
-      <span class="fs"><i>3</i><span>Prepare For Your Call</span></span>
-    </div>
+    <div class="funnel" aria-label="Your progress">Choose a time → Confirm your details → Prepare for your call</div>
 
     <div class="bc-grid">
       <div class="bc-intro">
         <div class="eyebrow">For UK home improvement business owners</div>
-        <h1><span class="line">From losing deals to closing at</span> <span class="line"><em class="g">60–75% in 90 days.</em></span></h1>
-        <p class="lede">How <strong>UK home improvement business owners</strong> stop losing £45K–£135K per month, without pushy scripts, complicated funnels, or anyone knowing they needed help.</p>
+        <h1>Book your free discovery call with Paul</h1>
+        <p class="lede">A focused, confidential 30-minute conversation for UK home improvement business owners who want to improve how they convert enquiries into sales.</p>
         <div class="vid" id="vid">
           <video id="bcv" playsinline controls preload="none" hidden>
             <source src="https://assets.cdn.filesafe.space/2x8A5up52ublohNgZGKU/media/6984480cd017c3d65391a2a5.mov" type="video/mp4">
             <source src="https://assets.cdn.filesafe.space/2x8A5up52ublohNgZGKU/media/6984480cd017c3d65391a2a5.mov" type="video/quicktime">
-          </video>
+          </source></source></video>
           <button class="cover" id="bcplay" type="button" aria-label="Play video from Paul">
             <video class="thumb" id="bcthumb" muted playsinline preload="metadata" aria-hidden="true" tabindex="-1"></video>
-            <span class="play"><svg viewBox="0 0 24 24"><path d="M6 4l15 8-15 8z" fill="#1a1405"/></svg></span>
-            <span class="lbl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/></svg>PRESS PLAY &amp; TURN UP YOUR VOLUME</span>
+            <span class="play"><svg viewbox="0 0 24 24"><path d="M6 4l15 8-15 8z" fill="#1a1405"></path></svg></span>
+            <span class="lbl"><svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4z"></path><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"></path></svg>PRESS PLAY &amp; TURN UP YOUR VOLUME</span>
           </button>
         </div>
         <div class="myleak" id="myleak" hidden><b id="myleakN">£0</b><span>Your estimated sales leak each year, from your assessment answers. Illustrative, not a promise of results.</span></div>
@@ -641,8 +639,8 @@ footer{border-top-color:rgba(255,255,255,.08);background:rgba(5,12,32,.5)}
       <div class="cal glass" aria-label="Paul's booking calendar">
         <div class="cal-head">
           <div class="eyebrow">Your sales transformation starts here</div>
-          <h2>Book your free 30&#8209;minute discovery call</h2>
-          <p>On this confidential call you'll discover exactly how to stop losing deals to "ghosting" and "we're getting more quotes", and start closing at 60–75% in under 90 days, without pushy scripts or complicated systems.</p>
+          <h2>Book your free 30‑minute discovery call</h2>
+          <p>Choose a time below. We’ll discuss your current sales conversations, where deals stall and whether working together makes sense. There is no obligation to join a programme.</p>
         </div>
         <div class="cal-tags"><em>30 minutes</em><em>Free</em><em>Confidential</em><em class="live">● Live calendar</em></div>
         <div id="cal-embed">
@@ -650,9 +648,9 @@ footer{border-top-color:rgba(255,255,255,.08);background:rgba(5,12,32,.5)}
           <iframe src="https://paul.7stepstosalesmastery.com/widget/booking/bkrsE26sQmcKSfOkvrys" allow="payment" style="width: 100%;border:none;overflow: hidden;" scrolling="no" id="bkrsE26sQmcKSfOkvrys_1791384774356" title="Book a call with Paul Broome"></iframe><br><script src="https://paul.7stepstosalesmastery.com/js/form_embed.js" type="text/javascript"></script>
           <!-- ===== END GHL CALENDAR EMBED ===== -->
         </div>
-        <div class="scarce">Limited to 10 consultations per week</div>
-        <div class="cal-foot" style="padding-bottom:6px">Not taken the 2-minute assessment yet? <a href="/#assess">Find your sales leak first</a></div>
-        <div class="cal-foot">Calendar not loading? <a id="calOpen" href="https://paul.7stepstosalesmastery.com/widget/booking/bkrsE26sQmcKSfOkvrys" target="_blank" rel="noopener">Open it in a new tab</a></div>
+        <div class="scarce">Free · 30 minutes · No obligation</div>
+        <div class="cal-foot" style="padding-bottom:6px">The Sales Leak Assessment is optional. You can book directly here.</div>
+        <div class="cal-foot">Calendar not loading? <a id="calOpen" href="https://paul.7stepstosalesmastery.com/widget/booking/bkrsE26sQmcKSfOkvrys" target="_blank" rel="noopener" class="btn btn-gold">Open The Booking Calendar →</a></div>
       </div>
 
       <div class="bc-more"></div>
@@ -660,176 +658,34 @@ footer{border-top-color:rgba(255,255,255,.08);background:rgba(5,12,32,.5)}
   </div>
 </section>
 
-<!-- WHAT I DO -->
-<section class="block wid-sec">
-  <div class="wrap wid">
-    <div>
-      <div class="eyebrow">What I do</div>
-      <h2>Go from losing deals to closing at <em class="g">60–75%.</em></h2>
-      <p class="big"><strong>I help UK home improvement business owners, especially those losing 4–7 jobs a month, close at 60–75% using my proven Conversation Control™ System.</strong></p>
-      <p class="big">I specialise in fixing conversation breakdowns without complicated systems, and without anyone finding out you needed help. It's built exclusively for tradespeople who want results, simplicity and proven frameworks. No pushy scripts. No complicated funnels. Just private, professional sales mastery.</p>
+<!-- WHAT HAPPENS ON THE CALL -->
+<section class="block" style="padding-top:0" id="call-details">
+  <div class="wrap disc">
+    <div class="sticky">
+      <div class="eyebrow">Free 30-Minute Discovery Call</div>
+      <h2 style="font-size:clamp(32px,4vw,50px);margin-top:14px">What you'll discover</h2>
+      <p style="color:var(--mute);margin-top:18px;font-size:18px">A free 30-minute conversation about your business. The assessment is optional; bring your numbers if you have them.</p>
+      <div class="hero-cta"><a class="btn btn-gold" href="#book">Book My Free Discovery Call →</a></div>
     </div>
-    <div class="ben">
-      <article><span class="bi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v12H8l-4 4z"/><path d="M8 9h8M8 12h5"/></svg></span><div><h3>Stop losing control of conversations</h3><p>Eliminate the exact moments where "we're getting more quotes" happens, and the hidden triggers killing your closes.</p></div></article>
-      <article><span class="bi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.6-3.4 8.4-8 9-4.6-.6-8-4.4-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></span><div><h3>Achieve complete sales confidence</h3><p>Sell at your best with conversation control, price anchoring and the confidence to stop discounting.</p></div></article>
-      <article><span class="bi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20h18"/><path d="M6 16v-4M11 16V8M16 16v-6"/><path d="M5 9l5-4 4 3 6-5"/></svg></span><div><h3>Transform with proven frameworks</h3><p>No guesswork and no trial and error. Battle-tested, step-by-step systems using conversation psychology, already working for 100+ owners.</p></div></article>
-    </div>
+    <ul class="disc-list"><li>Review your current appointment numbers, close rate and average order value.</li><li>Identify where your sales conversations are breaking down.</li><li>Discuss the most useful next steps and whether coaching is a suitable fit.</li></ul>
   </div>
 </section>
 
-<!-- 7 STEPS -->
-<section class="block" id="steps" style="padding-top:0">
+<!-- SHORT PROOF -->
+<section class="block proof-mini" id="proof" style="padding-top:0">
   <div class="wrap">
-    <div class="head center">
-      <div class="eyebrow">How I can help you</div>
-      <h2>My simple <em class="g">7 Steps</em> to Sales Mastery™</h2>
-      <p>We'll walk through the 7 Steps on your call, and show you which one is costing you the most.</p>
+    <div class="head center"><div class="eyebrow">Owners who started with this call</div><h2>Real owners, <em class="g">real results.</em></h2></div>
+    <div class="pm-grid">
+      <article class="pm"><div class="stars" aria-label="5 stars">★★★★★</div><div class="delta">27% → 63% close rate</div><p>"Paul showed me the exact breakdown causing it. I fixed it straight away and closed my next 3 quotes at full price."</p><div class="who">Rob H.<span>Kitchen Installer, Birmingham</span></div></article>
+      <article class="pm"><div class="stars" aria-label="5 stars">★★★★★</div><div class="delta">24% → 59% in 90 days</div><p>"Within 3 weeks I closed four jobs in a row at full price. No discounting. Just clean closes. Closing has become so simple, a natural progression through Conversation Control™."</p><div class="who">A.H.<span>Solar Specialist</span></div></article>
+      <article class="pm"><div class="stars" aria-label="5 stars">★★★★★</div><div class="delta">31% → 66% close rate</div><p>"Chuffed. In the first month I closed two jobs that would normally have stalled, which more than covered the cost of my investment with Paul."</p><div class="who">A. Hughes</div></article>
     </div>
-    <div class="stairs">
-      <article class="st" style="--k:0"><span class="n">1</span><h3>Control the conversation</h3><p>Spot the hidden moments where control slips and customers start comparing prices instead of buying value.</p></article>
-      <article class="st" style="--k:1"><span class="n">2</span><h3>Diagnose before you propose</h3><p>Stop quoting too early. Ask the right questions so customers sell themselves before price is mentioned.</p></article>
-      <article class="st" style="--k:2"><span class="n">3</span><h3>Anchor value before price</h3><p>Make the difference between you and cheap competitors tangible, measurable and verifiable.</p></article>
-      <article class="st" style="--k:3"><span class="n">4</span><h3>Close cleanly and confidently</h3><p>Close frameworks that feel natural, not pushy. No manipulation, no pressure, just confident control.</p></article>
-      <article class="st" style="--k:4"><span class="n">5</span><h3>Turn statements into questions</h3><p>Rewire how you communicate so customers convince themselves instead of you defending your price.</p></article>
-      <article class="st" style="--k:5"><span class="n">6</span><h3>Handle price objections before they happen</h3><p>Prevent "we're getting more quotes" by anchoring value in the right sequence.</p></article>
-      <article class="st" style="--k:6"><span class="n">7</span><h3>Track &amp; improve</h3><p>Build permanent mastery with tracking, call reviews and continuous improvement that sticks.</p></article>
-    </div>
-    <div class="stairs-base" aria-hidden="true"></div>
+    <p class="pm-note">Individual results vary. <a href="/#reviews">Read more client stories →</a></p>
   </div>
 </section>
 
-<!-- ON THE CALL -->
-<section class="block" style="padding-top:0">
-  <div class="wrap">
-    <div class="head center">
-      <div class="eyebrow">Your free discovery call</div>
-      <h2>What happens on <em class="g">the call.</em></h2>
-    </div>
-    <div class="otc">
-      <article><div class="num">01</div><h3>Find where deals are lost</h3><p>We pinpoint why you're losing deals and exactly where conversation control is slipping.</p></article>
-      <article><div class="num">02</div><h3>Your 90-day action plan</h3><p>A personal plan based on your close rate, quote volume and type of business.</p></article>
-      <article><div class="num">03</div><h3>How 35% became 75%</h3><p>I'll show you the same steps I used to transform my own close rate.</p></article>
-      <article><div class="num">04</div><h3>What's realistic for you</h3><p>Why 60–75% in 90 days is achievable, even if sales coaching has failed you before.</p></article>
-    </div>
-    <div class="ctr"><a class="btn btn-gold" href="#book">Book My Free Discovery Call Now <span class="arr">→</span></a><small>Aim: recover £45K–£135K a month within 90 days. Results vary.</small></div>
-  </div>
-</section>
-
-<!-- FAMILIAR -->
-<section class="block" style="padding-top:0">
-  <div class="wrap fam">
-    <div>
-      <div class="eyebrow">If this sounds familiar, you're not alone</div>
-      <h2>Successful business. <em class="g">Struggling sales.</em></h2>
-      <ul class="pains">
-        <li>You do quality work and have a good reputation, but lose 4–7 jobs a month to "we're getting more quotes"</li>
-        <li>Your close rate is stuck between 20% and 30%</li>
-        <li>Cashflow is tight and discounting is eating your margins</li>
-        <li>Payroll keeps you up at night</li>
-        <li>You've tried sales training before and it didn't stick</li>
-        <li>After 20+ years in the trade, it's embarrassing to admit sales is the problem</li>
-        <li>You replay lost conversations at 3am and worry about where the business is heading</li>
-      </ul>
-    </div>
-    <figure class="story-card" style="margin:0">
-      <svg class="qm" viewBox="0 0 40 30" aria-hidden="true"><path d="M0 30V17C0 7 5 1 15 0l2 4c-5 2-8 5-8 10h7v16zm23 0V17c0-10 5-16 15-17l2 4c-5 2-8 5-8 10h7v16z" fill="currentColor"/></svg>
-      <p>You're out on site visits every day, quoting £15K–£30K jobs. The work is great. But every evening you're checking your phone for replies that never come. At 3am you're doing the maths on next month, wondering how to defend your price one more time.</p>
-      <div class="fix"><b>It isn't your work, and it isn't your price.</b> It's where control slips in the conversation, and that can be fixed.</div>
-    </figure>
-  </div>
-</section>
-
-<!-- MEET PAUL -->
-<section class="block" id="paul" style="padding-top:0">
-  <div class="wrap mp">
-    <figure class="mp-photo" style="margin:0">
-      <img src="images/paul.webp" alt="Paul Broome" loading="lazy">
-      <figcaption><b>Paul Broome</b><span>Founder, ComfyRoof.co.uk · Sales coach</span></figcaption>
-    </figure>
-    <div>
-      <div class="eyebrow">Why I can help you</div>
-      <h2>Not another sales trainer. <em class="g">A business owner who still sells.</em></h2>
-      <p class="sub">From a 35% close rate and £600K lost revenue to a 75% close rate.</p>
-      <p class="txt">I'm not a traditional sales trainer or business coach. I run ComfyRoof.co.uk (15+ years) and I've been in home improvements for 43 years. I understand sales conversations from personal struggle, and then <strong>37 years of testing and refining</strong>, turned into a method now trusted by UK business owners across every home improvement sector.</p>
-      <p class="txt">Most clients get breakthrough clarity on their first call, and the majority hit 60–75% within 90 days. This isn't theory or motivation. It's a complete system with real coaching, proven frameworks and ongoing accountability.</p>
-      <div class="cred">
-        <div><b>43</b><span>Years in home improvements</span></div>
-        <div><b>4,300+</b><span>High-ticket jobs closed</span></div>
-        <div><b>£50M+</b><span>In sales</span></div>
-        <div><b>75%</b><span>Personal close rate</span></div>
-        <div><b>15+</b><span>Years running ComfyRoof</span></div>
-        <div><b>Weekly</b><span>Still selling on real jobs</span></div>
-      </div>
-      <div class="years">
-        <div class="yr"><b>1982</b><p>Starts in home improvement sales.</p></div>
-        <div class="yr"><b>1987</b><p>Stuck at a 35% close rate, losing <strong>£600K a year</strong> in easy jobs.</p></div>
-        <div class="yr"><b>THE BREAKTHROUGH</b><p>Analyses <strong>200+ recorded calls</strong> and finds 7 specific steps in every home improvement sale.</p></div>
-        <div class="yr"><b>6 MONTHS LATER</b><p>Close rate up to <strong>67%</strong>, then <strong>75%</strong> within a year, recovering <strong>£480K+</strong> in lost revenue.</p></div>
-        <div class="yr" style="padding-bottom:0"><b>TODAY</b><p>Still selling every week, and coaching owners to do the same with the Conversation Control™ System.</p></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- INSIDE -->
-<section class="block" style="padding-top:0">
-  <div class="wrap">
-    <div class="head center">
-      <div class="eyebrow">Inside the 7 Steps to Sales Mastery™</div>
-      <h2>Everything you <em class="g">get.</em></h2>
-    </div>
-    <div class="inside">
-      <article><span class="ii"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg></span><div><h3>Conversation breakdown finder</h3><p>Pinpoints exactly where your sales conversations go wrong.</p></div></article>
-      <article><span class="ii"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4v-4h4v-4h4V8h4"/></svg></span><div><h3>The 7-step control framework</h3><p>The full Conversation Control™ System, step by step.</p></div></article>
-      <article><span class="ii"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M7 21h10M4 7h16"/><path d="M4 7l-2.5 6a3 3 0 0 0 5 0zM20 7l-2.5 6a3 3 0 0 0 5 0z"/></svg></span><div><h3>Value anchoring protocols</h3><p>So price stops being the conversation.</p></div></article>
-      <article><span class="ii"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="3" width="12" height="15" rx="1.5"/><path d="M5 6.5V20a1 1 0 0 0 1 1h10M11 8h6M11 11.5h6M11 15h3"/></svg></span><div><h3>Done-for-you scripts &amp; templates</h3><p>Ready to use on your very next quote.</p></div></article>
-      <article><span class="ii"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1v-6h3zM3 19a2 2 0 0 0 2 2h1v-6H3z"/></svg></span><div><h3>Live coaching &amp; call reviews</h3><p>Paul personally reviews your real sales calls.</p></div></article>
-      <article><span class="ii"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></span><div><h3>100% private</h3><p>Your team and competitors never need to know.</p></div></article>
-      <article class="hl"><span class="ii"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span><div><h3>24 live group coaching sessions + 3 private 1-to-1 deep dives</h3><p>Real coaching and ongoing accountability over 90 days, not a course you watch once and forget.</p></div></article>
-    </div>
-  </div>
-</section>
-
-<!-- TESTIMONIALS -->
-<section class="block" style="padding-top:0">
-  <div class="wrap">
-    <div class="head center"><div class="eyebrow">Real owners, real results</div><h2>What happened <em class="g">next.</em></h2></div>
-    <div class="tgrid three">
-      <article class="t"><div class="stars" aria-label="5 stars">★★★★★</div><h3>"Lost 7 straight, then closed 3 in a row"</h3><div class="delta">27% → 63% close rate</div><p>Paul showed me the exact conversation breakdown causing "we're getting more prices". I fixed it straight away and closed my next 3 quotes at full price.</p><div class="who">Rob H.<span>Kitchen Installer, Birmingham</span></div></article>
-      <article class="t"><div class="stars" aria-label="5 stars">★★★★★</div><h3>"The real deal"</h3><div class="delta">24% → 59% in 90 days</div><p>Paul is still actively selling. Within 3 weeks I closed four jobs in a row at full price, with no discounting and no "let me check with my partner".</p><div class="who">M.T.<span>Roofing Company, Manchester</span></div></article>
-      <article class="t"><div class="stars" aria-label="5 stars">★★★★★</div><h3>"Paid for itself in month one"</h3><div class="delta">31% → 66% close rate</div><p>In the first month I closed two jobs that would normally have stalled, which covered the cost. Same enquiries, same pricing, completely different results.</p><div class="who">A.J.<span>Garage Conversion Specialist, Hertfordshire</span></div></article>
-    </div>
-  </div>
-</section>
-
-<!-- BUT WHAT IF -->
-<section class="block" id="faq" style="padding-top:0">
-  <div class="wrap">
-    <div class="head center"><div class="eyebrow">Common concerns</div><h2>But what <em class="g">if…?</em></h2></div>
-    <div class="wif">
-      <details><summary>"I don't have time for a 90-day programme."</summary><p>You don't need hours. You need focused changes in the conversations you're already having. Most owners see their first win within 3–5 days.</p></details>
-      <details><summary>"I can't afford £10,000 right now."</summary><p>One extra job closed at full price can cover the programme several times over, and payment plans are available. The bigger cost is carrying on losing deals.</p></details>
-      <details><summary>"I'm not ready yet. I need to think about it."</summary><p>You don't need to be ready, you need to stop the leak. Every week you wait is often another £10K–£30K in jobs that go elsewhere.</p></details>
-      <details><summary>"I've tried sales training before and it didn't work."</summary><p>Generic scripts aren't built for home improvement. This is, and I still use it on real jobs every week, so you're learning what works now, not theory.</p></details>
-      <details><summary>"My situation is different."</summary><p>Conservatories, windows, extensions, roofing: the trades differ, but the conversation breakdowns are the same. The framework works across all of them.</p></details>
-      <details><summary>"What if people find out I needed help with sales?"</summary><p>They won't. It's completely confidential, no different from hiring an accountant or a solicitor. Your team and competitors never need to know.</p></details>
-      <details><summary>"I'm already too busy to implement another system."</summary><p>It replaces the guesswork you're already doing, rather than adding to it. The first fixes take minutes to learn and you use them on your next quote.</p></details>
-    </div>
-  </div>
-</section>
-
-<!-- FINAL -->
-<section class="block" style="padding-top:0">
-  <div class="wrap">
-    <div class="fin">
-      <div class="eyebrow">Your next 90 days</div>
-      <h2 style="margin-top:14px">Your 60–75% close rate is <em class="g">less than 90 days away.</em></h2>
-      <p>UK business owners are already closing at 60–75% within 90 days. No pushy tactics, no complicated funnels and no public exposure. If you're ready to stop losing £45K–£135K a month, book your free discovery call now.</p>
-      <div class="ctr"><a class="btn btn-gold" href="#book">Book My Free Discovery Call Now <span class="arr">→</span></a><small>Paul works with you personally, so calls are limited to 10 a week.</small></div>
-    </div>
-  </div>
-</section>
-</main>
+<!-- PREPARE -->
+<section class="block" id="prepare"><div class="wrap"><div class="head center"><div class="eyebrow">Before we speak</div><h2>What to bring to your call</h2><p>Your approximate monthly appointments, sales won, average order value and one recent example of a deal that stalled. Estimates are fine. No preparation is required to book.</p><p>Choose an available time, enter your details and complete the calendar confirmation. Look for your booking confirmation and joining instructions afterwards.</p><p><a href="/#results">Review client results</a> · <a href="/#coaching">Explore the coaching</a> · <a href="/#faq">Read common questions</a></p></div></div></section></main>
 
 <footer>
   <div class="wrap">
@@ -838,7 +694,7 @@ footer{border-top-color:rgba(255,255,255,.08);background:rgba(5,12,32,.5)}
       <a href="/#assess">Sales Leak Assessment</a>
       <a href="/book-call.html">Book A Discovery Call</a>
     </nav>
-    <img class="foot-logo" src="images/logo-full.png" alt="Paul Broome Sales Mastery" width="403" height="327" loading="lazy">
+    <img class="foot-logo" src="/images/logo-full.png" alt="Paul Broome Sales Mastery" width="403" height="327" loading="lazy">
     <div class="row">
       <div>© 2026 Paul Broome Sales Mastery · Specialist sales coaching for UK home improvement businesses</div>
       <div class="legal">
@@ -885,3 +741,4 @@ footer{border-top-color:rgba(255,255,255,.08);background:rgba(5,12,32,.5)}
   }
 })();
 </script>
+</head></html>
